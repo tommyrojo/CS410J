@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Project1.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">CS410J Phone Bill Project</a> &gt; <a href="index.source.html" class="el_package">edu.pdx.CS410j.tmassey</a> &gt; <span class="el_source">Project1.java</span></div><h1>Project1.java</h1><pre class="source lang-java linenums">package edu.pdx.CS410j.tmassey;
+
+import edu.pdx.cs410J.AbstractPhoneBill;
+
+import java.util.Collection;
+
+/**
+ * The main class for the CS410J Phone Bill Project
+ */
+<span class="nc" id="L10">public class Project1 {</span>
+
+  public static void main(String[] args) {
+<span class="nc" id="L13">    String customer = new String();</span>
+<span class="nc" id="L14">    String caller = new String();</span>
+<span class="nc" id="L15">    String callee = new String();</span>
+<span class="nc" id="L16">    String startTime = new String();</span>
+<span class="nc" id="L17">    String endTime = new String();</span>
+//
+//    PhoneCall call = new PhoneCall(caller, callee, startTime, endTime);  // Refer to one of Dave's classes so that we can be sure it is on the classpath
+//
+//    PhoneBill bill = new PhoneBill(&quot;New Caller&quot;);
+//    bill.addPhoneCall(call);
+
+//    Collection&lt;PhoneCall&gt; phoneCalls = bill.getPhoneCalls();
+//    for(PhoneCall c: phoneCalls) {
+//      System.out.println(c);
+//    }
+
+<span class="nc" id="L29">    var dateTimeRegEx = &quot;(0?[1-9]|[12][0-9]|3[01])/(0?[1-9]|1[012])/((19|20)\\d\\d [0-2]\\d:[0-6]\\d:[0-6]\\d)?&quot;;</span>
+<span class="nc" id="L30">    var phoneRegEx = &quot;^\\d{3}-\\d{3}-\\d{4}$&quot;;</span>
+
+<span class="nc" id="L32">    Boolean errorOnInput = false;</span>
+
+<span class="nc bnc" id="L34" title="All 2 branches missed.">    if(!args[0].toLowerCase().equals(&quot;customer&quot;)) {</span>
+<span class="nc" id="L35">      System.err.println(&quot;Missing command line argument: customer&quot;);</span>
+<span class="nc" id="L36">      errorOnInput = true;</span>
+    }
+
+<span class="nc bnc" id="L39" title="All 2 branches missed.">    if(!args[1].toLowerCase().matches(&quot;^[a-zA-Z0-9]*$&quot;)) {</span>
+<span class="nc" id="L40">      System.err.println(&quot;customerValue must be alphanumeric (0-9 and A-Z):&quot;);</span>
+<span class="nc" id="L41">      errorOnInput = true;</span>
+    } else {
+<span class="nc" id="L43">      customer = args[1];</span>
+    }
+
+<span class="nc bnc" id="L46" title="All 2 branches missed.">    if(!args[2].toLowerCase().equals(&quot;callernumber&quot;)) {</span>
+<span class="nc" id="L47">      System.err.println(&quot;Missing command line argument: callerNumber&quot;);</span>
+<span class="nc" id="L48">      errorOnInput = true;</span>
+    }
+
+<span class="nc bnc" id="L51" title="All 2 branches missed.">    if(!args[3].toLowerCase().matches(phoneRegEx)) {</span>
+<span class="nc" id="L52">      System.err.println(&quot;Missing command line arguments: callerNumberValue&quot;);</span>
+<span class="nc" id="L53">      errorOnInput = true;</span>
+    } else {
+<span class="nc" id="L55">      caller = args[3];</span>
+    }
+
+<span class="nc bnc" id="L58" title="All 2 branches missed.">    if(!args[4].toLowerCase().equals(&quot;calleenumber&quot;)) {</span>
+<span class="nc" id="L59">      System.err.println(&quot;Missing command line argument: calleeNumber&quot;);</span>
+<span class="nc" id="L60">      errorOnInput = true;</span>
+    }
+
+<span class="nc bnc" id="L63" title="All 2 branches missed.">    if(!args[5].toLowerCase().contains(&quot;&quot;)) {</span>
+<span class="nc" id="L64">      System.err.println(&quot;Missing command line arguments: calleeNumberValue&quot;);</span>
+<span class="nc" id="L65">      errorOnInput = true;</span>
+    } else {
+<span class="nc" id="L67">      callee = args[5];</span>
+    }
+
+<span class="nc bnc" id="L70" title="All 2 branches missed.">    if(!args[6].toLowerCase().equals(&quot;starttime&quot;)) {</span>
+<span class="nc" id="L71">      System.err.println(&quot;Missing command line argument: startTime&quot;);</span>
+<span class="nc" id="L72">      errorOnInput = true;</span>
+    }
+
+<span class="nc bnc" id="L75" title="All 2 branches missed.">    if(!args[7].toLowerCase().matches(dateTimeRegEx)) {</span>
+<span class="nc" id="L76">      System.err.println(&quot;Missing command line argument: startTimeValue&quot;);</span>
+<span class="nc" id="L77">      errorOnInput = true;</span>
+    } else {
+<span class="nc" id="L79">      startTime = args[7];</span>
+    }
+
+<span class="nc bnc" id="L82" title="All 2 branches missed.">    if(!args[8].toLowerCase().equals(&quot;endtime&quot;)) {</span>
+<span class="nc" id="L83">      System.err.println(&quot;Missing command line argument: endTime&quot;);</span>
+<span class="nc" id="L84">      errorOnInput = true;</span>
+    }
+
+<span class="nc bnc" id="L87" title="All 2 branches missed.">    if(!args[9].toLowerCase().matches(dateTimeRegEx)) {</span>
+<span class="nc" id="L88">      System.err.println(&quot;Missing command line argument: endTimeValue&quot;);</span>
+<span class="nc" id="L89">      errorOnInput = true;</span>
+    } else {
+<span class="nc" id="L91">      endTime = args[9];</span>
+    }
+
+<span class="nc bnc" id="L94" title="All 2 branches missed.">    if(errorOnInput) {</span>
+<span class="nc" id="L95">      System.exit(0);</span>
+    } else {
+<span class="nc" id="L97">      PhoneCall call = new PhoneCall(caller, callee, startTime, endTime);</span>
+<span class="nc" id="L98">      PhoneBill bill = new PhoneBill(customer);</span>
+<span class="nc" id="L99">      bill.addPhoneCall(call);</span>
+    }
+
+<span class="nc bnc" id="L102" title="All 2 branches missed.">    for (String arg : args) {</span>
+<span class="nc" id="L103">      System.out.println(arg);</span>
+    }
+<span class="nc" id="L105">    System.exit(1);</span>
+<span class="nc" id="L106">  }</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.1.201803210924</span></div></body></html>
