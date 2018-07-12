@@ -15,6 +15,9 @@ public class Project1 {
     String callee = new String();
     String startTime = new String();
     String endTime = new String();
+    Boolean readMe = false;
+    Boolean print = false;
+
 //
 //    PhoneCall call = new PhoneCall(caller, callee, startTime, endTime);  // Refer to one of Dave's classes so that we can be sure it is on the classpath
 //
@@ -31,78 +34,90 @@ public class Project1 {
 
     Boolean errorOnInput = false;
 
-    if(!args[0].toLowerCase().equals("customer")) {
+    if (!args[0].toLowerCase().equals("customer")) {
       System.err.println("Missing command line argument: customer");
       errorOnInput = true;
     }
 
-    if(!args[1].toLowerCase().matches("^[a-zA-Z0-9]*$")) {
+    if (!args[1].toLowerCase().matches("^[a-zA-Z0-9]*$")) {
       System.err.println("customerValue must be alphanumeric (0-9 and A-Z):");
       errorOnInput = true;
     } else {
       customer = args[1];
     }
 
-    if(!args[2].toLowerCase().equals("callernumber")) {
+    if (!args[2].toLowerCase().equals("callernumber")) {
       System.err.println("Missing command line argument: callerNumber");
       errorOnInput = true;
     }
 
-    if(!args[3].toLowerCase().matches(phoneRegEx)) {
-      System.err.println("Missing command line arguments: callerNumberValue");
+    if (!args[3].toLowerCase().matches(phoneRegEx)) {
+      System.err.println("callerNumberValue must be in format: ###-###-####");
       errorOnInput = true;
     } else {
       caller = args[3];
     }
 
-    if(!args[4].toLowerCase().equals("calleenumber")) {
+    if (!args[4].toLowerCase().equals("calleenumber")) {
       System.err.println("Missing command line argument: calleeNumber");
       errorOnInput = true;
     }
 
-    if(!args[5].toLowerCase().contains("")) {
-      System.err.println("Missing command line arguments: calleeNumberValue");
+    if (!args[5].toLowerCase().matches(phoneRegEx)) {
+      System.err.println("calleeNumberValue must be in format: ###-###-####");
       errorOnInput = true;
     } else {
       callee = args[5];
     }
 
-    if(!args[6].toLowerCase().equals("starttime")) {
+    if (!args[6].toLowerCase().equals("starttime")) {
       System.err.println("Missing command line argument: startTime");
       errorOnInput = true;
     }
 
-    if(!args[7].toLowerCase().matches(dateTimeRegEx)) {
-      System.err.println("Missing command line argument: startTimeValue");
+    if (!args[7].toLowerCase().matches(dateTimeRegEx)) {
+      System.err.println("startTimeValue must be in format: mm/dd/yyyy hh:mm");
       errorOnInput = true;
     } else {
       startTime = args[7];
     }
 
-    if(!args[8].toLowerCase().equals("endtime")) {
+    if (!args[8].toLowerCase().equals("endtime")) {
       System.err.println("Missing command line argument: endTime");
       errorOnInput = true;
     }
 
-    if(!args[9].toLowerCase().matches(dateTimeRegEx)) {
-      System.err.println("Missing command line argument: endTimeValue");
+    if (!args[9].toLowerCase().matches(dateTimeRegEx)) {
+      System.err.println("endTimeValue must be in format: mm/dd/yyyy hh:mm");
       errorOnInput = true;
     } else {
       endTime = args[9];
     }
 
-    if(errorOnInput) {
+    if (errorOnInput) {
       System.exit(0);
     } else {
       PhoneCall call = new PhoneCall(caller, callee, startTime, endTime);
       PhoneBill bill = new PhoneBill(customer);
       bill.addPhoneCall(call);
+
+      if (args.length > 10) {
+        for (int i = 10; i < args.length; i++) {
+          if (args[i].equals("-README")) {
+            System.out.println("PRINT README HERE!");
+          }
+
+          if (args[i].equals("-print")) {
+            Collection<PhoneCall> phoneCalls = bill.getPhoneCalls();
+            for(PhoneCall c: phoneCalls) {
+              System.out.println(c);
+            }
+          }
+        }
+      }
+      
+      System.exit(1);
     }
 
-    for (String arg : args) {
-      System.out.println(arg);
-    }
-    System.exit(1);
   }
-
 }

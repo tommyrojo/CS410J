@@ -5,27 +5,48 @@ import edu.pdx.cs410J.AbstractPhoneBill;
 import java.util.ArrayList;
 import java.util.Collection;
 
+/**
+ * class to create a PhoneBill with a customer and a collection of phone calls
+ *
+ *
+ */
 public class PhoneBill  extends AbstractPhoneBill&lt;PhoneCall&gt;{
     private final String customerName;
-<span class="nc" id="L10">    private Collection&lt;PhoneCall&gt; calls = new ArrayList&lt;&gt;();</span>
+<span class="nc" id="L15">    private Collection&lt;PhoneCall&gt; calls = new ArrayList&lt;&gt;();</span>
 
-<span class="nc" id="L12">    public PhoneBill(String customerName) {</span>
-<span class="nc" id="L13">        this.customerName = customerName;</span>
-<span class="nc" id="L14">    }</span>
+    /**
+     * Constructor to create a PhoneBill
+     * @param customerName
+     */
+<span class="nc" id="L21">    public PhoneBill(String customerName) {</span>
+<span class="nc" id="L22">        this.customerName = customerName;</span>
+<span class="nc" id="L23">    }</span>
 
+    /**
+     * getCustomer method returns the customer name for this phone bill object
+     * @return String customerName
+     */
     @Override
     public String getCustomer() {
-<span class="nc" id="L18">        return this.customerName;</span>
+<span class="nc" id="L31">        return this.customerName;</span>
     }
 
+    /**
+     * addPhoneCall method adds a phone call to the phonebill class for Customer
+     * @param phoneCall
+     */
     @Override
     public void addPhoneCall(PhoneCall phoneCall) {
-<span class="nc" id="L23">        this.calls.add(phoneCall);</span>
-<span class="nc" id="L24">    }</span>
+<span class="nc" id="L40">        this.calls.add(phoneCall);</span>
+<span class="nc" id="L41">    }</span>
 
+    /**
+     * getPhoneCalls returns a collection of phoneCalls that would be found in a phone bill
+     * @return
+     */
     @Override
     public Collection&lt;PhoneCall&gt; getPhoneCalls() {
-<span class="nc" id="L28">        return this.calls;</span>
+<span class="nc" id="L49">        return this.calls;</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.1.201803210924</span></div></body></html>

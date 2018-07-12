@@ -2,37 +2,63 @@
 
 import edu.pdx.cs410J.AbstractPhoneCall;
 
+/**
+ * class to create a phone call
+ */
 public class PhoneCall extends AbstractPhoneCall {
   private final String caller;
   private final String callee;
   private String startTime;
   private String endTime;
 
-<span class="nc" id="L11">  public PhoneCall(String caller, String callee, String startTime, String endTime) {</span>
-<span class="nc" id="L12">    this.caller = caller;</span>
-<span class="nc" id="L13">    this.callee = callee;</span>
-<span class="nc" id="L14">    this.startTime = startTime;</span>
-<span class="nc" id="L15">    this.endTime = endTime;</span>
-<span class="nc" id="L16">  }</span>
+  /**
+   * PhoneCall Constructor to create a Phone Call object
+   * @param caller
+   * @param callee
+   * @param startTime
+   * @param endTime
+   */
+<span class="nc" id="L21">  public PhoneCall(String caller, String callee, String startTime, String endTime) {</span>
+<span class="nc" id="L22">    this.caller = caller;</span>
+<span class="nc" id="L23">    this.callee = callee;</span>
+<span class="nc" id="L24">    this.startTime = startTime;</span>
+<span class="nc" id="L25">    this.endTime = endTime;</span>
+<span class="nc" id="L26">  }</span>
 
+  /**
+   * getCaller method
+   * @return String caller
+   */
   @Override
   public String getCaller() {
-<span class="nc" id="L20">    return this.caller;</span>
+<span class="nc" id="L34">    return this.caller;</span>
   }
 
+  /**
+   * getCallee method
+   * @return String callee
+   */
   @Override
   public String getCallee() {
-<span class="nc" id="L25">    return this.callee;</span>
+<span class="nc" id="L43">    return this.callee;</span>
   }
 
+  /**
+   * getStartTimeString method
+   * @return String startTime
+   */
   @Override
   public String getStartTimeString() {
-<span class="nc" id="L30">    return this.startTime;</span>
+<span class="nc" id="L52">    return this.startTime;</span>
   }
 
+  /**
+   * getEndTimeString method
+   * @return String endTime
+   */
   @Override
   public String getEndTimeString() {
-<span class="nc" id="L35">    return this.endTime;</span>
+<span class="nc" id="L61">    return this.endTime;</span>
   };
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.1.201803210924</span></div></body></html>
