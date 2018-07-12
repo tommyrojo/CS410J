@@ -18,17 +18,6 @@ public class Project1 {
     Boolean readMe = false;
     Boolean print = false;
 
-//
-//    PhoneCall call = new PhoneCall(caller, callee, startTime, endTime);  // Refer to one of Dave's classes so that we can be sure it is on the classpath
-//
-//    PhoneBill bill = new PhoneBill("New Caller");
-//    bill.addPhoneCall(call);
-
-//    Collection<PhoneCall> phoneCalls = bill.getPhoneCalls();
-//    for(PhoneCall c: phoneCalls) {
-//      System.out.println(c);
-//    }
-
     var dateTimeRegEx = "(0?[1-9]|[12][0-9]|3[01])/(0?[1-9]|1[012])/((19|20)\\d\\d [0-2]\\d:[0-6]\\d:[0-6]\\d)?";
     var phoneRegEx = "^\\d{3}-\\d{3}-\\d{4}$";
 
@@ -104,7 +93,13 @@ public class Project1 {
       if (args.length > 10) {
         for (int i = 10; i < args.length; i++) {
           if (args[i].equals("-README")) {
-            System.out.println("PRINT README HERE!");
+            System.out.println("Tom Massey");
+            System.out.println("CS410J");
+            System.out.println("This is a simple PhoneBill project that contains a collection of Phone Calls");
+            System.out.println("The point was to extend a couple of Abstact Classes that we did not write");
+            System.out.println("and get that functionality working from the command line");
+            System.out.println("including flags and options provided by the user");
+            System.out.println("as well as error checking upon input");
           }
 
           if (args[i].equals("-print")) {
@@ -115,7 +110,7 @@ public class Project1 {
           }
         }
       }
-      
+
       System.exit(1);
     }
 
