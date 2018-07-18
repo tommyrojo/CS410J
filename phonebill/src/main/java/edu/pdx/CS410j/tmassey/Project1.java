@@ -1,9 +1,9 @@
-package edu.pdx.CS410J.tmassey;
+package edu.pdx.cs410J.tmassey;
 
 import java.util.Collection;
 
 /**
- * The main class for the CS410J Phone Bill Project
+ * The main class for the cs410J Phone Bill Project
  */
 public class Project1 {
 
@@ -26,7 +26,7 @@ public class Project1 {
       errorOnInput = true;
     }
 
-    if (!args[1].toLowerCase().matches("^[a-zA-Z0-9]*$")) {
+    if (!args[1].toLowerCase().matches("^[a-zA-Z0-9 ]*$")) {
       System.err.println("customerValue must be alphanumeric (0-9 and A-Z):");
       errorOnInput = true;
     } else {
@@ -92,7 +92,7 @@ public class Project1 {
         for (int i = 10; i < args.length; i++) {
           if (args[i].equals("-README")) {
             System.out.println("Tom Massey");
-            System.out.println("CS410J");
+            System.out.println("cs410J");
             System.out.println("This is a simple PhoneBill project that contains a collection of Phone Calls");
             System.out.println("The point was to extend a couple of Abstact Classes that we did not write");
             System.out.println("and get that functionality working from the command line");

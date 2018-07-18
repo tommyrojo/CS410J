@@ -1,9 +1,9 @@
-<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Project1.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">CS410J Phone Bill Project</a> &gt; <a href="index.source.html" class="el_package">edu.pdx.CS410J.tmassey</a> &gt; <span class="el_source">Project1.java</span></div><h1>Project1.java</h1><pre class="source lang-java linenums">package edu.pdx.CS410J.tmassey;
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Project1.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">cs410J Phone Bill Project</a> &gt; <a href="index.source.html" class="el_package">edu.pdx.cs410J.tmassey</a> &gt; <span class="el_source">Project1.java</span></div><h1>Project1.java</h1><pre class="source lang-java linenums">package edu.pdx.cs410J.tmassey;
 
 import java.util.Collection;
 
 /**
- * The main class for the CS410J Phone Bill Project
+ * The main class for the cs410J Phone Bill Project
  */
 <span class="nc" id="L8">public class Project1 {</span>
 
@@ -26,11 +26,11 @@ import java.util.Collection;
 <span class="nc" id="L26">      errorOnInput = true;</span>
     }
 
-<span class="pc bpc" id="L29" title="1 of 2 branches missed.">    if (!args[1].toLowerCase().matches(&quot;^[a-zA-Z0-9]*$&quot;)) {</span>
-<span class="fc" id="L30">      System.err.println(&quot;customerValue must be alphanumeric (0-9 and A-Z):&quot;);</span>
-<span class="fc" id="L31">      errorOnInput = true;</span>
+<span class="pc bpc" id="L29" title="1 of 2 branches missed.">    if (!args[1].toLowerCase().matches(&quot;^[a-zA-Z0-9 ]*$&quot;)) {</span>
+<span class="nc" id="L30">      System.err.println(&quot;customerValue must be alphanumeric (0-9 and A-Z):&quot;);</span>
+<span class="nc" id="L31">      errorOnInput = true;</span>
     } else {
-<span class="nc" id="L33">      customer = args[1];</span>
+<span class="fc" id="L33">      customer = args[1];</span>
     }
 
 <span class="pc bpc" id="L36" title="1 of 2 branches missed.">    if (!args[2].toLowerCase().equals(&quot;callernumber&quot;)) {</span>
@@ -84,15 +84,15 @@ import java.util.Collection;
 <span class="pc bpc" id="L84" title="1 of 2 branches missed.">    if (errorOnInput) {</span>
 <span class="nc" id="L85">      System.exit(0);</span>
     } else {
-<span class="nc" id="L87">      PhoneCall call = new PhoneCall(caller, callee, startTime, endTime);</span>
-<span class="nc" id="L88">      PhoneBill bill = new PhoneBill(customer);</span>
-<span class="nc" id="L89">      bill.addPhoneCall(call);</span>
+<span class="fc" id="L87">      PhoneCall call = new PhoneCall(caller, callee, startTime, endTime);</span>
+<span class="fc" id="L88">      PhoneBill bill = new PhoneBill(customer);</span>
+<span class="fc" id="L89">      bill.addPhoneCall(call);</span>
 
-<span class="nc bnc" id="L91" title="All 2 branches missed.">      if (args.length &gt; 10) {</span>
+<span class="pc bpc" id="L91" title="1 of 2 branches missed.">      if (args.length &gt; 10) {</span>
 <span class="nc bnc" id="L92" title="All 2 branches missed.">        for (int i = 10; i &lt; args.length; i++) {</span>
 <span class="nc bnc" id="L93" title="All 2 branches missed.">          if (args[i].equals(&quot;-README&quot;)) {</span>
 <span class="nc" id="L94">            System.out.println(&quot;Tom Massey&quot;);</span>
-<span class="nc" id="L95">            System.out.println(&quot;CS410J&quot;);</span>
+<span class="nc" id="L95">            System.out.println(&quot;cs410J&quot;);</span>
 <span class="nc" id="L96">            System.out.println(&quot;This is a simple PhoneBill project that contains a collection of Phone Calls&quot;);</span>
 <span class="nc" id="L97">            System.out.println(&quot;The point was to extend a couple of Abstact Classes that we did not write&quot;);</span>
 <span class="nc" id="L98">            System.out.println(&quot;and get that functionality working from the command line&quot;);</span>
