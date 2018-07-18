@@ -7,7 +7,7 @@
     <relativePath>../pom.xml/pom.xml</relativePath>
   </parent>
   <modelVersion>4.0.0</modelVersion>
-  <groupId>edu.pdx.CS410j.tmassey</groupId>
+  <groupId>edu.pdx.CS410J.tmassey</groupId>
   <artifactId>phonebill</artifactId>
   <name>CS410J Phone Bill Project</name>
   <version>1.0-SNAPSHOT</version>
@@ -43,7 +43,7 @@
         <configuration>
           <archive>
             <manifest>
-              <mainClass>edu.pdx.CS410j.tmassey.Project1</mainClass>
+              <mainClass>edu.pdx.CS410J.tmassey.Project1</mainClass>
             </manifest>
           </archive>
         </configuration>

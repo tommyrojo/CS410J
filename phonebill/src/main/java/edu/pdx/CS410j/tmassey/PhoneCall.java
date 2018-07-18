@@ -1,4 +1,4 @@
-package edu.pdx.CS410j.tmassey;
+package edu.pdx.CS410J.tmassey;
 
 import edu.pdx.cs410J.AbstractPhoneCall;
 

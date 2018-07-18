@@ -1,7 +1,6 @@
-package edu.pdx.CS410j.tmassey;
+package edu.pdx.CS410J.tmassey;
 
 import edu.pdx.cs410J.InvokeMainTestCase;
-import org.junit.Ignore;
 import org.junit.Test;
 
 import static org.hamcrest.CoreMatchers.containsString;
@@ -24,11 +23,9 @@ public class Project1IT extends InvokeMainTestCase {
    * Tests that invoking the main method with no arguments issues an error
    */
   @Test
-  @Ignore
   public void testNoCommandLineArguments() {
-    MainMethodResult result = invokeMain();
-    assertThat(result.getExitCode(), equalTo(1));
-    assertThat(result.getTextWrittenToStandardError(), containsString(""));
+    MainMethodResult result = invokeMain("customer", "Tom Massey", "callerNumber", "503-550-5040", "calleeNumber", "503-608-2412", "startTime", "01/01/2018 13:04:00", "endTime", "01/01/2018 13:05:00");
+    assertThat(result.getExitCode(), equalTo(0));
   }
 
 }

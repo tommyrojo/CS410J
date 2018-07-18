@@ -6,7 +6,7 @@
     <version>Summer2018</version>
   </parent>
   <modelVersion>4.0.0</modelVersion>
-  <groupId>edu.pdx.CS410j.tmassey</groupId>
+  <groupId>edu.pdx.CS410J.tmassey</groupId>
   <artifactId>phonebill</artifactId>
   <packaging>jar</packaging>
   <version>1.0-SNAPSHOT</version>
@@ -72,7 +72,7 @@
         <configuration>
           <archive>
             <manifest>
-              <mainClass>edu.pdx.CS410j.tmassey.Project1</mainClass>
+              <mainClass>edu.pdx.CS410J.tmassey.Project1</mainClass>
             </manifest>
           </archive>
         </configuration>

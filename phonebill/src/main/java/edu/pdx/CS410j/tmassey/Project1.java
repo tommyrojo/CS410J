@@ -1,6 +1,4 @@
-package edu.pdx.CS410j.tmassey;
-
-import edu.pdx.cs410J.AbstractPhoneBill;
+package edu.pdx.CS410J.tmassey;
 
 import java.util.Collection;
 
