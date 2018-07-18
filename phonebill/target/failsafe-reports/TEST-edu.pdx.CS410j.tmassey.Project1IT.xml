@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-failsafe-plugin/xsd/failsafe-test-report.xsd" name="edu.pdx.CS410J.tmassey.Project1IT" time="0.177" tests="1" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-failsafe-plugin/xsd/failsafe-test-report.xsd" name="edu.pdx.cs410J.tmassey.Project1IT" time="0.153" tests="1" errors="0" skipped="0" failures="0">
   <properties>
     <property name="gopherProxySet" value="false"/>
     <property name="awt.toolkit" value="sun.lwawt.macosx.LWCToolkit"/>
@@ -17,7 +17,7 @@
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="user.country" value="US"/>
     <property name="sun.boot.library.path" value="/Library/Java/JavaVirtualMachines/jdk-10.0.1.jdk/Contents/Home/lib"/>
-    <property name="sun.java.command" value="/Users/tommyrojo/Documents/school/cs/410J/phonebill/target/surefire/surefirebooter18283690913312008298.jar /Users/tommyrojo/Documents/school/cs/410J/phonebill/target/surefire 2018-07-17T21-24-50_666-jvmRun1 surefire14352194467600905932tmp surefire_013427361996114249836tmp"/>
+    <property name="sun.java.command" value="/Users/tommyrojo/Documents/school/cs/410J/phonebill/target/surefire/surefirebooter3987080879506003931.jar /Users/tommyrojo/Documents/school/cs/410J/phonebill/target/surefire 2018-07-18T16-40-05_248-jvmRun1 surefire16508033430868590860tmp surefire_010866849741890718731tmp"/>
     <property name="http.nonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
     <property name="jdk.debug" value="release"/>
     <property name="http.port" value=""/>
@@ -35,7 +35,7 @@
     <property name="java.specification.name" value="Java Platform API Specification"/>
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
     <property name="java.awt.graphicsenv" value="sun.awt.CGraphicsEnvironment"/>
-    <property name="surefire.real.class.path" value="/Users/tommyrojo/Documents/school/cs/410J/phonebill/target/surefire/surefirebooter18283690913312008298.jar"/>
+    <property name="surefire.real.class.path" value="/Users/tommyrojo/Documents/school/cs/410J/phonebill/target/surefire/surefirebooter3987080879506003931.jar"/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
     <property name="ftp.nonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
     <property name="java.runtime.version" value="10.0.1+10"/>
@@ -63,5 +63,5 @@
     <property name="java.class.version" value="54.0"/>
     <property name="socksNonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
   </properties>
-  <testcase name="testNoCommandLineArguments" classname="edu.pdx.CS410J.tmassey.Project1IT" time="0.045"/>
+  <testcase name="testNoCommandLineArguments" classname="edu.pdx.cs410J.tmassey.Project1IT" time="0.048"/>
 </testsuite>

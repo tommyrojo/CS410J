@@ -1,4 +1,4 @@
-package edu.pdx.CS410J.tmassey;
+package edu.pdx.cs410J.tmassey;
 
 import edu.pdx.cs410J.InvokeMainTestCase;
 import org.junit.Test;

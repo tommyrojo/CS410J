@@ -1,4 +1,4 @@
-package edu.pdx.CS410J.tmassey;
+package edu.pdx.cs410J.tmassey;
 
 import java.io.*;
 import java.util.Collection;
