@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Project2.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">CS410J Phone Bill Project</a> &gt; <a href="index.source.html" class="el_package">edu.pdx.CS410J.tmassey</a> &gt; <span class="el_source">Project2.java</span></div><h1>Project2.java</h1><pre class="source lang-java linenums">package edu.pdx.CS410J.tmassey;
+
+<span class="nc" id="L3">public class Project2 {</span>
+
+    public static void main(String[] args) {
+<span class="nc" id="L6">        String customer = new String();</span>
+<span class="nc" id="L7">        String caller = new String();</span>
+<span class="nc" id="L8">        String callee = new String();</span>
+<span class="nc" id="L9">        String startTime = new String();</span>
+<span class="nc" id="L10">        String endTime = new String();</span>
+<span class="nc" id="L11">        Boolean readMe = false;</span>
+<span class="nc" id="L12">        Boolean print = false;</span>
+
+<span class="nc" id="L14">        var dateTimeRegEx = &quot;(0?[1-9]|[12][0-9]|3[01])/(0?[1-9]|1[012])/((19|20)\\d\\d [0-2]\\d:[0-6]\\d:[0-6]\\d)?&quot;;</span>
+<span class="nc" id="L15">        var phoneRegEx = &quot;^\\d{3}-\\d{3}-\\d{4}$&quot;;</span>
+
+<span class="nc" id="L17">        Boolean errorOnInput = false;</span>
+
+<span class="nc bnc" id="L19" title="All 2 branches missed.">        if (args.length &gt;= 10) {</span>
+
+<span class="nc bnc" id="L21" title="All 2 branches missed.">            if (!args[0].toLowerCase().equals(&quot;customer&quot;)) {</span>
+<span class="nc" id="L22">                System.err.println(&quot;Missing command line argument: customer&quot;);</span>
+<span class="nc" id="L23">                errorOnInput = true;</span>
+            }
+
+<span class="nc bnc" id="L26" title="All 2 branches missed.">            if (!args[1].toLowerCase().matches(&quot;^[a-zA-Z0-9]*$&quot;)) {</span>
+<span class="nc" id="L27">                System.err.println(&quot;customerValue must be alphanumeric (0-9 and A-Z):&quot;);</span>
+<span class="nc" id="L28">                errorOnInput = true;</span>
+            } else {
+<span class="nc" id="L30">                customer = args[1];</span>
+            }
+
+<span class="nc bnc" id="L33" title="All 2 branches missed.">            if (!args[2].toLowerCase().equals(&quot;callernumber&quot;)) {</span>
+<span class="nc" id="L34">                System.err.println(&quot;Missing command line argument: callerNumber&quot;);</span>
+<span class="nc" id="L35">                errorOnInput = true;</span>
+            }
+
+<span class="nc bnc" id="L38" title="All 2 branches missed.">            if (!args[3].toLowerCase().matches(phoneRegEx)) {</span>
+<span class="nc" id="L39">                System.err.println(&quot;callerNumberValue must be in format: ###-###-####&quot;);</span>
+<span class="nc" id="L40">                errorOnInput = true;</span>
+            } else {
+<span class="nc" id="L42">                caller = args[3];</span>
+            }
+
+<span class="nc bnc" id="L45" title="All 2 branches missed.">            if (!args[4].toLowerCase().equals(&quot;calleenumber&quot;)) {</span>
+<span class="nc" id="L46">                System.err.println(&quot;Missing command line argument: calleeNumber&quot;);</span>
+<span class="nc" id="L47">                errorOnInput = true;</span>
+            }
+
+<span class="nc bnc" id="L50" title="All 2 branches missed.">            if (!args[5].toLowerCase().matches(phoneRegEx)) {</span>
+<span class="nc" id="L51">                System.err.println(&quot;calleeNumberValue must be in format: ###-###-####&quot;);</span>
+<span class="nc" id="L52">                errorOnInput = true;</span>
+            } else {
+<span class="nc" id="L54">                callee = args[5];</span>
+            }
+
+<span class="nc bnc" id="L57" title="All 2 branches missed.">            if (!args[6].toLowerCase().equals(&quot;starttime&quot;)) {</span>
+<span class="nc" id="L58">                System.err.println(&quot;Missing command line argument: startTime&quot;);</span>
+<span class="nc" id="L59">                errorOnInput = true;</span>
+            }
+
+<span class="nc bnc" id="L62" title="All 2 branches missed.">            if (!args[7].toLowerCase().matches(dateTimeRegEx)) {</span>
+<span class="nc" id="L63">                System.err.println(&quot;startTimeValue must be in format: mm/dd/yyyy hh:mm&quot;);</span>
+<span class="nc" id="L64">                errorOnInput = true;</span>
+            } else {
+<span class="nc" id="L66">                startTime = args[7];</span>
+            }
+
+<span class="nc bnc" id="L69" title="All 2 branches missed.">            if (!args[8].toLowerCase().equals(&quot;endtime&quot;)) {</span>
+<span class="nc" id="L70">                System.err.println(&quot;Missing command line argument: endTime&quot;);</span>
+<span class="nc" id="L71">                errorOnInput = true;</span>
+            }
+
+<span class="nc bnc" id="L74" title="All 2 branches missed.">            if (!args[9].toLowerCase().matches(dateTimeRegEx)) {</span>
+<span class="nc" id="L75">                System.err.println(&quot;endTimeValue must be in format: mm/dd/yyyy hh:mm&quot;);</span>
+<span class="nc" id="L76">                errorOnInput = true;</span>
+            } else {
+<span class="nc" id="L78">                endTime = args[9];</span>
+            }
+        } else {
+<span class="nc" id="L81">            System.err.println(&quot;Please verify your input parameters...&quot;);</span>
+        }
+<span class="nc" id="L83">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.1.201803210924</span></div></body></html>
