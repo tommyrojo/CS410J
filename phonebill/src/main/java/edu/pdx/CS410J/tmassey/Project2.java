@@ -1,5 +1,8 @@
 package edu.pdx.CS410J.tmassey;
 
+import java.io.*;
+import java.util.Collection;
+
 public class Project2 {
 
     public static void main(String[] args) {
@@ -23,7 +26,7 @@ public class Project2 {
                 errorOnInput = true;
             }
 
-            if (!args[1].toLowerCase().matches("^[a-zA-Z0-9]*$")) {
+            if (!args[1].toLowerCase().matches("^[a-zA-Z0-9 ]*$")) {
                 System.err.println("customerValue must be alphanumeric (0-9 and A-Z):");
                 errorOnInput = true;
             } else {
@@ -80,6 +83,51 @@ public class Project2 {
         } else {
             System.err.println("Please verify your input parameters...");
             System.exit(0);
+        }
+
+        if (errorOnInput) {
+            System.exit(0);
+        } else {
+            PhoneCall call = new PhoneCall(caller, callee, startTime, endTime);
+            PhoneBill bill = new PhoneBill(customer);
+            bill.addPhoneCall(call);
+
+            if (args.length > 10) {
+                for (int i = 10; i < args.length; i++) {
+                    if (args[i].equals("-README")) {
+                        System.out.println("Tom Massey");
+                        System.out.println("CS410J");
+                        System.out.println("This is a simple PhoneBill project that contains a collection of Phone Calls");
+                        System.out.println("The point was to extend a couple of Abstact Classes that we did not write");
+                        System.out.println("and get that functionality working from the command line");
+                        System.out.println("including flags and options provided by the user");
+                        System.out.println("as well as error checking upon input");
+                    }
+
+                    if (args[i].equals("-print")) {
+                        Collection<PhoneCall> phoneCalls = bill.getPhoneCalls();
+                        for(PhoneCall c: phoneCalls) {
+                            System.out.println(c);
+                        }
+                    }
+
+                    if (args[i].equals("-textFile")) {
+                        String fileName = args[i + 1];
+                        String text = "Hello world Linux";
+                        try {
+
+                            String desktop = System.getProperty ("user.home") + "/Desktop/";
+                            File file = new File (desktop + fileName + ".csv");
+
+                            BufferedWriter output = new BufferedWriter(new FileWriter(file));
+                            output.write(text);
+                            output.close();
+                        } catch ( IOException e ) {
+                            e.printStackTrace();
+                        }
+                    }
+                }
+            }
         }
 
         System.exit(1);

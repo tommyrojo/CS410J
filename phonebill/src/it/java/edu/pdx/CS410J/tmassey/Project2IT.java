@@ -29,11 +29,20 @@ public class Project2IT extends InvokeMainTestCase {
     }
 
     /**
-     * Tests that invoking the main method with no arguments issues an error
+     * Tests that invoking the main method with all arguments issues no error
      */
     @Test
     public void testAllCommandLineArguments() {
         MainMethodResult result = invokeMain("customer", "Tom Massey", "callerNumber", "503-550-5040", "calleeNumber", "503-608-2412", "startTime", "01/01/2018 13:04:00", "endTime", "01/01/2018 13:05:00");
+        assertThat(result.getExitCode(), equalTo(1));
+    }
+
+    /**
+     * Tests that invoking the main method with -textFile flag
+     */
+    @Test
+    public void testTextFileFlagWritesThePhoneBill() {
+        MainMethodResult result = invokeMain("customer", "Tom Massey", "callerNumber", "503-550-5040", "calleeNumber", "503-608-2412", "startTime", "01/01/2018 13:04:00", "endTime", "01/01/2018 13:05:00", "-textFile", "test");
         assertThat(result.getExitCode(), equalTo(1));
     }
 
