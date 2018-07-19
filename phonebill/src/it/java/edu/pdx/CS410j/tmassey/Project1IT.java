@@ -23,8 +23,8 @@ public class Project1IT extends InvokeMainTestCase {
    */
   @Test
   public void testNoCommandLineArguments() {
-    MainMethodResult result = invokeMain("customer", "Tom Massey", "callerNumber", "503-550-5040", "calleeNumber", "503-608-2412", "startTime", "01/01/2018 13:04:00", "endTime", "01/01/2018 13:05:00");
-    assertThat(result.getExitCode(), equalTo(0));
+    MainMethodResult result = invokeMain("-print","Tom Massey", "503-550-5040", "503-608-2412", "01/01/2018", "13:03", "04/04/2018", "16:00");
+    assertThat(result.getExitCode(), equalTo(1));
   }
 
 }

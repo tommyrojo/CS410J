@@ -1,4 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: edu.pdx.cs410J.tmassey.PhoneBillTest
 -------------------------------------------------------------------------------
-Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.263 s - in edu.pdx.cs410J.tmassey.PhoneBillTest
+Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.115 s - in edu.pdx.cs410J.tmassey.PhoneBillTest

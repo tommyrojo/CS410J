@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Project1.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">cs410J Phone Bill Project</a> &gt; <a href="index.source.html" class="el_package">edu.pdx.cs410J.tmassey</a> &gt; <span class="el_source">Project1.java</span></div><h1>Project1.java</h1><pre class="source lang-java linenums">package edu.pdx.cs410J.tmassey;
 
-import java.util.Collection;
+import java.util.*;
 
 /**
  * The main class for the cs410J Phone Bill Project
@@ -11,130 +11,170 @@ import java.util.Collection;
 <span class="fc" id="L11">    String customer = new String();</span>
 <span class="fc" id="L12">    String caller = new String();</span>
 <span class="fc" id="L13">    String callee = new String();</span>
-<span class="fc" id="L14">    String startTime = new String();</span>
-<span class="fc" id="L15">    String endTime = new String();</span>
-<span class="fc" id="L16">    Boolean readMe = false;</span>
-<span class="fc" id="L17">    Boolean print = false;</span>
+<span class="fc" id="L14">    String startDate = new String();</span>
+<span class="fc" id="L15">    String startTime = new String();</span>
+<span class="fc" id="L16">    String endDate = new String();</span>
+<span class="fc" id="L17">    String endTime = new String();</span>
+<span class="fc" id="L18">    var startPos = 0;</span>
+<span class="fc" id="L19">    var errorPos = 0;</span>
+<span class="fc" id="L20">    Boolean readMe = false;</span>
+<span class="fc" id="L21">    Boolean print = false;</span>
+<span class="fc" id="L22">    var errorInput = new ArrayList&lt;String&gt;();</span>
 
-<span class="fc" id="L19">    var dateRegEx = &quot;(0?[1-9]|[12][0-9]|3[01])/(0?[1-9]|1[012])/((19|20)\\d\\d)?&quot;;</span>
-<span class="fc" id="L20">    var timeRegEx = &quot;([0-2]\\d:[0-6]\\d:[0-6]\\d)&quot;;</span>
-<span class="fc" id="L21">    var phoneRegEx = &quot;^\\d{3}-\\d{3}-\\d{4}$&quot;;</span>
+    /**
+     * regular expressions to assist with input validation
+     */
+<span class="fc" id="L27">    var dateRegEx = &quot;(0?[1-9]|[12][0-9]|3[01])/(0?[1-9]|1[012])/((19|20)\\d\\d)?&quot;;</span>
+<span class="fc" id="L28">    var timeRegEx = &quot;([0-2]\\d:[0-6]\\d)&quot;;</span>
+<span class="fc" id="L29">    var phoneRegEx = &quot;^\\d{3}-\\d{3}-\\d{4}$&quot;;</span>
 
-<span class="fc" id="L23">    Boolean errorOnInput = false;</span>
+<span class="fc" id="L31">    Boolean errorOnInput = false;</span>
 
-<span class="pc bpc" id="L25" title="1 of 2 branches missed.">    if (args.length &gt; 0){</span>
-<span class="fc bfc" id="L26" title="All 2 branches covered.">      for (int i = 0; i &lt; args.length; i++) {</span>
-<span class="pc bpc" id="L27" title="1 of 2 branches missed.">        if (args[i].equals(&quot;-README&quot;)) {</span>
-<span class="nc" id="L28">          System.out.println(&quot;Tom Massey&quot;);</span>
-<span class="nc" id="L29">          System.out.println(&quot;cs410J&quot;);</span>
-<span class="nc" id="L30">          System.out.println(&quot;This is a simple PhoneBill project that contains a collection of Phone Calls&quot;);</span>
-<span class="nc" id="L31">          System.out.println(&quot;The point was to extend a couple of Abstact Classes that we did not write&quot;);</span>
-<span class="nc" id="L32">          System.out.println(&quot;and get that functionality working from the command line&quot;);</span>
-<span class="nc" id="L33">          System.out.println(&quot;including flags and options provided by the user&quot;);</span>
-<span class="nc" id="L34">          System.out.println(&quot;as well as error checking upon input&quot;);</span>
-<span class="nc" id="L35">          System.exit(1);</span>
-        }
+<span class="fc" id="L33">    List&lt;String&gt; argsOrder = Arrays.asList(&quot;customer&quot;, &quot;caller&quot;, &quot;callee&quot;, &quot;startDate&quot;, &quot;startTime&quot;, &quot;endDate&quot;, &quot;endTime&quot;);</span>
+<span class="fc" id="L34">    LinkedHashMap&lt;String, String&gt; argPos = new LinkedHashMap&lt;&gt;();</span>
+
+    /**
+     * here we loop through each input scanning for flags and required fields
+     */
+<span class="fc bfc" id="L39" title="All 2 branches covered.">    for (int i = 0; i &lt; args.length; i++) {</span>
+<span class="pc bpc" id="L40" title="1 of 2 branches missed.">      if (args[i].equals(&quot;-README&quot;)) {</span>
+<span class="nc" id="L41">        System.out.println(&quot;Tom Massey&quot;);</span>
+<span class="nc" id="L42">        System.out.println(&quot;cs410J&quot;);</span>
+<span class="nc" id="L43">        System.out.println(&quot;This is a simple PhoneBill project that contains a collection of Phone Calls&quot;);</span>
+<span class="nc" id="L44">        System.out.println(&quot;The point was to extend a couple of Abstact Classes that we did not write&quot;);</span>
+<span class="nc" id="L45">        System.out.println(&quot;and get that functionality working from the command line&quot;);</span>
+<span class="nc" id="L46">        System.out.println(&quot;including flags and options provided by the user&quot;);</span>
+<span class="nc" id="L47">        System.out.println(&quot;as well as error checking upon input&quot;);</span>
+<span class="nc" id="L48">        startPos++;</span>
+<span class="nc" id="L49">        System.exit(1);</span>
       }
 
-<span class="pc bpc" id="L39" title="1 of 2 branches missed.">      if (args.length &gt;= 7) {</span>
+      /**
+       * we want to account for -print being anywhere in the input so we
+       * increment a startPos so the rest of the args can be scanned correctly
+       */
+<span class="fc bfc" id="L56" title="All 2 branches covered.">      if (args[i].equals(&quot;-print&quot;)) {</span>
+<span class="fc" id="L57">        print = true;</span>
+<span class="fc" id="L58">        startPos++;</span>
+      }
 
-<span class="pc bpc" id="L41" title="1 of 2 branches missed.">        if (!args[0].toLowerCase().matches(&quot;^[a-zA-Z0-9 ]*$&quot;)) {</span>
-<span class="nc" id="L42">          System.err.println(&quot;customerValue must be alphanumeric (0-9 and A-Z):&quot;);</span>
-<span class="nc" id="L43">          errorOnInput = true;</span>
+      /**
+       * omit -README and -print to scan the rest of the inputs and track
+       * erroneous inputs
+       */
+<span class="pc bpc" id="L65" title="1 of 4 branches missed.">      if (!args[i].equals(&quot;-README&quot;) &amp;&amp; !args[i].equals(&quot;-print&quot;)) {</span>
+<span class="pc bpc" id="L66" title="2 of 4 branches missed.">        if (argPos.size() &lt; 7 &amp;&amp; !(args[i].charAt(0) == '-')) {</span>
+<span class="fc" id="L67">          argPos.put(argsOrder.get(i - startPos), args[i]);</span>
         } else {
-<span class="fc" id="L45">          customer = args[0];</span>
+<span class="nc" id="L69">          errorInput.add(args[i]);</span>
+<span class="nc" id="L70">          startPos++;</span>
         }
+      }
+    }
 
+    /**
+     * if we encounter bad input, display to user
+     */
+<span class="pc bpc" id="L78" title="1 of 2 branches missed.">    if (errorInput.size() &gt; 0) {</span>
+<span class="nc" id="L79">      System.out.println(&quot;Invalid inputs include :&quot; + errorInput);</span>
+<span class="nc" id="L80">      errorOutput();</span>
+    }
 
-<span class="pc bpc" id="L49" title="1 of 2 branches missed.">        if (!args[1].toLowerCase().matches(phoneRegEx)) {</span>
-<span class="fc" id="L50">          System.err.println(&quot;callerNumberValue must be in format: ###-###-####&quot;);</span>
-<span class="fc" id="L51">          errorOnInput = true;</span>
-        } else {
-<span class="nc" id="L53">          caller = args[1];</span>
-        }
-
-
-<span class="pc bpc" id="L57" title="1 of 2 branches missed.">        if (!args[2].toLowerCase().matches(phoneRegEx)) {</span>
-<span class="fc" id="L58">          System.err.println(&quot;calleeNumberValue must be in format: ###-###-####&quot;);</span>
-<span class="fc" id="L59">          errorOnInput = true;</span>
-        } else {
-<span class="nc" id="L61">          callee = args[2];</span>
-        }
-
-<span class="pc bpc" id="L64" title="1 of 2 branches missed.">        if (!args[3].toLowerCase().matches(dateRegEx)) {</span>
-<span class="fc" id="L65">          System.err.println(&quot;startDateValue must be in format: mm/dd/yyyy&quot;);</span>
-<span class="fc" id="L66">          errorOnInput = true;</span>
-        } else {
-<span class="nc" id="L68">          startTime = args[3];</span>
-        }
-
-<span class="pc bpc" id="L71" title="1 of 2 branches missed.">        if (!args[4].toLowerCase().matches(timeRegEx)) {</span>
-<span class="fc" id="L72">          System.err.println(&quot;startTimeValue must be in format: hh:mm&quot;);</span>
-<span class="fc" id="L73">          errorOnInput = true;</span>
-        } else {
-<span class="nc" id="L75">          startTime = args[4];</span>
-        }
-
-<span class="pc bpc" id="L78" title="1 of 2 branches missed.">        if (!args[5].toLowerCase().matches(dateRegEx)) {</span>
-<span class="fc" id="L79">          System.err.println(&quot;endDateValue must be in format: mm/dd/yyyy&quot;);</span>
-<span class="fc" id="L80">          errorOnInput = true;</span>
-        } else {
-<span class="nc" id="L82">          endTime = args[5];</span>
-        }
-
-<span class="pc bpc" id="L85" title="1 of 2 branches missed.">        if (!args[6].toLowerCase().matches(timeRegEx)) {</span>
-<span class="fc" id="L86">          System.err.println(&quot;endTimeValue must be in format: hh:mm&quot;);</span>
-<span class="fc" id="L87">          errorOnInput = true;</span>
-        } else {
-<span class="nc" id="L89">          endTime = args[6];</span>
-        }
-
-<span class="pc bpc" id="L92" title="1 of 2 branches missed.">        if (errorOnInput) {</span>
-<span class="nc" id="L93">          System.exit(0);</span>
-        } else {
-<span class="nc" id="L95">          PhoneCall call = new PhoneCall(caller, callee, startTime, endTime);</span>
-<span class="nc" id="L96">          PhoneBill bill = new PhoneBill(customer);</span>
-<span class="nc" id="L97">          bill.addPhoneCall(call);</span>
-
-<span class="nc bnc" id="L99" title="All 2 branches missed.">          if (args.length &gt; 10) {</span>
-<span class="nc bnc" id="L100" title="All 2 branches missed.">            for (int i = 10; i &lt; args.length; i++) {</span>
-<span class="nc bnc" id="L101" title="All 2 branches missed.">              if (args[i].equals(&quot;-README&quot;)) {</span>
-<span class="nc" id="L102">                System.out.println(&quot;Tom Massey&quot;);</span>
-<span class="nc" id="L103">                System.out.println(&quot;cs410J&quot;);</span>
-<span class="nc" id="L104">                System.out.println(&quot;This is a simple PhoneBill project that contains a collection of Phone Calls&quot;);</span>
-<span class="nc" id="L105">                System.out.println(&quot;The point was to extend a couple of Abstact Classes that we did not write&quot;);</span>
-<span class="nc" id="L106">                System.out.println(&quot;and get that functionality working from the command line&quot;);</span>
-<span class="nc" id="L107">                System.out.println(&quot;including flags and options provided by the user&quot;);</span>
-<span class="nc" id="L108">                System.out.println(&quot;as well as error checking upon input&quot;);</span>
-              }
-
-<span class="nc bnc" id="L111" title="All 2 branches missed.">              if (args[i].equals(&quot;-print&quot;)) {</span>
-<span class="nc" id="L112">                Collection&lt;PhoneCall&gt; phoneCalls = bill.getPhoneCalls();</span>
-<span class="nc bnc" id="L113" title="All 2 branches missed.">                for (PhoneCall c : phoneCalls) {</span>
-<span class="nc" id="L114">                  System.out.println(c);</span>
-<span class="nc" id="L115">                }</span>
-              }
-            }
-          }
-
-<span class="nc" id="L120">          System.exit(1);</span>
-<span class="nc" id="L121">        }</span>
+    /**
+     * if we are missing input, through in a bad value
+     * so it fails the regex and outputs the correct field to correct
+     */
+<span class="pc bpc" id="L87" title="1 of 2 branches missed.">    for (int i = argPos.size(); i &lt; 7; i++) {</span>
+<span class="nc" id="L88">      argPos.put(argsOrder.get(i), &quot;@@@_BREAK_ME_@@@&quot;);</span>
     }
 
 
+    /**
+     * field input validations
+     */
+<span class="pc bpc" id="L95" title="1 of 2 branches missed.">    if (!argPos.get(&quot;customer&quot;).toLowerCase().matches(&quot;^[a-zA-Z0-9 ]*$&quot;)) {</span>
+<span class="nc" id="L96">      System.err.println(&quot;customerValue must be alphanumeric (0-9 and A-Z):&quot;);</span>
+<span class="nc" id="L97">      errorOnInput = true;</span>
     } else {
-<span class="nc" id="L126">        System.err.println(&quot;Please check the required input fields which include:&quot;);</span>
-<span class="nc" id="L127">        System.err.println(&quot;customer\t(alphanumeric)&quot;);</span>
-<span class="nc" id="L128">        System.err.println(&quot;callerNumber\t(###-###-####)&quot;);</span>
-<span class="nc" id="L129">        System.err.println(&quot;calleeNumber\t(###-###-####)&quot;);</span>
-<span class="nc" id="L130">        System.err.println(&quot;startTime\t(MM/DD/YYYY HH:MM:SS)&quot;);</span>
-<span class="nc" id="L131">        System.err.println(&quot;endTime\t(MM/DD/YYYY HH:MM:SS)&quot;);</span>
-<span class="nc" id="L132">        System.err.println(&quot;optional fields include:&quot;);</span>
-<span class="nc" id="L133">        System.err.println(&quot;-print&quot;);</span>
-<span class="nc" id="L134">        System.err.println(&quot;-README&quot;);</span>
-<span class="nc" id="L135">        System.exit(0);</span>
+<span class="fc" id="L99">      customer = argPos.get(&quot;customer&quot;);</span>
     }
 
-<span class="nc" id="L138">  }</span>
+
+<span class="pc bpc" id="L103" title="1 of 2 branches missed.">    if (!argPos.get(&quot;caller&quot;).toLowerCase().matches(phoneRegEx)) {</span>
+<span class="nc" id="L104">      System.err.println(&quot;callerNumberValue must be in format: ###-###-####&quot;);</span>
+    } else {
+<span class="fc" id="L106">      caller = argPos.get(&quot;caller&quot;);</span>
+    }
+
+
+<span class="pc bpc" id="L110" title="1 of 2 branches missed.">    if (!argPos.get(&quot;callee&quot;).toLowerCase().matches(phoneRegEx)) {</span>
+<span class="nc" id="L111">      System.err.println(&quot;calleeNumberValue must be in format: ###-###-####&quot;);</span>
+    } else {
+<span class="fc" id="L113">      callee = argPos.get(&quot;callee&quot;);</span>
+    }
+
+<span class="pc bpc" id="L116" title="1 of 2 branches missed.">    if (!argPos.get(&quot;startDate&quot;).toLowerCase().matches(dateRegEx)) {</span>
+<span class="nc" id="L117">      System.err.println(&quot;startDateValue must be in format: mm/dd/yyyy&quot;);</span>
+    } else {
+<span class="fc" id="L119">      startDate = argPos.get(&quot;startDate&quot;);</span>
+    }
+
+<span class="pc bpc" id="L122" title="1 of 2 branches missed.">    if (!argPos.get(&quot;startTime&quot;).toLowerCase().matches(timeRegEx)) {</span>
+<span class="nc" id="L123">      System.err.println(&quot;startTimeValue must be in format: hh:mm&quot;);</span>
+    } else {
+<span class="fc" id="L125">      startTime = argPos.get(&quot;startTime&quot;);</span>
+    }
+
+<span class="pc bpc" id="L128" title="1 of 2 branches missed.">    if (!argPos.get(&quot;endDate&quot;).toLowerCase().matches(dateRegEx)) {</span>
+<span class="nc" id="L129">      System.err.println(&quot;endDateValue must be in format: mm/dd/yyyy&quot;);</span>
+    } else {
+<span class="fc" id="L131">      endDate = argPos.get(&quot;endDate&quot;);</span>
+    }
+
+<span class="pc bpc" id="L134" title="1 of 2 branches missed.">    if (!argPos.get(&quot;endTime&quot;).toLowerCase().matches(timeRegEx)) {</span>
+<span class="nc" id="L135">      System.err.println(&quot;endTimeValue must be in format: hh:mm&quot;);</span>
+    } else {
+<span class="fc" id="L137">      endTime = argPos.get(&quot;endTime&quot;);</span>
+    }
+
+    /**
+     * if we have errors, output error text,
+     * else print output of phone call if print is specified
+     * else do nothing
+     */
+<span class="pc bpc" id="L145" title="1 of 2 branches missed.">    if (errorOnInput) {</span>
+<span class="nc" id="L146">      errorOutput();</span>
+<span class="nc" id="L147">      System.exit(0);</span>
+    } else {
+<span class="fc" id="L149">      PhoneCall call = new PhoneCall(caller, callee, startDate + &quot; &quot; + startTime, endDate + &quot; &quot; + endTime);</span>
+<span class="fc" id="L150">      PhoneBill bill = new PhoneBill(customer);</span>
+<span class="fc" id="L151">      bill.addPhoneCall(call);</span>
+
+<span class="pc bpc" id="L153" title="1 of 2 branches missed.">      if (print) {</span>
+<span class="fc" id="L154">        Collection&lt;PhoneCall&gt; phoneCalls = bill.getPhoneCalls();</span>
+<span class="fc bfc" id="L155" title="All 2 branches covered.">        for (PhoneCall c : phoneCalls) {</span>
+<span class="fc" id="L156">          System.out.println(c);</span>
+<span class="fc" id="L157">        }</span>
+      }
+
+<span class="nc" id="L160">      System.exit(1);</span>
+    }
+<span class="nc" id="L162">  }</span>
+
+  /**
+   * output function for errors that are encountered
+   */
+  private static void errorOutput() {
+<span class="nc" id="L168">    System.err.println(&quot;Please check the required input fields which include:&quot;);</span>
+<span class="nc" id="L169">    System.err.println(&quot;customer\t(alphanumeric)&quot;);</span>
+<span class="nc" id="L170">    System.err.println(&quot;callerNumber\t(###-###-####)&quot;);</span>
+<span class="nc" id="L171">    System.err.println(&quot;calleeNumber\t(###-###-####)&quot;);</span>
+<span class="nc" id="L172">    System.err.println(&quot;startTime\t(MM/DD/YYYY HH:MM:SS)&quot;);</span>
+<span class="nc" id="L173">    System.err.println(&quot;endTime\t(MM/DD/YYYY HH:MM:SS)&quot;);</span>
+<span class="nc" id="L174">    System.err.println(&quot;optional fields include:&quot;);</span>
+<span class="nc" id="L175">    System.err.println(&quot;-print&quot;);</span>
+<span class="nc" id="L176">    System.err.println(&quot;-README&quot;);</span>
+<span class="nc" id="L177">    System.exit(0);</span>
+<span class="nc" id="L178">  }</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.1.201803210924</span></div></body></html>

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="edu.pdx.cs410J.tmassey.PhoneCallTest" time="0.003" tests="5" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="edu.pdx.cs410J.tmassey.PhoneCallTest" time="0.001" tests="5" errors="0" skipped="0" failures="0">
   <properties>
     <property name="gopherProxySet" value="false"/>
     <property name="awt.toolkit" value="sun.lwawt.macosx.LWCToolkit"/>
@@ -17,7 +17,7 @@
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="user.country" value="US"/>
     <property name="sun.boot.library.path" value="/Library/Java/JavaVirtualMachines/jdk-10.0.1.jdk/Contents/Home/lib"/>
-    <property name="sun.java.command" value="/Users/tommyrojo/Documents/school/cs/410J/phonebill/target/surefire/surefirebooter3678612781021639385.jar /Users/tommyrojo/Documents/school/cs/410J/phonebill/target/surefire 2018-07-18T18-13-31_775-jvmRun1 surefire17277173723864040813tmp surefire_05860483077294090522tmp"/>
+    <property name="sun.java.command" value="/Users/tommyrojo/Documents/school/cs/410J/phonebill/target/surefire/surefirebooter12185547843461807609.jar /Users/tommyrojo/Documents/school/cs/410J/phonebill/target/surefire 2018-07-19T10-36-59_144-jvmRun1 surefire17130012335424867789tmp surefire_015910164645243569072tmp"/>
     <property name="http.nonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
     <property name="jdk.debug" value="release"/>
     <property name="surefire.test.class.path" value="/Users/tommyrojo/Documents/school/cs/410J/phonebill/target/test-classes:/Users/tommyrojo/Documents/school/cs/410J/phonebill/target/classes:/Users/tommyrojo/.m2/repository/junit/junit/4.12/junit-4.12.jar:/Users/tommyrojo/.m2/repository/org/hamcrest/hamcrest-core/1.3/hamcrest-core-1.3.jar:/Users/tommyrojo/.m2/repository/edu/pdx/cs410J/projects/Summer2018/projects-Summer2018.jar:/Users/tommyrojo/.m2/repository/edu/pdx/cs410J/projects/Summer2018/projects-Summer2018-tests.jar:"/>
@@ -34,7 +34,7 @@
     <property name="java.specification.name" value="Java Platform API Specification"/>
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
     <property name="java.awt.graphicsenv" value="sun.awt.CGraphicsEnvironment"/>
-    <property name="surefire.real.class.path" value="/Users/tommyrojo/Documents/school/cs/410J/phonebill/target/surefire/surefirebooter3678612781021639385.jar"/>
+    <property name="surefire.real.class.path" value="/Users/tommyrojo/Documents/school/cs/410J/phonebill/target/surefire/surefirebooter12185547843461807609.jar"/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
     <property name="ftp.nonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
     <property name="java.runtime.version" value="10.0.1+10"/>
@@ -65,6 +65,6 @@
   <testcase name="forProject1ItIsOkayIfGetStartTimeReturnsNull" classname="edu.pdx.cs410J.tmassey.PhoneCallTest" time="0"/>
   <testcase name="callerShouldBeSpecified" classname="edu.pdx.cs410J.tmassey.PhoneCallTest" time="0"/>
   <testcase name="calleeShouldBeSpecified" classname="edu.pdx.cs410J.tmassey.PhoneCallTest" time="0"/>
-  <testcase name="getEndTimeStringShouldBeReturned" classname="edu.pdx.cs410J.tmassey.PhoneCallTest" time="0.001"/>
+  <testcase name="getEndTimeStringShouldBeReturned" classname="edu.pdx.cs410J.tmassey.PhoneCallTest" time="0"/>
   <testcase name="getStartTimeStringShouldBeReturned" classname="edu.pdx.cs410J.tmassey.PhoneCallTest" time="0"/>
 </testsuite>
