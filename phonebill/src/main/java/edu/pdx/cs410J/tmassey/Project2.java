@@ -163,9 +163,15 @@ public class Project2 {
             errorOutput();
             System.exit(0);
         } else {
+            /**
+             * if we have a fileName flag, first check if it exists, if it does read in the data
+             * if it doesn't return null so we can create a new file in TextDumper
+             */
             if (fileNameFlag) {
-                String text = "Hello world Linux";
 
+                /**
+                 * checking to see if file exists
+                 */
                 TextParser parser = new TextParser(fileName);
                 try {
                     bill = parser.parse();
@@ -173,6 +179,11 @@ public class Project2 {
                     e.printStackTrace();
                 }
 
+                /**
+                 * if we come back with an empty bill, we create a new bill based off the command line
+                 * if we come back with a bill, we check that the name in the bill matches the value passed in
+                 * if it does not match, we exit with an error
+                 */
                 if (bill == null) {
                     bill = new PhoneBill(customer);
                     PhoneCall call = new PhoneCall(caller, callee, startDate + " " + startTime, endDate + " " + endTime);
@@ -185,6 +196,9 @@ public class Project2 {
                     System.exit(0);
                 }
 
+                /**
+                 * move to text dumper with new file or existing file with new entries
+                 */
                 TextDumper phoneBill = new TextDumper(fileName);
                 phoneBill.dump(bill);
             }

@@ -18,16 +18,30 @@ public class TextParser implements PhoneBillParser<AbstractPhoneBill> {
         String desktop = System.getProperty("user.home") + "/Desktop/";
         File file = new File(desktop + fileName + ".txt");
 
+        /**
+         * reading in existing file if it exists
+         * if it doesn't exist, catch exception and continue
+         */
         try {
             InputStream fis = new FileInputStream(file);
             BufferedReader br = new BufferedReader(new InputStreamReader(fis));
+
+            /**
+             * three arrays to catch parts of the file for the phone call
+             */
             var callParts = new String[2];
             var phoneParts = new String[2];
             var dateParts = new String[2];
 
+            /**
+             * grabbing first line of the file to read in the customer name
+             */
             var customer = br.readLine().split("'")[0];
             PhoneBill bill = new PhoneBill(customer);
 
+            /**
+             * read the reset of the fill and add an entry for each call into the bill
+             */
             for (String line = br.readLine(); line != null; line = br.readLine()) {
 
                 callParts = line.split("from");
@@ -44,10 +58,16 @@ public class TextParser implements PhoneBillParser<AbstractPhoneBill> {
 
                 bill.addPhoneCall(call);
             }
-
+            /**
+             * close buffer reader and return the newly built bill
+             */
             br.close();
             return bill;
 
+        /**
+         * if we don't have a file that exists, pass back null so we can create
+         * the file in text dumper
+         */
         } catch (Exception e) {
             return null;
         }

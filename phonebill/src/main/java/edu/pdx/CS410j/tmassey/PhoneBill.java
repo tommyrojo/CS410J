@@ -10,6 +10,7 @@ import java.util.Collection;
  *
  *
  */
+
 public class PhoneBill  extends AbstractPhoneBill<PhoneCall>{
     private final String customerName;
     private Collection<PhoneCall> calls = new ArrayList<>();

@@ -21,8 +21,14 @@ public class TextDumper implements PhoneBillDumper<AbstractPhoneBill> {
     @Override
     public void dump(AbstractPhoneBill abstractPhoneBill) throws IOException {
 
+        /**
+         * grab existing phone calls off of the passed in phone bill
+         */
         Collection<PhoneCall> calls = abstractPhoneBill.getPhoneCalls();
 
+        /**
+         * try to write to file name
+         */
         try {
             String desktop = System.getProperty("user.home") + "/Desktop/";
             File file = new File(desktop + fileName + ".txt");
@@ -34,6 +40,9 @@ public class TextDumper implements PhoneBillDumper<AbstractPhoneBill> {
                 output.write("\n\t" + c.toString());
             }
 
+            /**
+             * make sure to close our bufferedWriter
+             */
             output.close();
         } catch (IOException e) {
             e.printStackTrace();
