@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>TextParser.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">cs410J Phone Bill Project</a> &gt; <a href="index.source.html" class="el_package">edu.pdx.cs410J.tmassey</a> &gt; <span class="el_source">TextParser.java</span></div><h1>TextParser.java</h1><pre class="source lang-java linenums">package edu.pdx.cs410J.tmassey;
+
+import edu.pdx.cs410J.AbstractPhoneBill;
+import edu.pdx.cs410J.ParserException;
+import edu.pdx.cs410J.PhoneBillParser;
+
+import java.io.*;
+
+public class TextParser implements PhoneBillParser&lt;AbstractPhoneBill&gt; {
+    private String fileName;
+
+<span class="fc" id="L12">    public TextParser(String fileName) {</span>
+<span class="fc" id="L13">        this.fileName = fileName;</span>
+<span class="fc" id="L14">    }</span>
+
+    @Override
+    public AbstractPhoneBill parse() throws ParserException {
+<span class="fc" id="L18">        String desktop = System.getProperty(&quot;user.home&quot;) + &quot;/Desktop/&quot;;</span>
+<span class="fc" id="L19">        File file = new File(desktop + fileName + &quot;.txt&quot;);</span>
+
+        try {
+<span class="fc" id="L22">            InputStream fis = new FileInputStream(file);</span>
+<span class="fc" id="L23">            BufferedReader br = new BufferedReader(new InputStreamReader(fis));</span>
+<span class="fc" id="L24">            var callParts = new String[2];</span>
+<span class="fc" id="L25">            var phoneParts = new String[2];</span>
+<span class="fc" id="L26">            var dateParts = new String[2];</span>
+
+<span class="fc" id="L28">            var customer = br.readLine().split(&quot;'&quot;)[0];</span>
+<span class="fc" id="L29">            PhoneBill bill = new PhoneBill(customer);</span>
+
+<span class="fc bfc" id="L31" title="All 2 branches covered.">            for (String line = br.readLine(); line != null; line = br.readLine()) {</span>
+
+<span class="fc" id="L33">                callParts = line.split(&quot;from&quot;);</span>
+<span class="fc" id="L34">                phoneParts = callParts[1].split(&quot;to&quot;);</span>
+<span class="fc" id="L35">                dateParts = callParts[2].split(&quot;to&quot;);</span>
+
+<span class="fc" id="L37">                var caller = phoneParts[0].trim();</span>
+<span class="fc" id="L38">                var callee = phoneParts[1].trim();</span>
+
+<span class="fc" id="L40">                var startTime = dateParts[0].trim();</span>
+<span class="fc" id="L41">                var endTime = dateParts[1].trim();</span>
+
+<span class="fc" id="L43">                PhoneCall call = new PhoneCall(caller, callee, startTime, endTime);</span>
+
+<span class="fc" id="L45">                bill.addPhoneCall(call);</span>
+            }
+
+<span class="fc" id="L48">            br.close();</span>
+<span class="fc" id="L49">            return bill;</span>
+
+<span class="nc" id="L51">        } catch (Exception e) {</span>
+<span class="nc" id="L52">            return null;</span>
+        }
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.1.201803210924</span></div></body></html>
