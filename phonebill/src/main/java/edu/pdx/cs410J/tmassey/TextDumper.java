@@ -20,7 +20,6 @@ public class TextDumper implements PhoneBillDumper<AbstractPhoneBill> {
 
     @Override
     public void dump(AbstractPhoneBill abstractPhoneBill) throws IOException {
-        System.out.println(abstractPhoneBill);
 
         Collection<PhoneCall> calls = abstractPhoneBill.getPhoneCalls();
 
