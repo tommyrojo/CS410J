@@ -1,0 +1,2 @@
+Test6's phone bill with 1 phone calls
+	Phone call from 123-456-7890 to 385-284-2342 from 01/11/2018 11:00 to 01/11/2018 11:30

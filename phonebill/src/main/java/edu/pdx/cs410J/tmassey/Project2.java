@@ -33,13 +33,13 @@ public class Project2 {
         /**
          * regular expressions to assist with input validation
          */
-        var dateRegEx = "(0?[1-9]|[12][0-9]|3[01])/(0?[1-9]|1[012])/((19|20)\\d\\d)?";
+        var dateRegEx = "^((0|1)\\d{1})/((0|1|2)\\d{1})/((19|20)\\d{2})";
         var timeRegEx = "([0-2]\\d:[0-6]\\d)";
         var phoneRegEx = "^\\d{3}-\\d{3}-\\d{4}$";
 
         Boolean errorOnInput = false;
 
-        List<String> argsOrder = Arrays.asList("customer", "caller", "callee", "startDate", "startTime", "endDate", "endTime", "textFile");
+        List<String> argsOrder = Arrays.asList("customer", "caller", "callee", "startDate", "startTime", "endDate", "endTime");
         LinkedHashMap<String, String> argPos = new LinkedHashMap<>();
 
         /**
@@ -50,8 +50,8 @@ public class Project2 {
                 System.out.println("Tom Massey");
                 System.out.println("cs410J");
                 System.out.println("This is a simple PhoneBill project that contains a collection of Phone Calls");
-                System.out.println("The point was to extend a couple of Abstact Classes that we did not write");
-                System.out.println("and get that functionality working from the command line");
+                System.out.println("The point is to build on previous work finished in Project1 and");
+                System.out.println("read and write to files with the phone bill and caller information");
                 System.out.println("including flags and options provided by the user");
                 System.out.println("as well as error checking upon input");
                 startPos++;
@@ -72,7 +72,13 @@ public class Project2 {
                 if (fileName.length() > 0)
                     fileNameFlag = true;
 
-                startPos++;
+                startPos += 2;
+                i += 2;
+
+                if(args[i].equals("-print")) {
+                    print = true;
+                    startPos++;
+                }
             }
 
             /**
@@ -80,7 +86,7 @@ public class Project2 {
              * erroneous inputs
              */
             if (!args[i].equals("-README") && !args[i].equals("-print") && !args[i].equals("-textFile")) {
-                if (argPos.size() < 8 && !(args[i].charAt(0) == '-')) {
+                if (argPos.size() < 7 && !(args[i].charAt(0) == '-')) {
                     argPos.put(argsOrder.get(i - startPos), args[i]);
                 } else {
                     errorInput.add(args[i]);
@@ -101,7 +107,7 @@ public class Project2 {
          * if we are missing input, through in a bad value
          * so it fails the regex and outputs the correct field to correct
          */
-        for (int i = argPos.size(); i < 8; i++) {
+        for (int i = argPos.size(); i < 7; i++) {
             argPos.put(argsOrder.get(i), "@@@_BREAK_ME_@@@");
         }
 
@@ -119,6 +125,7 @@ public class Project2 {
 
         if (!argPos.get("caller").toLowerCase().matches(phoneRegEx)) {
             System.err.println("callerNumberValue must be in format: ###-###-####");
+            errorOnInput = true;
         } else {
             caller = argPos.get("caller");
         }
@@ -126,30 +133,35 @@ public class Project2 {
 
         if (!argPos.get("callee").toLowerCase().matches(phoneRegEx)) {
             System.err.println("calleeNumberValue must be in format: ###-###-####");
+            errorOnInput = true;
         } else {
             callee = argPos.get("callee");
         }
 
         if (!argPos.get("startDate").toLowerCase().matches(dateRegEx)) {
             System.err.println("startDateValue must be in format: mm/dd/yyyy");
+            errorOnInput = true;
         } else {
             startDate = argPos.get("startDate");
         }
 
         if (!argPos.get("startTime").toLowerCase().matches(timeRegEx)) {
             System.err.println("startTimeValue must be in format: hh:mm");
+            errorOnInput = true;
         } else {
             startTime = argPos.get("startTime");
         }
 
         if (!argPos.get("endDate").toLowerCase().matches(dateRegEx)) {
             System.err.println("endDateValue must be in format: mm/dd/yyyy");
+            errorOnInput = true;
         } else {
             endDate = argPos.get("endDate");
         }
 
         if (!argPos.get("endTime").toLowerCase().matches(timeRegEx)) {
             System.err.println("endTimeValue must be in format: hh:mm");
+            errorOnInput = true;
         } else {
             endTime = argPos.get("endTime");
         }
@@ -160,7 +172,6 @@ public class Project2 {
          * else do nothing
          */
         if (errorOnInput) {
-            errorOutput();
             System.exit(0);
         } else {
             /**
@@ -218,6 +229,7 @@ public class Project2 {
      * output function for errors that are encountered
      */
     private static void errorOutput() {
+        System.err.println();
         System.err.println("Please check the required input fields which include:");
         System.err.println("customer\t(alphanumeric)");
         System.err.println("callerNumber\t(###-###-####)");
@@ -227,6 +239,7 @@ public class Project2 {
         System.err.println("optional fields include:");
         System.err.println("-print");
         System.err.println("-README");
+        System.err.println();
         System.exit(0);
     }
 }

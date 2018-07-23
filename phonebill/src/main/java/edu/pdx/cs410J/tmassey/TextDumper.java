@@ -30,8 +30,14 @@ public class TextDumper implements PhoneBillDumper<AbstractPhoneBill> {
          * try to write to file name
          */
         try {
-            String desktop = System.getProperty("user.home") + "/Desktop/";
-            File file = new File(desktop + fileName + ".txt");
+            String cwd = System.getProperty("user.dir");
+
+            String dirName = fileName.split("/")[0];
+            String fileNameOnly = fileName.split("/")[1];
+
+            File dir = new File(cwd + "/" + dirName);
+            dir.mkdirs();
+            File file = new File(dir, fileNameOnly);
 
             BufferedWriter output = new BufferedWriter(new FileWriter(file));
             output.write(abstractPhoneBill.toString());

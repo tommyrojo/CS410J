@@ -15,42 +15,95 @@ public class TextParser implements PhoneBillParser&lt;AbstractPhoneBill&gt; {
 
     @Override
     public AbstractPhoneBill parse() throws ParserException {
-<span class="fc" id="L18">        String desktop = System.getProperty(&quot;user.home&quot;) + &quot;/Desktop/&quot;;</span>
-<span class="fc" id="L19">        File file = new File(desktop + fileName + &quot;.txt&quot;);</span>
+<span class="fc" id="L18">        var dateRegEx = &quot;^((0|1)\\d{1})/((0|1|2)\\d{1})/((19|20)\\d{2})&quot;;</span>
+<span class="fc" id="L19">        var timeRegEx = &quot;([0-2]\\d:[0-6]\\d)&quot;;</span>
+<span class="fc" id="L20">        var phoneRegEx = &quot;^\\d{3}-\\d{3}-\\d{4}$&quot;;</span>
 
+<span class="fc" id="L22">        String cwd = System.getProperty(&quot;user.dir&quot;);</span>
+
+<span class="fc" id="L24">        String dirName = fileName.split(&quot;/&quot;)[0];</span>
+<span class="fc" id="L25">        String fileNameOnly = fileName.split(&quot;/&quot;)[1];</span>
+
+<span class="fc" id="L27">        File file = new File(cwd + &quot;/&quot; + dirName + &quot;/&quot; + fileNameOnly);</span>
+
+        /**
+         * reading in existing file if it exists
+         * if it doesn't exist, catch exception and continue
+         */
         try {
-<span class="fc" id="L22">            InputStream fis = new FileInputStream(file);</span>
-<span class="fc" id="L23">            BufferedReader br = new BufferedReader(new InputStreamReader(fis));</span>
-<span class="fc" id="L24">            var callParts = new String[2];</span>
-<span class="fc" id="L25">            var phoneParts = new String[2];</span>
-<span class="fc" id="L26">            var dateParts = new String[2];</span>
+<span class="fc" id="L34">            InputStream fis = new FileInputStream(file);</span>
+<span class="fc" id="L35">            BufferedReader br = new BufferedReader(new InputStreamReader(fis));</span>
 
-<span class="fc" id="L28">            var customer = br.readLine().split(&quot;'&quot;)[0];</span>
-<span class="fc" id="L29">            PhoneBill bill = new PhoneBill(customer);</span>
+            /**
+             * three arrays to catch parts of the file for the phone call
+             */
+<span class="fc" id="L40">            var callParts = new String[2];</span>
+<span class="fc" id="L41">            var phoneParts = new String[2];</span>
+<span class="fc" id="L42">            var dateParts = new String[2];</span>
 
-<span class="fc bfc" id="L31" title="All 2 branches covered.">            for (String line = br.readLine(); line != null; line = br.readLine()) {</span>
+            /**
+             * grabbing first line of the file to read in the customer name
+             */
+<span class="fc" id="L47">            var customer = br.readLine().split(&quot;'&quot;)[0];</span>
+<span class="fc" id="L48">            PhoneBill bill = new PhoneBill(customer);</span>
 
-<span class="fc" id="L33">                callParts = line.split(&quot;from&quot;);</span>
-<span class="fc" id="L34">                phoneParts = callParts[1].split(&quot;to&quot;);</span>
-<span class="fc" id="L35">                dateParts = callParts[2].split(&quot;to&quot;);</span>
+            /**
+             * read the reset of the fill and add an entry for each call into the bill
+             */
+<span class="fc bfc" id="L53" title="All 2 branches covered.">            for (String line = br.readLine(); line != null; line = br.readLine()) {</span>
 
-<span class="fc" id="L37">                var caller = phoneParts[0].trim();</span>
-<span class="fc" id="L38">                var callee = phoneParts[1].trim();</span>
+<span class="fc" id="L55">                callParts = line.split(&quot;from&quot;);</span>
+<span class="fc" id="L56">                phoneParts = callParts[1].split(&quot;to&quot;);</span>
+<span class="fc" id="L57">                dateParts = callParts[2].split(&quot;to&quot;);</span>
 
-<span class="fc" id="L40">                var startTime = dateParts[0].trim();</span>
-<span class="fc" id="L41">                var endTime = dateParts[1].trim();</span>
+<span class="pc bpc" id="L59" title="1 of 2 branches missed.">                var caller = phoneParts[0].trim().matches(phoneRegEx) ? phoneParts[0].trim() : null;</span>
+<span class="pc bpc" id="L60" title="1 of 2 branches missed.">                var callee = phoneParts[1].trim().matches(phoneRegEx) ? phoneParts[1].trim() : null;</span>
 
-<span class="fc" id="L43">                PhoneCall call = new PhoneCall(caller, callee, startTime, endTime);</span>
+<span class="pc bpc" id="L62" title="1 of 2 branches missed.">                var startTime = dateParts[0].trim().split(&quot; &quot;)[0].matches(dateRegEx) &amp;&amp;</span>
+<span class="pc bpc" id="L63" title="1 of 2 branches missed.">                        dateParts[0].trim().split(&quot; &quot;)[1].matches(timeRegEx) ? dateParts[0].trim() : null;</span>
 
-<span class="fc" id="L45">                bill.addPhoneCall(call);</span>
+<span class="pc bpc" id="L65" title="1 of 2 branches missed.">                var endTime = dateParts[1].trim().split(&quot; &quot;)[0].matches(dateRegEx) &amp;&amp;</span>
+<span class="pc bpc" id="L66" title="1 of 2 branches missed.">                        dateParts[1].trim().split(&quot; &quot;)[1].matches(timeRegEx) ? dateParts[1].trim() : null;</span>
+
+<span class="pc bpc" id="L68" title="1 of 2 branches missed.">                if (caller == null) {</span>
+<span class="nc" id="L69">                    System.err.println(&quot;there is an issue with the caller input in the &quot; + fileNameOnly + &quot; file&quot;);</span>
+<span class="nc" id="L70">                    System.exit(0);</span>
+<span class="pc bpc" id="L71" title="1 of 2 branches missed.">                } else if (callee == null) {</span>
+<span class="nc" id="L72">                    System.err.println(&quot;there is an issue with the callee input in the &quot; + fileNameOnly + &quot; file&quot;);</span>
+<span class="nc" id="L73">                    System.exit(0);</span>
+<span class="pc bpc" id="L74" title="1 of 2 branches missed.">                } else if (startTime == null) {</span>
+<span class="nc" id="L75">                    System.err.println(&quot;there is an issue with the startTime input in the &quot; + fileNameOnly + &quot; file&quot;);</span>
+<span class="nc" id="L76">                    System.exit(0);</span>
+<span class="pc bpc" id="L77" title="1 of 2 branches missed.">                } else if (endTime == null) {</span>
+<span class="nc" id="L78">                    System.err.println(&quot;there is an issue with the endTime input in the &quot; + fileNameOnly + &quot; file&quot;);</span>
+<span class="nc" id="L79">                    System.exit(0);</span>
+                }
+
+<span class="fc" id="L82">                PhoneCall call = new PhoneCall(caller, callee, startTime, endTime);</span>
+
+<span class="fc" id="L84">                bill.addPhoneCall(call);</span>
+
+
             }
+            /**
+             * close buffer reader and return the newly built bill
+             */
+<span class="fc" id="L91">            br.close();</span>
+<span class="fc" id="L92">            return bill;</span>
 
-<span class="fc" id="L48">            br.close();</span>
-<span class="fc" id="L49">            return bill;</span>
-
-<span class="nc" id="L51">        } catch (Exception e) {</span>
-<span class="nc" id="L52">            return null;</span>
+        /**
+         * if we don't have a file that exists, pass back null so we can create
+         * the file in text dumper
+         */
+<span class="nc" id="L98">        } catch (Exception e) {</span>
+<span class="nc bnc" id="L99" title="All 2 branches missed.">            if (e.toString().equals(&quot;java.lang.ArrayIndexOutOfBoundsException: 1&quot;)){</span>
+<span class="nc" id="L100">                System.err.println(&quot;File is corrupt or not found&quot;);</span>
+<span class="nc" id="L101">                System.exit(0);</span>
+            } else {
+<span class="nc" id="L103">                return null;</span>
+            }
         }
+<span class="nc" id="L106">        return null;</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.1.201803210924</span></div></body></html>

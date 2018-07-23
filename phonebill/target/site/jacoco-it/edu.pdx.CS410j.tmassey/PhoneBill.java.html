@@ -10,17 +10,18 @@ import java.util.Collection;
  *
  *
  */
+
 public class PhoneBill  extends AbstractPhoneBill&lt;PhoneCall&gt;{
     private final String customerName;
-<span class="fc" id="L15">    private Collection&lt;PhoneCall&gt; calls = new ArrayList&lt;&gt;();</span>
+<span class="fc" id="L16">    private Collection&lt;PhoneCall&gt; calls = new ArrayList&lt;&gt;();</span>
 
     /**
      * Constructor to create a PhoneBill
      * @param customerName
      */
-<span class="fc" id="L21">    public PhoneBill(String customerName) {</span>
-<span class="fc" id="L22">        this.customerName = customerName;</span>
-<span class="fc" id="L23">    }</span>
+<span class="fc" id="L22">    public PhoneBill(String customerName) {</span>
+<span class="fc" id="L23">        this.customerName = customerName;</span>
+<span class="fc" id="L24">    }</span>
 
     /**
      * getCustomer method returns the customer name for this phone bill object
@@ -28,7 +29,7 @@ public class PhoneBill  extends AbstractPhoneBill&lt;PhoneCall&gt;{
      */
     @Override
     public String getCustomer() {
-<span class="fc" id="L31">        return this.customerName;</span>
+<span class="fc" id="L32">        return this.customerName;</span>
     }
 
     /**
@@ -37,8 +38,8 @@ public class PhoneBill  extends AbstractPhoneBill&lt;PhoneCall&gt;{
      */
     @Override
     public void addPhoneCall(PhoneCall phoneCall) {
-<span class="fc" id="L40">        this.calls.add(phoneCall);</span>
-<span class="fc" id="L41">    }</span>
+<span class="fc" id="L41">        this.calls.add(phoneCall);</span>
+<span class="fc" id="L42">    }</span>
 
     /**
      * getPhoneCalls returns a collection of phoneCalls that would be found in a phone bill
@@ -46,7 +47,7 @@ public class PhoneBill  extends AbstractPhoneBill&lt;PhoneCall&gt;{
      */
     @Override
     public Collection&lt;PhoneCall&gt; getPhoneCalls() {
-<span class="fc" id="L49">        return this.calls;</span>
+<span class="fc" id="L50">        return this.calls;</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.1.201803210924</span></div></body></html>
