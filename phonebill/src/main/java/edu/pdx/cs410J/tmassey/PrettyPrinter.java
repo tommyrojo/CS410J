@@ -7,24 +7,22 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.Collection;
+import java.util.ArrayList;
+import java.util.Collections;
 
-import static java.lang.System.exit;
-
-public class TextDumper implements PhoneBillDumper<AbstractPhoneBill> {
+public class PrettyPrinter implements PhoneBillDumper<AbstractPhoneBill> {
     private String fileName;
 
-    public TextDumper(String fileName) {
+    public PrettyPrinter(String fileName) {
         this.fileName = fileName;
     }
 
     @Override
     public void dump(AbstractPhoneBill abstractPhoneBill) throws IOException {
-
         /**
          * grab existing phone calls off of the passed in phone bill
          */
-        Collection<PhoneCall> calls = abstractPhoneBill.getPhoneCalls();
+        ArrayList<PhoneCall> calls = (ArrayList<PhoneCall>) abstractPhoneBill.getPhoneCalls();
 
         /**
          * try to write to file name
@@ -41,6 +39,8 @@ public class TextDumper implements PhoneBillDumper<AbstractPhoneBill> {
 
             BufferedWriter output = new BufferedWriter(new FileWriter(file));
             output.write(abstractPhoneBill.toString());
+
+            Collections.sort(calls);
 
             for (PhoneCall c : calls) {
                 output.write("\n\t" + c.toString());

@@ -11,6 +11,9 @@ import java.util.*;
  */
 public class Project3 {
 
+    private static boolean prettyNameFlag;
+    private static boolean prettyStdOut;
+
     public static void main(String[] args) throws IOException {
         String customer = new String();
         String caller = new String();
@@ -26,12 +29,15 @@ public class Project3 {
         Boolean print = false;
         var errorInput = new ArrayList<String>();
         AbstractPhoneBill bill = new PhoneBill("empty");
+        var amPmPos = new ArrayList<String>();
+        var skip = false;
+        var prettyName = new String();
+
 
         /**
          * regular expressions to assist with input validation
          */
-        var dateRegEx = "^((0|1)\\d{1})/((0|1|2)\\d{1})/((19|20)\\d{2})";
-        var timeRegEx = "([0-2]\\d:[0-6]\\d)";
+        var dateTimeRegEx = "^((0|1)?\\d{1})/((0|1|2)?\\d{1})/((19|20)?\\d{2}) ([0-12]:[0-5]\\d\\s?(am|AM|pm|PM))";
         var phoneRegEx = "^\\d{3}-\\d{3}-\\d{4}$";
 
         Boolean errorOnInput = false;
@@ -64,6 +70,24 @@ public class Project3 {
                 startPos++;
             }
 
+            if (args[i].equals("-pretty")) {
+                prettyName = args[i + 1];
+                if (prettyName.length() > 0) {
+                    prettyNameFlag = true;
+                    startPos += 2;
+                    i += 2;
+                }
+
+                /**
+                 * we need to pretty print to standard out
+                 */
+                if (args[i + 2].equals("-") && args[i + 2].length() == 1) {
+                    prettyStdOut = true;
+                    startPos++;
+                    i++;
+                }
+            }
+
             if (args[i].equals("-textFile")) {
                 fileName = args[i + 1];
                 if (fileName.length() > 0)
@@ -78,17 +102,33 @@ public class Project3 {
                 }
             }
 
+            if (args[i].toUpperCase().equals("AM") || args[i].toUpperCase().equals("PM")) {
+                amPmPos.add(args[i]);
+                skip = true;
+                startPos++;
+            }
+
             /**
              * omit -README and -print to scan the rest of the inputs and track
              * erroneous inputs
              */
-            if (!args[i].equals("-README") && !args[i].equals("-print") && !args[i].equals("-textFile")) {
+            if (!args[i].equals("-README") &&
+                !args[i].equals("-print") &&
+                !args[i].equals("-textFile") &&
+                !args[i].equals("-pretty") &&
+                !skip)
+            {
                 if (argPos.size() < 7 && !(args[i].charAt(0) == '-')) {
                     argPos.put(argsOrder.get(i - startPos), args[i]);
                 } else {
                     errorInput.add(args[i]);
                     startPos++;
                 }
+            } else {
+                skip = false;
+                var date = argPos.get(argsOrder.get(i - startPos)) + " " + amPmPos.get(0);
+                amPmPos.remove(0);
+                argPos.put(argsOrder.get(i - startPos - 1), date);
             }
         }
 
@@ -135,32 +175,18 @@ public class Project3 {
             callee = argPos.get("callee");
         }
 
-        if (!argPos.get("startDate").toLowerCase().matches(dateRegEx)) {
+        if (!argPos.get("startDate").toLowerCase().matches(dateTimeRegEx)) {
             System.err.println("startDateValue must be in format: mm/dd/yyyy");
             errorOnInput = true;
         } else {
             startDate = argPos.get("startDate");
         }
 
-        if (!argPos.get("startTime").toLowerCase().matches(timeRegEx)) {
-            System.err.println("startTimeValue must be in format: hh:mm");
-            errorOnInput = true;
-        } else {
-            startTime = argPos.get("startTime");
-        }
-
-        if (!argPos.get("endDate").toLowerCase().matches(dateRegEx)) {
+        if (!argPos.get("endDate").toLowerCase().matches(dateTimeRegEx)) {
             System.err.println("endDateValue must be in format: mm/dd/yyyy");
             errorOnInput = true;
         } else {
             endDate = argPos.get("endDate");
-        }
-
-        if (!argPos.get("endTime").toLowerCase().matches(timeRegEx)) {
-            System.err.println("endTimeValue must be in format: hh:mm");
-            errorOnInput = true;
-        } else {
-            endTime = argPos.get("endTime");
         }
 
         /**
@@ -194,10 +220,10 @@ public class Project3 {
                  */
                 if (bill == null) {
                     bill = new PhoneBill(customer);
-                    PhoneCall call = new PhoneCall(caller, callee, startDate + " " + startTime, endDate + " " + endTime);
+                    PhoneCall call = new PhoneCall(caller, callee, startDate, endDate);
                     bill.addPhoneCall(call);
                 } else if (customer.equals(bill.getCustomer())) {
-                    PhoneCall call = new PhoneCall(caller, callee, startDate + " " + startTime, endDate + " " + endTime);
+                    PhoneCall call = new PhoneCall(caller, callee, startDate, endDate);
                     bill.addPhoneCall(call);
                 } else {
                     System.err.println(customer + " does not exist in fileName " + fileName);
