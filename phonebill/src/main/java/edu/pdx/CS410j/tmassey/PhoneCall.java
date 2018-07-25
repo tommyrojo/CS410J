@@ -2,15 +2,18 @@ package edu.pdx.cs410J.tmassey;
 
 import edu.pdx.cs410J.AbstractPhoneCall;
 
+import java.text.DateFormat;
+import java.util.Date;
+
 /**
  * class to create a phone call
  */
 
-public class PhoneCall extends AbstractPhoneCall {
+public class PhoneCall extends AbstractPhoneCall implements Comparable<PhoneCall>{
   private final String caller;
   private final String callee;
-  private String startTime;
-  private String endTime;
+  private Date startTime;
+  private Date endTime;
 
   /**
    * PhoneCall Constructor to create a Phone Call object
@@ -22,8 +25,8 @@ public class PhoneCall extends AbstractPhoneCall {
   public PhoneCall(String caller, String callee, String startTime, String endTime) {
     this.caller = caller;
     this.callee = callee;
-    this.startTime = startTime;
-    this.endTime = endTime;
+    this.startTime = new Date(startTime);
+    this.endTime = new Date(endTime);
   }
 
   /**
@@ -45,13 +48,30 @@ public class PhoneCall extends AbstractPhoneCall {
   }
 
   /**
+   * getStartTime method
+   * @return Date startTime
+   */
+
+  @Override
+  public Date getStartTime() { return this.startTime; }
+
+  /**
    * getStartTimeString method
    * @return String startTime
    */
   @Override
   public String getStartTimeString() {
-    return this.startTime;
+    var dateOut = DateFormat.getDateTimeInstance(DateFormat.SHORT, DateFormat.SHORT).format(startTime);
+
+    return dateOut;
   }
+
+  /**
+   * getEndTime method
+   * @return String endTime
+  */
+  @Override
+  public Date getEndTime() { return this.endTime; }
 
   /**
    * getEndTimeString method
@@ -59,6 +79,19 @@ public class PhoneCall extends AbstractPhoneCall {
    */
   @Override
   public String getEndTimeString() {
-    return this.endTime;
+    var dateOut = DateFormat.getDateTimeInstance(DateFormat.SHORT, DateFormat.SHORT).format(endTime);
+
+    return dateOut;
   };
+
+  @Override
+  public int compareTo(PhoneCall call) {
+    if (this.startTime.after(call.startTime)) {
+      return 1;
+    } else if (this.startTime.before(call.startTime)) {
+      return -1;
+    } else {
+      return this.caller.compareTo(call.caller);
+    }
+  }
 }

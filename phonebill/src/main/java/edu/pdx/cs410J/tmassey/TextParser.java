@@ -15,8 +15,8 @@ public class TextParser implements PhoneBillParser<AbstractPhoneBill> {
 
     @Override
     public AbstractPhoneBill parse() throws ParserException {
-        var dateRegEx = "^((0|1)\\d{1})/((0|1|2)\\d{1})/((19|20)\\d{2})";
-        var timeRegEx = "([0-2]\\d:[0-6]\\d)";
+        var dateRegEx = "^((0|1)?\\d{1})/((0|1|2)?\\d{1})/((19|20)?\\d{2})";
+        var timeRegEx = "([0-1]?\\d:[0-5]\\d (am|AM|pm|PM))";
         var phoneRegEx = "^\\d{3}-\\d{3}-\\d{4}$";
 
         String cwd = System.getProperty("user.dir");
@@ -59,11 +59,11 @@ public class TextParser implements PhoneBillParser<AbstractPhoneBill> {
                 var caller = phoneParts[0].trim().matches(phoneRegEx) ? phoneParts[0].trim() : null;
                 var callee = phoneParts[1].trim().matches(phoneRegEx) ? phoneParts[1].trim() : null;
 
-                var startTime = dateParts[0].trim().split(" ")[0].matches(dateRegEx) &&
-                        dateParts[0].trim().split(" ")[1].matches(timeRegEx) ? dateParts[0].trim() : null;
+                var startTime = dateParts[0].trim().split(", ")[0].matches(dateRegEx) &&
+                        dateParts[0].trim().split(", ")[1].matches(timeRegEx) ? dateParts[0].trim() : null;
 
-                var endTime = dateParts[1].trim().split(" ")[0].matches(dateRegEx) &&
-                        dateParts[1].trim().split(" ")[1].matches(timeRegEx) ? dateParts[1].trim() : null;
+                var endTime = dateParts[1].trim().split(", ")[0].matches(dateRegEx) &&
+                        dateParts[1].trim().split(", ")[1].matches(timeRegEx) ? dateParts[1].trim() : null;
 
                 if (caller == null) {
                     System.err.println("there is an issue with the caller input in the " + fileNameOnly + " file");

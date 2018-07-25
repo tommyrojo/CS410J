@@ -2,15 +2,19 @@
 
 import edu.pdx.cs410J.AbstractPhoneCall;
 
+import java.text.DateFormat;
+import java.util.Date;
+import java.util.Locale;
+
 /**
  * class to create a phone call
  */
 
-public class PhoneCall extends AbstractPhoneCall {
+public class PhoneCall extends AbstractPhoneCall implements Comparable&lt;PhoneCall&gt;{
   private final String caller;
   private final String callee;
-  private String startTime;
-  private String endTime;
+  private Date startTime;
+  private Date endTime;
 
   /**
    * PhoneCall Constructor to create a Phone Call object
@@ -19,12 +23,12 @@ public class PhoneCall extends AbstractPhoneCall {
    * @param startTime
    * @param endTime
    */
-<span class="fc" id="L22">  public PhoneCall(String caller, String callee, String startTime, String endTime) {</span>
-<span class="fc" id="L23">    this.caller = caller;</span>
-<span class="fc" id="L24">    this.callee = callee;</span>
-<span class="fc" id="L25">    this.startTime = startTime;</span>
-<span class="fc" id="L26">    this.endTime = endTime;</span>
-<span class="fc" id="L27">  }</span>
+<span class="fc" id="L26">  public PhoneCall(String caller, String callee, String startTime, String endTime) {</span>
+<span class="fc" id="L27">    this.caller = caller;</span>
+<span class="fc" id="L28">    this.callee = callee;</span>
+<span class="fc" id="L29">    this.startTime = new Date(startTime);</span>
+<span class="fc" id="L30">    this.endTime = new Date(endTime);</span>
+<span class="fc" id="L31">  }</span>
 
   /**
    * getCaller method
@@ -32,7 +36,7 @@ public class PhoneCall extends AbstractPhoneCall {
    */
   @Override
   public String getCaller() {
-<span class="fc" id="L35">    return this.caller;</span>
+<span class="fc" id="L39">    return this.caller;</span>
   }
 
   /**
@@ -41,8 +45,16 @@ public class PhoneCall extends AbstractPhoneCall {
    */
   @Override
   public String getCallee() {
-<span class="fc" id="L44">    return this.callee;</span>
+<span class="fc" id="L48">    return this.callee;</span>
   }
+
+  /**
+   * getStartTime method
+   * @return Date startTime
+   */
+
+  @Override
+<span class="nc" id="L57">  public Date getStartTime() { return this.startTime; }</span>
 
   /**
    * getStartTimeString method
@@ -50,8 +62,20 @@ public class PhoneCall extends AbstractPhoneCall {
    */
   @Override
   public String getStartTimeString() {
-<span class="fc" id="L53">    return this.startTime;</span>
+<span class="fc" id="L65">    Locale currentLocale = Locale.getDefault();</span>
+
+<span class="fc" id="L67">    var dateFormatter = DateFormat.getDateInstance(DateFormat.DEFAULT, currentLocale);</span>
+<span class="fc" id="L68">    var dateOut = dateFormatter.format(startTime);</span>
+
+<span class="fc" id="L70">    return dateOut;</span>
   }
+
+  /**
+   * getEndTime method
+   * @return String endTime
+  */
+  @Override
+<span class="nc" id="L78">  public Date getEndTime() { return this.endTime; }</span>
 
   /**
    * getEndTimeString method
@@ -59,7 +83,17 @@ public class PhoneCall extends AbstractPhoneCall {
    */
   @Override
   public String getEndTimeString() {
-<span class="fc" id="L62">    return this.endTime;</span>
+<span class="fc" id="L86">      Locale currentLocale = Locale.getDefault();</span>
+
+<span class="fc" id="L88">      var dateFormatter = DateFormat.getDateInstance(DateFormat.DEFAULT, currentLocale);</span>
+<span class="fc" id="L89">      var dateOut = dateFormatter.format(endTime);</span>
+
+<span class="fc" id="L91">      return dateOut;</span>
   };
+
+  @Override
+  public int compareTo(PhoneCall o) {
+<span class="nc" id="L96">    return 0;</span>
+  }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.1.201803210924</span></div></body></html>
