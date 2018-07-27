@@ -3,6 +3,7 @@ package edu.pdx.cs410J.tmassey;
 import edu.pdx.cs410J.AbstractPhoneCall;
 
 import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
@@ -22,11 +23,11 @@ public class PhoneCall extends AbstractPhoneCall implements Comparable<PhoneCall
    * @param startTime
    * @param endTime
    */
-  public PhoneCall(String caller, String callee, String startTime, String endTime) {
+  public PhoneCall(String caller, String callee, Date startTime, Date endTime) {
     this.caller = caller;
     this.callee = callee;
-    this.startTime = new Date(startTime);
-    this.endTime = new Date(endTime);
+    this.startTime = startTime;
+    this.endTime = endTime;
   }
 
   /**
@@ -61,7 +62,7 @@ public class PhoneCall extends AbstractPhoneCall implements Comparable<PhoneCall
    */
   @Override
   public String getStartTimeString() {
-    var dateOut = DateFormat.getDateTimeInstance(DateFormat.SHORT, DateFormat.SHORT).format(startTime);
+    var dateOut = new SimpleDateFormat("MM/dd/yyyy HH:MM a").format(startTime);
 
     return dateOut;
   }
@@ -79,7 +80,7 @@ public class PhoneCall extends AbstractPhoneCall implements Comparable<PhoneCall
    */
   @Override
   public String getEndTimeString() {
-    var dateOut = DateFormat.getDateTimeInstance(DateFormat.SHORT, DateFormat.SHORT).format(endTime);
+    var dateOut = new SimpleDateFormat("MM/dd/yyyy HH:MM a").format(endTime);
 
     return dateOut;
   };

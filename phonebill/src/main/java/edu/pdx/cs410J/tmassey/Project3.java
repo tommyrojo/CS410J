@@ -29,6 +29,7 @@ public class Project3 {
         Boolean print = false;
         var errorInput = new ArrayList<String>();
         AbstractPhoneBill bill = new PhoneBill("empty");
+        PhoneCall call = new PhoneCall("", "", new Date(), new Date());
         var amPmPos = new ArrayList<String>();
         var skip = false;
         var prettyName = new String();
@@ -37,7 +38,7 @@ public class Project3 {
         /**
          * regular expressions to assist with input validation
          */
-        var dateTimeRegEx = "^((0|1)?\\d{1})/((0|1|2)?\\d{1})/((19|20)?\\d{2}) ([0-12]:[0-5]\\d\\s?(am|AM|pm|PM))";
+        var dateTimeRegEx = "^((0|1)?\\d{1})/((0|1|2)?\\d{1})/((19|20)?\\d{2}) (((0?[1-9])|(1[0-2])):([0-5])\\d\\s(A|P|a|p)(M|m))";
         var phoneRegEx = "^\\d{3}-\\d{3}-\\d{4}$";
 
         Boolean errorOnInput = false;
@@ -71,21 +72,15 @@ public class Project3 {
             }
 
             if (args[i].equals("-pretty")) {
+                prettyNameFlag = true;
                 prettyName = args[i + 1];
-                if (prettyName.length() > 0) {
-                    prettyNameFlag = true;
-                    startPos += 2;
-                    i += 2;
+
+                if (prettyName.equals("-") && prettyName.length() == 1) {
+                    prettyStdOut = true;
                 }
 
-                /**
-                 * we need to pretty print to standard out
-                 */
-                if (args[i + 2].equals("-") && args[i + 2].length() == 1) {
-                    prettyStdOut = true;
-                    startPos++;
-                    i++;
-                }
+                startPos += 2;
+                i += 2;
             }
 
             if (args[i].equals("-textFile")) {
@@ -100,6 +95,19 @@ public class Project3 {
                     print = true;
                     startPos++;
                 }
+
+                if (args[i].equals("-pretty")) {
+                    prettyNameFlag = true;
+                    prettyName = args[i + 1];
+
+                    if (prettyName.equals("-") && prettyName.length() == 1) {
+                        prettyStdOut = true;
+                    }
+
+                    startPos += 2;
+                    i += 2;
+                }
+
             }
 
             if (args[i].toUpperCase().equals("AM") || args[i].toUpperCase().equals("PM")) {
@@ -124,11 +132,12 @@ public class Project3 {
                     errorInput.add(args[i]);
                     startPos++;
                 }
-            } else {
+            } else if (amPmPos.size() > 0){
                 skip = false;
                 var date = argPos.get(argsOrder.get(i - startPos)) + " " + amPmPos.get(0);
                 amPmPos.remove(0);
-                argPos.put(argsOrder.get(i - startPos - 1), date);
+                var newDate = argPos.get(argsOrder.get(i - startPos - 1));
+                argPos.put(argsOrder.get(i - startPos - 1), newDate + " " + date);
             }
         }
 
@@ -201,16 +210,19 @@ public class Project3 {
              * if we have a fileName flag, first check if it exists, if it does read in the data
              * if it doesn't return null so we can create a new file in TextDumper
              */
-            if (fileNameFlag) {
+            if (fileNameFlag || prettyNameFlag) {
 
                 /**
                  * checking to see if file exists
                  */
-                TextParser parser = new TextParser(fileName);
-                try {
-                    bill = parser.parse();
-                } catch (ParserException e) {
-                    e.printStackTrace();
+                if (fileNameFlag) {
+                    TextParser parser = new TextParser(fileName);
+                    try {
+                        bill = parser.parse();
+                    } catch (ParserException e) {
+                        e.printStackTrace();
+                    }
+
                 }
 
                 /**
@@ -218,12 +230,12 @@ public class Project3 {
                  * if we come back with a bill, we check that the name in the bill matches the value passed in
                  * if it does not match, we exit with an error
                  */
-                if (bill == null) {
+                if (bill == null || bill.getCustomer().equals("empty")) {
                     bill = new PhoneBill(customer);
-                    PhoneCall call = new PhoneCall(caller, callee, startDate, endDate);
+                    call = new PhoneCall(caller, callee, new Date(startDate), new Date(endDate));
                     bill.addPhoneCall(call);
                 } else if (customer.equals(bill.getCustomer())) {
-                    PhoneCall call = new PhoneCall(caller, callee, startDate, endDate);
+                    call = new PhoneCall(caller, callee, new Date(startDate), new Date(endDate));
                     bill.addPhoneCall(call);
                 } else {
                     System.err.println(customer + " does not exist in fileName " + fileName);
@@ -233,8 +245,19 @@ public class Project3 {
                 /**
                  * move to text dumper with new file or existing file with new entries
                  */
-                TextDumper phoneBill = new TextDumper(fileName);
-                phoneBill.dump(bill);
+                if (prettyStdOut) {
+                    System.out.println(call.toString() +
+                            " Call Lasted for: " +
+                            new PrettyPrinter("").PhoneCallLength(call.getEndTime(), call.getStartTime()));
+                } else if (prettyNameFlag) {
+                    PrettyPrinter pretty = new PrettyPrinter(prettyName);
+                    pretty.dump(bill);
+                }
+
+                if (fileNameFlag) {
+                    TextDumper phoneBill = new TextDumper(fileName);
+                    phoneBill.dump(bill);
+                }
             }
 
             if (print) {

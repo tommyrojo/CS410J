@@ -5,6 +5,10 @@ import edu.pdx.cs410J.ParserException;
 import edu.pdx.cs410J.PhoneBillParser;
 
 import java.io.*;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
 
 public class TextParser implements PhoneBillParser<AbstractPhoneBill> {
     private String fileName;
@@ -59,27 +63,16 @@ public class TextParser implements PhoneBillParser<AbstractPhoneBill> {
                 var caller = phoneParts[0].trim().matches(phoneRegEx) ? phoneParts[0].trim() : null;
                 var callee = phoneParts[1].trim().matches(phoneRegEx) ? phoneParts[1].trim() : null;
 
-                var startTime = dateParts[0].trim().split(", ")[0].matches(dateRegEx) &&
-                        dateParts[0].trim().split(", ")[1].matches(timeRegEx) ? dateParts[0].trim() : null;
+                var startTime = dateParts[0].trim();
 
-                var endTime = dateParts[1].trim().split(", ")[0].matches(dateRegEx) &&
-                        dateParts[1].trim().split(", ")[1].matches(timeRegEx) ? dateParts[1].trim() : null;
+                DateFormat format = new SimpleDateFormat("MM/dd/yyyy HH:MM a", Locale.ENGLISH);
+                Date startDateFormat = format.parse(startTime);
 
-                if (caller == null) {
-                    System.err.println("there is an issue with the caller input in the " + fileNameOnly + " file");
-                    System.exit(0);
-                } else if (callee == null) {
-                    System.err.println("there is an issue with the callee input in the " + fileNameOnly + " file");
-                    System.exit(0);
-                } else if (startTime == null) {
-                    System.err.println("there is an issue with the startTime input in the " + fileNameOnly + " file");
-                    System.exit(0);
-                } else if (endTime == null) {
-                    System.err.println("there is an issue with the endTime input in the " + fileNameOnly + " file");
-                    System.exit(0);
-                }
+                var endTime = dateParts[1].trim();
+                Date endDateFormat = format.parse(endTime);
 
-                PhoneCall call = new PhoneCall(caller, callee, startTime, endTime);
+
+                PhoneCall call = new PhoneCall(caller, callee, startDateFormat, endDateFormat);
 
                 bill.addPhoneCall(call);
 

@@ -18,7 +18,7 @@ public class PhoneBillTest {
     @Test
     public void addPhoneCallAddsAPhoneCall() {
         PhoneBill bill = new PhoneBill("");
-        PhoneCall call = new PhoneCall("", "", "01/11/2018 13:08", "01/11/2018 13:14");
+        PhoneCall call = new PhoneCall("", "", new Date(), new Date());
         bill.addPhoneCall(call);
         assertThat(bill.getPhoneCalls().size(), is(1));
     }
@@ -26,7 +26,7 @@ public class PhoneBillTest {
     @Test
     public void phoneBillAddsACustomer() {
         PhoneBill bill = new PhoneBill("Tom");
-        PhoneCall call = new PhoneCall("", "", "01/11/2018 13:08", "01/11/2018 13:14");
+        PhoneCall call = new PhoneCall("", "", new Date(), new Date());
         bill.addPhoneCall(call);
         equals(bill.getPhoneCalls().contains(call));
     }

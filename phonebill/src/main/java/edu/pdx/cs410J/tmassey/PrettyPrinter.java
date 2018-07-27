@@ -9,12 +9,25 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Date;
 
 public class PrettyPrinter implements PhoneBillDumper<AbstractPhoneBill> {
     private String fileName;
 
     public PrettyPrinter(String fileName) {
         this.fileName = fileName;
+    }
+
+    public String PhoneCallLength(Date endTime, Date startTime) {
+
+        long milliseconds = endTime.getTime() - startTime.getTime();
+        long seconds = milliseconds / 1000;
+        long minutes = seconds / 60;
+        long hours = minutes / 60;
+        long days = hours / 24;
+        String time = " " + days + " days " + hours % 24 + " hours " + minutes % 60 + " minutes " + seconds % 60 + " seconds ";
+
+        return time;
     }
 
     @Override
@@ -43,7 +56,7 @@ public class PrettyPrinter implements PhoneBillDumper<AbstractPhoneBill> {
             Collections.sort(calls);
 
             for (PhoneCall c : calls) {
-                output.write("\n\t" + c.toString());
+                output.write("\n\t" + c.toString() + PhoneCallLength(c.getEndTime(), c.getStartTime()));
             }
 
             /**
