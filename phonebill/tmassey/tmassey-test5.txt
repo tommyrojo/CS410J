@@ -1,9 +1,5 @@
-Project4's phone bill with 8 phone calls
+Project4's phone bill with 4 phone calls
 	Phone call from 123-456-7890 to 234-567-8901 from 03/03/2018 21:03 PM to 04/04/2018 23:04 PM
 	Phone call from 123-456-7890 to 234-567-8901 from 03/03/2018 21:03 PM to 04/04/2018 23:04 PM
 	Phone call from 123-456-7890 to 234-567-8901 from 03/03/2018 21:03 PM to 04/04/2018 23:04 PM
-	Phone call from 123-456-7890 to 234-567-8901 from 03/03/2018 21:03 PM to 04/04/2018 23:04 PM
-	Phone call from 123-456-7890 to 456-789-0123 from 03/03/2018 21:03 PM to 03/04/2018 23:03 PM
-	Phone call from 123-456-7890 to 456-789-0123 from 03/03/2018 21:03 PM to 03/04/2018 23:03 PM
-	Phone call from 123-456-7890 to 456-789-0123 from 03/03/2018 21:03 PM to 03/04/2018 23:03 PM
 	Phone call from 123-456-7890 to 456-789-0123 from 03/03/2018 21:03 PM to 03/04/2018 23:03 PM

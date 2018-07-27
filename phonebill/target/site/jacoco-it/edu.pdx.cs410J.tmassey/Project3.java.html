@@ -71,16 +71,16 @@ import java.util.*;
 <span class="fc" id="L71">                startPos++;</span>
             }
 
-<span class="pc bpc" id="L74" title="1 of 2 branches missed.">            if (args[i].equals(&quot;-pretty&quot;)) {</span>
-<span class="nc" id="L75">                prettyNameFlag = true;</span>
-<span class="nc" id="L76">                prettyName = args[i + 1];</span>
+<span class="fc bfc" id="L74" title="All 2 branches covered.">            if (args[i].equals(&quot;-pretty&quot;)) {</span>
+<span class="fc" id="L75">                prettyNameFlag = true;</span>
+<span class="fc" id="L76">                prettyName = args[i + 1];</span>
 
-<span class="nc bnc" id="L78" title="All 4 branches missed.">                if (prettyName.equals(&quot;-&quot;) &amp;&amp; prettyName.length() == 1) {</span>
-<span class="nc" id="L79">                    prettyStdOut = true;</span>
+<span class="pc bpc" id="L78" title="2 of 4 branches missed.">                if (prettyName.equals(&quot;-&quot;) &amp;&amp; prettyName.length() == 1) {</span>
+<span class="fc" id="L79">                    prettyStdOut = true;</span>
                 }
 
-<span class="nc" id="L82">                startPos += 2;</span>
-<span class="nc" id="L83">                i += 2;</span>
+<span class="fc" id="L82">                startPos += 2;</span>
+<span class="fc" id="L83">                i += 2;</span>
             }
 
 <span class="fc bfc" id="L86" title="All 2 branches covered.">            if (args[i].equals(&quot;-textFile&quot;)) {</span>
@@ -245,10 +245,10 @@ import java.util.*;
                 /**
                  * move to text dumper with new file or existing file with new entries
                  */
-<span class="pc bpc" id="L248" title="1 of 2 branches missed.">                if (prettyStdOut) {</span>
-<span class="nc" id="L249">                    System.out.println(call.toString() +</span>
+<span class="fc bfc" id="L248" title="All 2 branches covered.">                if (prettyStdOut) {</span>
+<span class="fc" id="L249">                    System.out.println(call.toString() +</span>
                             &quot; Call Lasted for: &quot; +
-<span class="nc" id="L251">                            new PrettyPrinter(&quot;&quot;).PhoneCallLength(call.getEndTime(), call.getStartTime()));</span>
+<span class="fc" id="L251">                            new PrettyPrinter(&quot;&quot;).PhoneCallLength(call.getEndTime(), call.getStartTime()));</span>
 <span class="pc bpc" id="L252" title="1 of 2 branches missed.">                } else if (prettyNameFlag) {</span>
 <span class="nc" id="L253">                    PrettyPrinter pretty = new PrettyPrinter(prettyName);</span>
 <span class="nc" id="L254">                    pretty.dump(bill);</span>
@@ -260,7 +260,7 @@ import java.util.*;
                 }
             }
 
-<span class="pc bpc" id="L263" title="1 of 2 branches missed.">            if (print) {</span>
+<span class="fc bfc" id="L263" title="All 2 branches covered.">            if (print) {</span>
 <span class="fc" id="L264">                Collection&lt;PhoneCall&gt; phoneCalls = bill.getPhoneCalls();</span>
 <span class="fc bfc" id="L265" title="All 2 branches covered.">                for (PhoneCall c : phoneCalls) {</span>
 <span class="fc" id="L266">                    System.out.println(c);</span>
