@@ -1,2 +1,0 @@
-Test6's phone bill with 1 phone calls
-	Phone call from 123-456-7890 to 234-567-8901 from 3/3/18, 12:00 PM to 4/4/18, 4:00 PM

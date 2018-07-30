@@ -62,7 +62,7 @@ public class PhoneCall extends AbstractPhoneCall implements Comparable<PhoneCall
    */
   @Override
   public String getStartTimeString() {
-    var dateOut = new SimpleDateFormat("MM/dd/yyyy HH:MM a").format(startTime);
+    var dateOut = new SimpleDateFormat("MM/dd/yyyy hh:mm a").format(startTime);
 
     return dateOut;
   }
@@ -80,7 +80,7 @@ public class PhoneCall extends AbstractPhoneCall implements Comparable<PhoneCall
    */
   @Override
   public String getEndTimeString() {
-    var dateOut = new SimpleDateFormat("MM/dd/yyyy HH:MM a").format(endTime);
+    var dateOut = new SimpleDateFormat("MM/dd/yyyy hh:mm a").format(endTime);
 
     return dateOut;
   };

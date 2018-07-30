@@ -1,7 +1,7 @@
 GROUP,PACKAGE,CLASS,INSTRUCTION_MISSED,INSTRUCTION_COVERED,BRANCH_MISSED,BRANCH_COVERED,LINE_MISSED,LINE_COVERED,COMPLEXITY_MISSED,COMPLEXITY_COVERED,METHOD_MISSED,METHOD_COVERED
 cs410J Phone Bill Project,edu.pdx.cs410J.tmassey,PhoneBill,0,23,0,0,0,8,0,4,0,4
 cs410J Phone Bill Project,edu.pdx.cs410J.tmassey,PhoneCall,22,47,4,0,5,14,3,7,1,7
-cs410J Phone Bill Project,edu.pdx.cs410J.tmassey,Project3,192,487,33,49,58,93,32,12,2,1
+cs410J Phone Bill Project,edu.pdx.cs410J.tmassey,Project3,491,219,76,10,117,43,44,2,2,1
 cs410J Phone Bill Project,edu.pdx.cs410J.tmassey,PrettyPrinter,3,119,0,2,2,26,0,4,0,3
 cs410J Phone Bill Project,edu.pdx.cs410J.tmassey,TextDumper,3,74,0,2,2,18,0,3,0,2
-cs410J Phone Bill Project,edu.pdx.cs410J.tmassey,TextParser,18,161,4,4,6,32,3,3,0,2
+cs410J Phone Bill Project,edu.pdx.cs410J.tmassey,TextParser,10,169,3,5,3,35,3,3,0,2

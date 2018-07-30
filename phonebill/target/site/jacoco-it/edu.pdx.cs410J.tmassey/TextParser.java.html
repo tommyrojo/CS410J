@@ -88,12 +88,12 @@ public class TextParser implements PhoneBillParser&lt;AbstractPhoneBill&gt; {
          * if we don't have a file that exists, pass back null so we can create
          * the file in text dumper
          */
-<span class="nc" id="L91">        } catch (Exception e) {</span>
-<span class="nc bnc" id="L92" title="All 2 branches missed.">            if (e.toString().equals(&quot;java.lang.ArrayIndexOutOfBoundsException: 1&quot;)){</span>
+<span class="fc" id="L91">        } catch (Exception e) {</span>
+<span class="pc bpc" id="L92" title="1 of 2 branches missed.">            if (e.toString().equals(&quot;java.lang.ArrayIndexOutOfBoundsException: 1&quot;)){</span>
 <span class="nc" id="L93">                System.err.println(&quot;File is corrupt or not found&quot;);</span>
 <span class="nc" id="L94">                System.exit(0);</span>
             } else {
-<span class="nc" id="L96">                return null;</span>
+<span class="fc" id="L96">                return null;</span>
             }
         }
 <span class="nc" id="L99">        return null;</span>

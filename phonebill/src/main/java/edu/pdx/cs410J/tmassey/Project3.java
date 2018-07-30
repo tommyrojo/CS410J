@@ -53,9 +53,10 @@ public class Project3 {
             if (args[i].equals("-README")) {
                 System.out.println("Tom Massey");
                 System.out.println("cs410J");
-                System.out.println("This is a simple PhoneBill project that contains a collection of Phone Calls");
-                System.out.println("The point is to build on previous work finished in Project1 and");
-                System.out.println("read and write to files with the phone bill and caller information");
+                System.out.println("This is still a simple PhoneBill project that contains a collection of Phone Calls");
+                System.out.println("The point is to build on previous work finished in Project2 and");
+                System.out.println("verify date input as well as handle the 24 to 12 hour time change and");
+                System.out.println("we also added some pretty printing");
                 System.out.println("including flags and options provided by the user");
                 System.out.println("as well as error checking upon input");
                 startPos++;
@@ -71,16 +72,10 @@ public class Project3 {
                 startPos++;
             }
 
-            if (args[i].equals("-pretty")) {
-                prettyNameFlag = true;
-                prettyName = args[i + 1];
-
-                if (prettyName.equals("-") && prettyName.length() == 1) {
-                    prettyStdOut = true;
-                }
-
-                startPos += 2;
-                i += 2;
+            if (args[i].toUpperCase().equals("AM") || args[i].toUpperCase().equals("PM")) {
+                amPmPos.add(args[i]);
+                skip = true;
+                startPos++;
             }
 
             if (args[i].equals("-textFile")) {
@@ -105,22 +100,31 @@ public class Project3 {
                     }
 
                     startPos += 2;
-                    i += 2;
+                    i++;
+                    skip = true;
                 }
-
             }
 
-            if (args[i].toUpperCase().equals("AM") || args[i].toUpperCase().equals("PM")) {
-                amPmPos.add(args[i]);
+            if (args[i].equals("-pretty")) {
+                prettyNameFlag = true;
+                prettyName = args[i + 1];
+
+                if (prettyName.equals("-") && prettyName.length() == 1) {
+                    prettyStdOut = true;
+                }
+
+                startPos += 2;
+                i++;
                 skip = true;
-                startPos++;
             }
 
             /**
              * omit -README and -print to scan the rest of the inputs and track
              * erroneous inputs
              */
-            if (!args[i].equals("-README") &&
+            if (
+                !(i > args.length) &&
+                !args[i].equals("-README") &&
                 !args[i].equals("-print") &&
                 !args[i].equals("-textFile") &&
                 !args[i].equals("-pretty") &&
@@ -138,6 +142,8 @@ public class Project3 {
                 amPmPos.remove(0);
                 var newDate = argPos.get(argsOrder.get(i - startPos - 1));
                 argPos.put(argsOrder.get(i - startPos - 1), newDate + " " + date);
+            } else {
+                skip = false;
             }
         }
 
@@ -185,14 +191,14 @@ public class Project3 {
         }
 
         if (!argPos.get("startDate").toLowerCase().matches(dateTimeRegEx)) {
-            System.err.println("startDateValue must be in format: mm/dd/yyyy");
+            System.err.println("startDateValue must be in format: mm/dd/yyyy hh:mm and am/pm");
             errorOnInput = true;
         } else {
             startDate = argPos.get("startDate");
         }
 
         if (!argPos.get("endDate").toLowerCase().matches(dateTimeRegEx)) {
-            System.err.println("endDateValue must be in format: mm/dd/yyyy");
+            System.err.println("endDateValue must be in format: mm/dd/yyyy hh:mm and am/pm");
             errorOnInput = true;
         } else {
             endDate = argPos.get("endDate");
@@ -203,9 +209,19 @@ public class Project3 {
          * else print output of phone call if print is specified
          * else do nothing
          */
+
         if (errorOnInput) {
             System.exit(0);
         } else {
+
+            /**
+             * quick check to verify that the call orders are entered in the correct order
+             */
+            if (new Date(endDate).getTime() < new Date(startDate).getTime()) {
+                System.err.println("endDate must be more recent than beginDate");
+                System.exit(0);
+            }
+
             /**
              * if we have a fileName flag, first check if it exists, if it does read in the data
              * if it doesn't return null so we can create a new file in TextDumper

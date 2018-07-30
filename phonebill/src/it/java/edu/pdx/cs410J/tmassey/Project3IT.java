@@ -23,20 +23,7 @@ public class Project3IT extends InvokeMainTestCase {
      */
     @Test
     public void testNoCommandLineArguments() {
-        MainMethodResult result = invokeMain(
-                "-pretty",
-                "-",
-                "-textFile",
-                "tmassey/tmassey-test5.txt",
-                "Project4",
-                "123-456-7890",
-                "234-567-8901",
-                "03/03/2018",
-                "09:16",
-                "pm",
-                "04/04/2018",
-                "11:18",
-                "pm");
-        assertThat(result.getExitCode(), equalTo(1));
+        MainMethodResult result = invokeMain();
+        assertThat(result.getExitCode(), equalTo(0));
     }
 }
