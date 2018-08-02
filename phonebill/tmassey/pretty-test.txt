@@ -1,6 +1,0 @@
-Project2's phone bill with 5 phone calls
-	Phone call from 123-456-7890 to 234-567-8901 from 12/08/2014 07:00 AM to 12/08/2014 08:00 AM 0 days 1 hours 0 minutes 0 seconds 
-	Phone call from 123-456-7890 to 234-567-8901 from 12/08/2015 07:00 AM to 12/08/2015 08:00 AM 0 days 1 hours 0 minutes 0 seconds 
-	Phone call from 123-456-7890 to 234-567-8901 from 12/08/2016 07:00 AM to 12/08/2016 08:00 AM 0 days 1 hours 0 minutes 0 seconds 
-	Phone call from 123-456-7890 to 456-789-0123 from 12/08/2017 07:00 AM to 12/08/2017 08:00 AM 0 days 1 hours 0 minutes 0 seconds 
-	Phone call from 123-456-7890 to 234-567-8901 from 01/08/2018 07:00 AM to 01/08/2018 08:00 AM 0 days 1 hours 0 minutes 0 seconds 
