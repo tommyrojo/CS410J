@@ -1,0 +1,10 @@
+GROUP,PACKAGE,CLASS,INSTRUCTION_MISSED,INSTRUCTION_COVERED,BRANCH_MISSED,BRANCH_COVERED,LINE_MISSED,LINE_COVERED,COMPLEXITY_MISSED,COMPLEXITY_COVERED,METHOD_MISSED,METHOD_COVERED
+Phone Bill Web/REST Project,edu.pdx.cs410J.tmassey,NoSuchPhoneBillException,0,6,0,0,0,3,0,1,0,1
+Phone Bill Web/REST Project,edu.pdx.cs410J.tmassey,PhoneBill,20,14,0,0,5,5,4,2,4,2
+Phone Bill Web/REST Project,edu.pdx.cs410J.tmassey,PhoneBillRestClient,50,183,1,3,10,28,4,8,3,7
+Phone Bill Web/REST Project,edu.pdx.cs410J.tmassey,PhoneBillServlet,346,0,26,0,88,0,29,0,16,0
+Phone Bill Web/REST Project,edu.pdx.cs410J.tmassey,Messages,128,0,6,0,23,0,12,0,9,0
+Phone Bill Web/REST Project,edu.pdx.cs410J.tmassey,PhoneCall,38,27,4,0,8,10,6,5,4,5
+Phone Bill Web/REST Project,edu.pdx.cs410J.tmassey,PhoneBillRestClient.PhoneBillRestException,8,0,0,0,3,0,1,0,1,0
+Phone Bill Web/REST Project,edu.pdx.cs410J.tmassey,Messages.new Map.Entry() {...},29,0,2,0,7,0,5,0,4,0
+Phone Bill Web/REST Project,edu.pdx.cs410J.tmassey,Project4,163,498,20,40,46,103,22,14,3,3

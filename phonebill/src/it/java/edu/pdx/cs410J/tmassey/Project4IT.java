@@ -54,7 +54,7 @@ public class Project4IT extends InvokeMainTestCase {
 
     @Test
     public void test4AddDefinition() {
-        String customer = "Customer";
+        String customer = "Dave";
         String callerNumber = "123-456-7890";
         String calleeNumber = "234-567-8901";
         String startDate = "01/01/2018";
@@ -126,20 +126,6 @@ public class Project4IT extends InvokeMainTestCase {
 //        assertThat(out, out, containsString(Messages.formatDictionaryEntry(word, definition)));
     }
 
-    @Test
-    public void test5NoCallerCalleeImpliesSearch() {
-        String customer = "Customer";
-        String startDate = "01/01/2018";
-        String startTime = "12:34";
-        String startAmPm = "pm";
-        String endDate = "01/01/2018";
-        String endTime = "2:35";
-        String endAmPm = "pm";
-
-        MainMethodResult result = invokeMain( Project4.class, hostFlag, HOSTNAME, portFlag, PORT, searchFlag, customer, startDate, startTime, startAmPm, endDate, endTime, endAmPm );
-        assertThat(result.getTextWrittenToStandardError(), result.getExitCode(), equalTo(0));
-        String out = result.getTextWrittenToStandardOut();
-    }
 
     @Test
     public void test6AddOneCaller() {
@@ -169,5 +155,12 @@ public class Project4IT extends InvokeMainTestCase {
         String endAmPm = "am";
 
         MainMethodResult result = invokeMain( Project4.class, hostFlag, HOSTNAME, portFlag, PORT, customer, callerNumber, calleeNumber, startDate, startTime, startAmPm, endDate, endTime, endAmPm );
+    }
+
+    @Test
+    public void test8JustDave() {
+        String customer = "Dave";
+
+        MainMethodResult result = invokeMain( Project4.class, hostFlag, HOSTNAME, portFlag, PORT, customer);
     }
 }

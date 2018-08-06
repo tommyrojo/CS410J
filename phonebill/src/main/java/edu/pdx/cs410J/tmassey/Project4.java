@@ -56,12 +56,9 @@ public class Project4 {
             if (args[i].equals("-README")) {
                 System.out.println("Tom Massey");
                 System.out.println("cs410J");
-                System.out.println("This is still a simple PhoneBill project that contains a collection of Phone Calls");
-                System.out.println("The point is to build on previous work finished in Project2 and");
-                System.out.println("verify date input as well as handle the 24 to 12 hour time change and");
-                System.out.println("we also added some pretty printing");
-                System.out.println("including flags and options provided by the user");
-                System.out.println("as well as error checking upon input");
+                System.out.println("This is Rest Project that is using a client/server setup");
+                System.out.println("The point is to build on previous work finished in Project3 and");
+                System.out.println("extend the project to use a web browser and a server to test REST endpints");
                 startPos++;
                 System.exit(1);
             }
@@ -148,61 +145,75 @@ public class Project4 {
             usage(errorInput.toString());
         }
 
-        /**
-         * if we are missing input, through in a bad value
-         * so it fails the regex and outputs the correct field to correct
-         */
-        for (int i = argPos.size(); i < argsOrder.size(); i++) {
-            argPos.put(argsOrder.get(i), "@@@_BREAK_ME_@@@");
-        }
+        if (argPos.size() > 1) {
+
+            /**
+             * if we are missing input, through in a bad value
+             * so it fails the regex and outputs the correct field to correct
+             */
+            for (int i = argPos.size(); i < argsOrder.size(); i++) {
+                argPos.put(argsOrder.get(i), "@@@_BREAK_ME_@@@");
+            }
+
+            /**
+             * field input validations
+             */
+            if (!argPos.get("customer").toLowerCase().matches("^[a-zA-Z0-9 ]*$")) {
+                System.err.println("customerValue must be alphanumeric (0-9 and A-Z):");
+                errorOnInput = true;
+            } else {
+                customer = argPos.get("customer");
+            }
 
 
-        /**
-         * field input validations
-         */
-        if (!argPos.get("customer").toLowerCase().matches("^[a-zA-Z0-9 ]*$")) {
-            System.err.println("customerValue must be alphanumeric (0-9 and A-Z):");
-            errorOnInput = true;
+            if (!searchFlag && !argPos.get("caller").toLowerCase().matches(phoneRegEx)) {
+                System.err.println("callerNumberValue must be in format: ###-###-####");
+                errorOnInput = true;
+            } else {
+                caller = argPos.get("caller");
+            }
+
+
+            if (!searchFlag && !argPos.get("callee").toLowerCase().matches(phoneRegEx)) {
+                System.err.println("calleeNumberValue must be in format: ###-###-####");
+                errorOnInput = true;
+            } else {
+                callee = argPos.get("callee");
+            }
+
+            if (!argPos.get("startDate").toLowerCase().matches(dateTimeRegEx)) {
+                System.err.println("startDateValue must be in format: mm/dd/yyyy hh:mm and am/pm");
+                errorOnInput = true;
+            } else {
+                startDate = argPos.get("startDate");
+            }
+
+            if (!argPos.get("endDate").toLowerCase().matches(dateTimeRegEx)) {
+                System.err.println("endDateValue must be in format: mm/dd/yyyy hh:mm and am/pm");
+                errorOnInput = true;
+            } else {
+                endDate = argPos.get("endDate");
+            }
         } else {
+            startDate = new Date(0).toString();
+            endDate = new Date("01/01/2020 12:34 pm").toString();
             customer = argPos.get("customer");
-        }
-
-
-        if (!searchFlag && !argPos.get("caller").toLowerCase().matches(phoneRegEx)) {
-            System.err.println("callerNumberValue must be in format: ###-###-####");
-            errorOnInput = true;
-        } else {
-            caller = argPos.get("caller");
-        }
-
-
-        if (!searchFlag && !argPos.get("callee").toLowerCase().matches(phoneRegEx)) {
-            System.err.println("calleeNumberValue must be in format: ###-###-####");
-            errorOnInput = true;
-        } else {
-            callee = argPos.get("callee");
-        }
-
-        if (!argPos.get("startDate").toLowerCase().matches(dateTimeRegEx)) {
-            System.err.println("startDateValue must be in format: mm/dd/yyyy hh:mm and am/pm");
-            errorOnInput = true;
-        } else {
-            startDate = argPos.get("startDate");
-        }
-
-        if (!argPos.get("endDate").toLowerCase().matches(dateTimeRegEx)) {
-            System.err.println("endDateValue must be in format: mm/dd/yyyy hh:mm and am/pm");
-            errorOnInput = true;
-        } else {
-            endDate = argPos.get("endDate");
         }
 
 
         PhoneBillRestClient client = new PhoneBillRestClient(hostName, port);
         String customerName = customer;
 
-        if (searchFlag) {
+        if (searchFlag || argPos.size() == 1) {
             client.searchPhoneBill(customerName, startDate, endDate);
+            if (argPos.size() == 1) {
+                PhoneBill bill = new PhoneBill(customer);
+
+                for (PhoneCall c : bill.getPhoneCalls()) {
+                    System.out.println(c);
+                }
+
+            }
         } else {
             Date DateStart = new Date(startDate);
             Date DateEnd = new Date(endDate);

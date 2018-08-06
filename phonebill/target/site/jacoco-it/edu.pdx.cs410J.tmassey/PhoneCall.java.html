@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>PhoneCall.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Phone Bill Web/REST Project</a> &gt; <a href="index.source.html" class="el_package">edu.pdx.cs410J.tmassey</a> &gt; <span class="el_source">PhoneCall.java</span></div><h1>PhoneCall.java</h1><pre class="source lang-java linenums">package edu.pdx.cs410J.tmassey;
+
+import edu.pdx.cs410J.AbstractPhoneCall;
+
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
+/**
+ * class to create a phone call
+ */
+
+public class PhoneCall extends AbstractPhoneCall implements Comparable&lt;PhoneCall&gt;{
+  private final String caller;
+  private final String callee;
+  private Date startTime;
+  private Date endTime;
+
+  /**
+   * PhoneCall Constructor to create a Phone Call object
+   * @param caller
+   * @param callee
+   * @param startTime
+   * @param endTime
+   */
+<span class="fc" id="L26">  public PhoneCall(String caller, String callee, Date startTime, Date endTime) {</span>
+<span class="fc" id="L27">    this.caller = caller;</span>
+<span class="fc" id="L28">    this.callee = callee;</span>
+<span class="fc" id="L29">    this.startTime = startTime;</span>
+<span class="fc" id="L30">    this.endTime = endTime;</span>
+<span class="fc" id="L31">  }</span>
+
+  /**
+   * getCaller method
+   * @return String caller
+   */
+  @Override
+  public String getCaller() {
+<span class="fc" id="L39">    return this.caller;</span>
+  }
+
+  /**
+   * getCallee method
+   * @return String callee
+   */
+  @Override
+  public String getCallee() {
+<span class="fc" id="L48">    return this.callee;</span>
+  }
+
+  /**
+   * getStartTime method
+   * @return Date startTime
+   */
+
+  @Override
+<span class="fc" id="L57">  public Date getStartTime() { return this.startTime; }</span>
+
+  /**
+   * getStartTimeString method
+   * @return String startTime
+   */
+  @Override
+  public String getStartTimeString() {
+<span class="nc" id="L65">    return formatDate(this.startTime);</span>
+  }
+
+  /**
+   * getEndTime method
+   * @return String endTime
+  */
+  @Override
+<span class="fc" id="L73">  public Date getEndTime() { return this.endTime; }</span>
+
+  /**
+   * getEndTimeString method
+   * @return String endTime
+   */
+  @Override
+  public String getEndTimeString() {
+<span class="nc" id="L81">    return formatDate(this.endTime);</span>
+  };
+
+  @Override
+  public int compareTo(PhoneCall call) {
+<span class="nc bnc" id="L86" title="All 2 branches missed.">    if (this.startTime.after(call.startTime)) {</span>
+<span class="nc" id="L87">      return 1;</span>
+<span class="nc bnc" id="L88" title="All 2 branches missed.">    } else if (this.startTime.before(call.startTime)) {</span>
+<span class="nc" id="L89">      return -1;</span>
+    } else {
+<span class="nc" id="L91">      return this.caller.compareTo(call.caller);</span>
+    }
+  }
+
+  private String formatDate(Date date) {
+<span class="nc" id="L96">    return DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG).format(date);</span>
+  }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.1.201803210924</span></div></body></html>

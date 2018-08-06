@@ -31,6 +31,7 @@ public class PhoneBillServlet extends HttpServlet
 
     private final Map<String, String> dictionary = new HashMap<>();
     private Map<String, PhoneBill> bills = new HashMap<>();
+    private boolean isSearch = false;
 
     /**
      * Handles an HTTP GET request from a client by writing the definition of the
@@ -53,13 +54,17 @@ public class PhoneBillServlet extends HttpServlet
         PhoneBill bill = getPhoneBill(customer);
 
         if (bill == null) {
+            PrintWriter writer = response.getWriter();
+            writer.println(customer + " was not found");
             response.setStatus(HttpServletResponse.SC_NOT_FOUND);
         } else {
             if (caller == null && callee == null) {
                 // we are in search potentially
                 if (startTime != null && endTime != null) {
+                    isSearch = true;
                     callsToPrettyPrint = searchPhoneBill(bill, startTime, endTime);
                     PrintWriter writer = response.getWriter();
+                    writer.println(callsToPrettyPrint.size() + " calls found between " + startTime + " and " + endTime);
                     writer.println(bill.getCustomer());
                     callsToPrettyPrint.forEach((call) -> writer.println(call.toString()));
                     response.setStatus(HttpServletResponse.SC_OK);
@@ -68,7 +73,9 @@ public class PhoneBillServlet extends HttpServlet
                 writePrettyPhoneBill(customer, response);
             }
 
-            writePrettyPhoneBill(customer, response);
+            if(!isSearch) {
+                writePrettyPhoneBill(customer, response);
+            }
         }
     }
 
@@ -117,8 +124,14 @@ public class PhoneBillServlet extends HttpServlet
         String startTime = getParameter(START_TIME_PARAMETER, request);
         String endTime = getParameter(END_TIME_PARAMETER, request);
 
-        Date startDate = new Date(Long.parseLong(startTime));
-        Date endDate = new Date(Long.parseLong(endTime));
+        //awful hack to deal with the different date formats coming in from the integration tests and the REST calls.
+        //will refactor if there is time
+//        var newStart = Long.toString(new Date(startTime).getTime());
+//
+//        var newEnd = Long.toString(new Date(endTime).getTime());
+
+        Date startDate = new Date(startTime);
+        Date endDate = new Date(endTime);
 
         PhoneCall call = new PhoneCall(caller, callee, startDate, endDate);
         bill.addPhoneCall(call);

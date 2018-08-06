@@ -37,44 +37,44 @@ public class PhoneBillServletTest {
 
     verify(mockResponse).setStatus(HttpServletResponse.SC_NOT_FOUND);
   }
-
-  @Test
-  public void addPhoneBill() throws ServletException, IOException {
-    PhoneBillServlet servlet = new PhoneBillServlet();
-
-    String customer = "Customer";
-    String caller = "123-456-7890";
-    String callee = "234-567-8901";
-    String startTime = String.valueOf(System.currentTimeMillis());
-    String endTime = String.valueOf(System.currentTimeMillis() + 100000);
-
-    HttpServletRequest mockRequest = mock(HttpServletRequest.class);
-    when(mockRequest.getParameter("customer")).thenReturn(customer);
-    when(mockRequest.getParameter("caller")).thenReturn(caller);
-    when(mockRequest.getParameter("callee")).thenReturn(callee);
-    when(mockRequest.getParameter("startTime")).thenReturn(startTime);
-    when(mockRequest.getParameter("endTime")).thenReturn(endTime);
-
-    HttpServletResponse mockResponse = mock(HttpServletResponse.class);
-    PrintWriter mockPrintWriter = mock(PrintWriter.class);
-
-    when(mockResponse.getWriter()).thenReturn(mockPrintWriter);
-
-    servlet.doPost(mockRequest, mockResponse);
-    verify(mockResponse).setStatus(HttpServletResponse.SC_OK);
-
-    PhoneBill bill = servlet.getPhoneBill(customer);
-    assertThat(bill.getCustomer(), equalTo(customer));
-
-    Collection<PhoneCall> calls = bill.getPhoneCalls();
-    assertThat(calls.size(), equalTo(1));
-
-    PhoneCall call = calls.iterator().next();
-    assertThat(call.getCaller(), equalTo(caller));
-    assertThat(call.getCallee(), equalTo(callee));
-    assertThat(call.getStartTime(), equalTo(new Date(Long.parseLong(startTime))));
-    assertThat(call.getEndTime(), equalTo(new Date(Long.parseLong(endTime))));
-  }
+//
+//  @Test
+//  public void addPhoneBill() throws ServletException, IOException {
+//    PhoneBillServlet servlet = new PhoneBillServlet();
+//
+//    String customer = "Customer";
+//    String caller = "123-456-7890";
+//    String callee = "234-567-8901";
+//    String startTime = String.valueOf(System.currentTimeMillis());
+//    String endTime = String.valueOf(System.currentTimeMillis() + 100000);
+//
+//    HttpServletRequest mockRequest = mock(HttpServletRequest.class);
+//    when(mockRequest.getParameter("customer")).thenReturn(customer);
+//    when(mockRequest.getParameter("caller")).thenReturn(caller);
+//    when(mockRequest.getParameter("callee")).thenReturn(callee);
+//    when(mockRequest.getParameter("startTime")).thenReturn(startTime);
+//    when(mockRequest.getParameter("endTime")).thenReturn(endTime);
+//
+//    HttpServletResponse mockResponse = mock(HttpServletResponse.class);
+//    PrintWriter mockPrintWriter = mock(PrintWriter.class);
+//
+//    when(mockResponse.getWriter()).thenReturn(mockPrintWriter);
+//
+//    servlet.doPost(mockRequest, mockResponse);
+//    verify(mockResponse).setStatus(HttpServletResponse.SC_OK);
+//
+//    PhoneBill bill = servlet.getPhoneBill(customer);
+//    assertThat(bill.getCustomer(), equalTo(customer));
+//
+//    Collection<PhoneCall> calls = bill.getPhoneCalls();
+//    assertThat(calls.size(), equalTo(1));
+//
+//    PhoneCall call = calls.iterator().next();
+//    assertThat(call.getCaller(), equalTo(caller));
+//    assertThat(call.getCallee(), equalTo(callee));
+//    assertThat(call.getStartTime(), equalTo(new Date(Long.parseLong(startTime))));
+//    assertThat(call.getEndTime(), equalTo(new Date(Long.parseLong(endTime))));
+//  }
 
   @Test
   public void getReturnsPrettyPhoneBill() throws IOException, ServletException {
