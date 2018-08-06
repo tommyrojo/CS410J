@@ -6,7 +6,7 @@ import java.io.IOException;
 import java.io.PrintStream;
 import java.io.PrintWriter;
 import java.io.StringWriter;
-import java.util.Map;
+import java.util.*;
 
 /**
  * The main class that parses the command line and communicates with the
@@ -15,31 +15,116 @@ import java.util.Map;
 public class Project4 {
 
     public static final String MISSING_ARGS = "Missing command line arguments";
+    public static final String dateTimeRegEx = "^((0|1)?\\d{1})/((0|1|2)?\\d{1})/((19|20)?\\d{2}) (((0?[1-9])|(1[0-2])):([0-5])\\d\\s(A|P|a|p)(M|m))";
+    public static final String phoneRegEx = "^\\d{3}-\\d{3}-\\d{4}$";
+    private static boolean searchFlag = false;
 
-    public static void main(String... args) {
+    public static void main(String... args) throws IOException {
         String hostName = null;
         String portString = null;
-        String word = null;
-        String definition = null;
+        String customer = null;
+        String callerNumber = null;
+        String calleeNumber = null;
 
-        for (String arg : args) {
-            if (hostName == null) {
-                hostName = arg;
 
-            } else if ( portString == null) {
-                portString = arg;
+        String caller = new String();
+        String callee = new String();
+        String startDate = new String();
+        String startTime = new String();
+        String endDate = new String();
+        String endTime = new String();
+        var startPos = 0;
+        Boolean readMe = false;
+        Boolean print = false;
+        var errorInput = new ArrayList<String>();
 
-            } else if (word == null) {
-                word = arg;
+        PhoneCall call = new PhoneCall("", "", new Date(), new Date());
+        var amPmPos = new ArrayList<String>();
+        var skip = false;
+        var prettyName = new String();
 
-            } else if (definition == null) {
-                definition = arg;
+        Boolean errorOnInput = false;
 
+        List<String> argsOrder = Arrays.asList("customer", "caller", "callee", "startDate", "startTime", "endDate", "endTime");
+        LinkedHashMap<String, String> argPos = new LinkedHashMap<>();
+
+
+        /**
+         * here we loop through each input scanning for flags and required fields
+         */
+        for (int i = 0; i < args.length; i++) {
+            if (args[i].equals("-README")) {
+                System.out.println("Tom Massey");
+                System.out.println("cs410J");
+                System.out.println("This is still a simple PhoneBill project that contains a collection of Phone Calls");
+                System.out.println("The point is to build on previous work finished in Project2 and");
+                System.out.println("verify date input as well as handle the 24 to 12 hour time change and");
+                System.out.println("we also added some pretty printing");
+                System.out.println("including flags and options provided by the user");
+                System.out.println("as well as error checking upon input");
+                startPos++;
+                System.exit(1);
+            }
+
+            /**
+             * we want to account for -print being anywhere in the input so we
+             * increment a startPos so the rest of the args can be scanned correctly
+             */
+            if (args[i].equals("-print")) {
+                print = true;
+                startPos++;
+                skip = true;
+            }
+
+            if (args[i].toUpperCase().equals("AM") || args[i].toUpperCase().equals("PM")) {
+                amPmPos.add(args[i]);
+                skip = true;
+                startPos++;
+            }
+
+            if (args[i].equals("-host")) {
+                hostName = args[i + 1];
+                startPos += 2;
+                i++;
+                skip = true;
+            }
+
+            if (args[i].equals("-port")) {
+                portString = args[i + 1];
+                startPos +=2;
+                i++;
+                skip = true;
+            }
+
+            if (args[i].equals("-search")) {
+                searchFlag = true;
+                startPos++;
+                skip = true;
+                argsOrder = Arrays.asList("customer", "startDate", "startTime", "endDate", "endTime");
+            }
+
+            /**
+             * omit -README and -print to scan the rest of the inputs and track
+             * erroneous inputs
+             */
+            if (!(i > args.length) && !skip)
+            {
+                if (argPos.size() < argsOrder.size() && !(args[i].charAt(0) == '-')) {
+                    argPos.put(argsOrder.get(i - startPos), args[i]);
+                } else {
+                    errorInput.add(args[i]);
+                    startPos++;
+                }
+            } else if (amPmPos.size() > 0){
+                skip = false;
+                var date = argPos.get(argsOrder.get(i - startPos)) + " " + amPmPos.get(0);
+                amPmPos.remove(0);
+                var newDate = argPos.get(argsOrder.get(i - startPos - 1));
+                argPos.put(argsOrder.get(i - startPos - 1), newDate + " " + date);
             } else {
-                usage("Extraneous command line argument: " + arg);
+                skip = false;
             }
         }
-
         if (hostName == null) {
             usage( MISSING_ARGS );
 
@@ -50,41 +135,89 @@ public class Project4 {
         int port;
         try {
             port = Integer.parseInt( portString );
-            
+
         } catch (NumberFormatException ex) {
             usage("Port \"" + portString + "\" must be an integer");
             return;
         }
 
-        PhoneBillRestClient client = new PhoneBillRestClient(hostName, port);
-
-        String message;
-        try {
-            if (word == null) {
-                // Print all word/definition pairs
-                String customerName = "Customer";
-                Map<String, String> dictionary = client.getPhoneBill(customerName);
-                StringWriter sw = new StringWriter();
-                Messages.formatDictionaryEntries(new PrintWriter(sw, true), dictionary);
-                message = sw.toString();
-
-            } else if (definition == null) {
-                // Print all dictionary entries
-                message = Messages.formatDictionaryEntry(word, client.getDefinition(word));
-
-            } else {
-                // Post the word/definition pair
-                client.addDictionaryEntry(word, definition);
-                message = Messages.definedWordAs(word, definition);
-            }
-
-        } catch ( IOException ex ) {
-            error("While contacting server: " + ex);
-            return;
+        /**
+         * if we encounter bad input, display to user
+         */
+        if (errorInput.size() > 0) {
+            usage(errorInput.toString());
         }
 
-        System.out.println(message);
+        /**
+         * if we are missing input, through in a bad value
+         * so it fails the regex and outputs the correct field to correct
+         */
+        for (int i = argPos.size(); i < argsOrder.size(); i++) {
+            argPos.put(argsOrder.get(i), "@@@_BREAK_ME_@@@");
+        }
 
+
+        /**
+         * field input validations
+         */
+        if (!argPos.get("customer").toLowerCase().matches("^[a-zA-Z0-9 ]*$")) {
+            System.err.println("customerValue must be alphanumeric (0-9 and A-Z):");
+            errorOnInput = true;
+        } else {
+            customer = argPos.get("customer");
+        }
+
+
+        if (!searchFlag && !argPos.get("caller").toLowerCase().matches(phoneRegEx)) {
+            System.err.println("callerNumberValue must be in format: ###-###-####");
+            errorOnInput = true;
+        } else {
+            caller = argPos.get("caller");
+        }
+
+
+        if (!searchFlag && !argPos.get("callee").toLowerCase().matches(phoneRegEx)) {
+            System.err.println("calleeNumberValue must be in format: ###-###-####");
+            errorOnInput = true;
+        } else {
+            callee = argPos.get("callee");
+        }
+
+        if (!argPos.get("startDate").toLowerCase().matches(dateTimeRegEx)) {
+            System.err.println("startDateValue must be in format: mm/dd/yyyy hh:mm and am/pm");
+            errorOnInput = true;
+        } else {
+            startDate = argPos.get("startDate");
+        }
+
+        if (!argPos.get("endDate").toLowerCase().matches(dateTimeRegEx)) {
+            System.err.println("endDateValue must be in format: mm/dd/yyyy hh:mm and am/pm");
+            errorOnInput = true;
+        } else {
+            endDate = argPos.get("endDate");
+        }
+
+
+        PhoneBillRestClient client = new PhoneBillRestClient(hostName, port);
+        String customerName = customer;
+
+        if (searchFlag) {
+            client.searchPhoneBill(customerName, startDate, endDate);
+        } else {
+            Date DateStart = new Date(startDate);
+            Date DateEnd = new Date(endDate);
+
+            PhoneCall phoneCall = new PhoneCall(caller, callee, DateStart, DateEnd);
+            client.addPhoneCall(customer, phoneCall);
+
+            String message;
+
+            // Print all word/definition pairs
+
+            message = client.getPrettyPhoneBill(customerName);
+
+            System.out.println(message);
+        }
         System.exit(0);
     }
 

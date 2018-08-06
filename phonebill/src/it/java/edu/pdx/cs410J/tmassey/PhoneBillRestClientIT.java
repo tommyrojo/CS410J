@@ -10,7 +10,6 @@ import java.lang.System;
 import java.net.HttpURLConnection;
 import java.text.DateFormat;
 import java.util.Date;
-import java.util.Map;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.containsString;
@@ -38,12 +37,12 @@ public class PhoneBillRestClientIT {
   @Test(expected = NoSuchPhoneBillException.class)
   public void test1EmptyServerContainsNoDictionaryEntries() throws IOException {
     PhoneBillRestClient client = newPhoneBillRestClient();
-    client.getPhoneBill("No such customer");
+    client.getPrettyPhoneBill("No such customer");
   }
 
   @Test
   public void test2AddOnePhoneCall() throws IOException {
-    PhoneBillRestClient client = new PhoneBillRestClient();
+    PhoneBillRestClient client = newPhoneBillRestClient();
     String callerNumber = "123-456-7890";
     String calleeNumber = "234-567-8901";
     Date startTime = new Date(System.currentTimeMillis());
@@ -63,13 +62,4 @@ public class PhoneBillRestClientIT {
     assertThat(pretty, containsString(format.format(endTime)));
 
   }
-
-  @Test
-  public void test4MissingRequiredParameterReturnsPreconditionFailed() throws IOException {
-    PhoneBillRestClient client = newPhoneBillRestClient();
-    HttpRequestHelper.Response response = client.postToMyURL();
-    assertThat(response.getContent(), containsString(Messages.missingRequiredParameter("word")));
-    assertThat(response.getCode(), equalTo(HttpURLConnection.HTTP_PRECON_FAILED));
-  }
-
 }

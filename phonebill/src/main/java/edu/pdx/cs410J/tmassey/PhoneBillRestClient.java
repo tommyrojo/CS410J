@@ -4,8 +4,9 @@ import com.google.common.annotations.VisibleForTesting;
 import edu.pdx.cs410J.web.HttpRequestHelper;
 
 import java.io.IOException;
-import java.util.Map;
+import java.util.Date;
 
+import static java.net.HttpURLConnection.HTTP_NOT_FOUND;
 import static java.net.HttpURLConnection.HTTP_OK;
 
 /**
@@ -31,22 +32,8 @@ public class PhoneBillRestClient extends HttpRequestHelper
         this.url = String.format( "http://%s:%d/%s/%s", hostName, port, WEB_APP, SERVLET );
     }
 
-    /**
-     * Returns all dictionary entries from the server
-     */
-    public Map<String, String> getAllDictionaryEntries() throws IOException {
-      Response response = get(this.url);
-      return Messages.parseDictionary(response.getContent());
-    }
-
-    /**
-     * Returns the definition for the given word
-     */
-    public String getDefinition(String word) throws IOException {
-      Response response = get(this.url, "word", word);
-      throwExceptionIfNotOkayHttpStatus(response);
-      String content = response.getContent();
-      return Messages.parseDictionaryEntry(content).getValue();
+    public PhoneBillRestClient() {
+        this.url = "";
     }
 
     public void addDictionaryEntry(String word, String definition) throws IOException {
@@ -66,34 +53,53 @@ public class PhoneBillRestClient extends HttpRequestHelper
 
     private Response throwExceptionIfNotOkayHttpStatus(Response response) {
       int code = response.getCode();
+
+      if (code == HTTP_NOT_FOUND ) {
+          String customer = response.getContent();
+          throw new NoSuchPhoneBillException(customer);
+      }
+
       if (code != HTTP_OK) {
         throw new PhoneBillRestException(code);
       }
       return response;
     }
 
-    public void removeAllPhoneBills() {
+    public void removeAllPhoneBills() throws IOException {
+        Response response = delete(this.url);
+        throwExceptionIfNotOkayHttpStatus(response);
     }
 
-    public String getPhoneBill(String customerName) throws IOException {
-        Response response = get(this.url);
-        throw new NoSuchPhoneBillException(customerName);
+    public String searchPhoneBill(String customerName, String startTime, String endTime) throws IOException {
+        String [] searchParameters = {
+          "customer", customerName,
+          "startTime", startTime,
+          "endTime", endTime
+        };
+
+        var response = get(this.url, searchParameters);
+        throwExceptionIfNotOkayHttpStatus(response);
+        return response.getContent();
     }
 
     public void addPhoneCall(String customerName, PhoneCall call) throws IOException {
         String[] postParamters = {
-                "customer", "name",
+                "customer", customerName,
                 "caller", call.getCaller(),
                 "callee", call.getCallee(),
                 "startTime", String.valueOf(call.getStartTime().getTime()),
                 "endTime", String.valueOf(call.getEndTime().getTime())
-        }
+        };
         Response response = postToMyURL(postParamters);
         throwExceptionIfNotOkayHttpStatus(response);
     }
 
-    public String getPrettyPhoneBill(String customer) {
-        return "this is a pretty printed phoneBill";
+    public String getPrettyPhoneBill(String customerName) throws IOException {
+        Response response = get(this.url, "customer", customerName);
+
+        throwExceptionIfNotOkayHttpStatus(response);
+
+        return response.getContent();
     }
 
     private class PhoneBillRestException extends RuntimeException {

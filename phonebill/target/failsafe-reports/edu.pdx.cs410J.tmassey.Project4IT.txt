@@ -1,4 +1,12 @@
 -------------------------------------------------------------------------------
 Test set: edu.pdx.cs410J.tmassey.Project4IT
 -------------------------------------------------------------------------------
-Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.256 s - in edu.pdx.cs410J.tmassey.Project4IT
+Tests run: 5, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 0.178 s <<< FAILURE! - in edu.pdx.cs410J.tmassey.Project4IT
+test7CommandLineArgs(edu.pdx.cs410J.tmassey.Project4IT)  Time elapsed: 0.018 s  <<< ERROR!
+java.lang.IllegalArgumentException: Error while invoking main method of edu.pdx.cs410J.tmassey.Project4
+	at edu.pdx.cs410J.tmassey.Project4IT.test7CommandLineArgs(Project4IT.java:171)
+Caused by: java.lang.reflect.InvocationTargetException
+	at edu.pdx.cs410J.tmassey.Project4IT.test7CommandLineArgs(Project4IT.java:171)
+Caused by: edu.pdx.cs410J.tmassey.NoSuchPhoneBillException
+	at edu.pdx.cs410J.tmassey.Project4IT.test7CommandLineArgs(Project4IT.java:171)
+
