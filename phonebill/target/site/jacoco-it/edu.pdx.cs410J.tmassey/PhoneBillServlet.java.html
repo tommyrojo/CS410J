@@ -44,58 +44,84 @@ import java.util.stream.Collectors;
     {
 <span class="nc" id="L45">        response.setContentType( &quot;text/plain&quot; );</span>
 
-<span class="nc" id="L47">        String customer = getParameter(CUSTOMER_PARAMETER, request );</span>
-<span class="nc" id="L48">        String caller = getParameter(CALLER_PARAMETER, request);</span>
-<span class="nc" id="L49">        String callee = getParameter(CALLEE_PARAMETER, request);</span>
-<span class="nc" id="L50">        String startTime = getParameter(START_TIME_PARAMETER, request);</span>
-<span class="nc" id="L51">        String endTime = getParameter(END_TIME_PARAMETER, request);</span>
+        /**
+         * grab parameters passed into get method
+         */
+<span class="nc" id="L50">        String customer = getParameter(CUSTOMER_PARAMETER, request );</span>
+<span class="nc" id="L51">        String caller = getParameter(CALLER_PARAMETER, request);</span>
+<span class="nc" id="L52">        String callee = getParameter(CALLEE_PARAMETER, request);</span>
+<span class="nc" id="L53">        String startTime = getParameter(START_TIME_PARAMETER, request);</span>
+<span class="nc" id="L54">        String endTime = getParameter(END_TIME_PARAMETER, request);</span>
 
-<span class="nc" id="L53">        List&lt;PhoneCall&gt; callsToPrettyPrint = null;</span>
-<span class="nc" id="L54">        PhoneBill bill = getPhoneBill(customer);</span>
+        /**
+         * collections to store bills to print and customers phone bills
+         */
+<span class="nc" id="L59">        List&lt;PhoneCall&gt; callsToPrettyPrint = null;</span>
+<span class="nc" id="L60">        PhoneBill bill = getPhoneBill(customer);</span>
 
-<span class="nc bnc" id="L56" title="All 2 branches missed.">        if (bill == null) {</span>
-<span class="nc" id="L57">            PrintWriter writer = response.getWriter();</span>
-<span class="nc" id="L58">            writer.println(customer + &quot; was not found&quot;);</span>
-<span class="nc" id="L59">            response.setStatus(HttpServletResponse.SC_NOT_FOUND);</span>
-<span class="nc" id="L60">        } else {</span>
-<span class="nc bnc" id="L61" title="All 4 branches missed.">            if (caller == null &amp;&amp; callee == null) {</span>
+        /**
+         * handle null bills and bills that exist, if bill exist, write pretty printed bill to response
+         */
+<span class="nc bnc" id="L65" title="All 2 branches missed.">        if (bill == null) {</span>
+<span class="nc" id="L66">            PrintWriter writer = response.getWriter();</span>
+<span class="nc" id="L67">            writer.println(customer + &quot; was not found&quot;);</span>
+<span class="nc" id="L68">            response.setStatus(HttpServletResponse.SC_NOT_FOUND);</span>
+<span class="nc" id="L69">        } else {</span>
+<span class="nc bnc" id="L70" title="All 4 branches missed.">            if (caller == null &amp;&amp; callee == null) {</span>
                 // we are in search potentially
-<span class="nc bnc" id="L63" title="All 4 branches missed.">                if (startTime != null &amp;&amp; endTime != null) {</span>
-<span class="nc" id="L64">                    isSearch = true;</span>
-<span class="nc" id="L65">                    callsToPrettyPrint = searchPhoneBill(bill, startTime, endTime);</span>
-<span class="nc" id="L66">                    PrintWriter writer = response.getWriter();</span>
-<span class="nc" id="L67">                    writer.println(callsToPrettyPrint.size() + &quot; calls found between &quot; + startTime + &quot; and &quot; + endTime);</span>
-<span class="nc" id="L68">                    writer.println(bill.getCustomer());</span>
-<span class="nc" id="L69">                    callsToPrettyPrint.forEach((call) -&gt; writer.println(call.toString()));</span>
-<span class="nc" id="L70">                    response.setStatus(HttpServletResponse.SC_OK);</span>
-<span class="nc" id="L71">                }</span>
+<span class="nc bnc" id="L72" title="All 4 branches missed.">                if (startTime != null &amp;&amp; endTime != null) {</span>
+<span class="nc" id="L73">                    isSearch = true;</span>
+<span class="nc" id="L74">                    callsToPrettyPrint = searchPhoneBill(bill, startTime, endTime);</span>
+<span class="nc" id="L75">                    PrintWriter writer = response.getWriter();</span>
+<span class="nc" id="L76">                    writer.println(bill.getCustomer());</span>
+<span class="nc" id="L77">                    callsToPrettyPrint.forEach((call) -&gt; writer.println(call.toString()));</span>
+<span class="nc" id="L78">                    response.setStatus(HttpServletResponse.SC_OK);</span>
+<span class="nc" id="L79">                }</span>
             } else {
-<span class="nc" id="L73">                writePrettyPhoneBill(customer, response);</span>
+<span class="nc" id="L81">                writePrettyPhoneBill(customer, response);</span>
             }
 
-<span class="nc bnc" id="L76" title="All 2 branches missed.">            if(!isSearch) {</span>
-<span class="nc" id="L77">                writePrettyPhoneBill(customer, response);</span>
+            /**
+             * if we're not in search, proceed to pretty print found bill
+             */
+<span class="nc bnc" id="L87" title="All 2 branches missed.">            if(!isSearch) {</span>
+<span class="nc" id="L88">                writePrettyPhoneBill(customer, response);</span>
             }
+
+<span class="nc" id="L91">            isSearch = false;</span>
         }
-<span class="nc" id="L80">    }</span>
+<span class="nc" id="L93">    }</span>
 
+    /**
+     * Search Method to find bill within a specified date and time
+     * @param bill
+     * @param startTime
+     * @param endTime
+     * @return
+     */
     private List&lt;PhoneCall&gt; searchPhoneBill(PhoneBill bill, String startTime, String endTime) {
-<span class="nc" id="L83">        return bill.getPhoneCalls().stream()</span>
-<span class="nc bnc" id="L84" title="All 4 branches missed.">                    .filter(b -&gt; b.getEndTime().getTime() &lt;= new Date(endTime).getTime() &amp;&amp; b.getStartTime().getTime() &gt;= new Date(startTime).getTime())</span>
-<span class="nc" id="L85">                    .collect(Collectors.toList());</span>
+<span class="nc" id="L103">        return bill.getPhoneCalls().stream()</span>
+<span class="nc bnc" id="L104" title="All 4 branches missed.">                    .filter(b -&gt; b.getEndTime().getTime() &lt;= new Date(endTime).getTime() &amp;&amp; b.getStartTime().getTime() &gt;= new Date(startTime).getTime())</span>
+<span class="nc" id="L105">                    .collect(Collectors.toList());</span>
     }
 
+    /**
+     * Print Pretty Phone Bill Method
+     * @param customer
+     * @param response
+     * @throws IOException
+     */
     private void writePrettyPhoneBill(String customer, HttpServletResponse response) throws IOException {
-<span class="nc" id="L89">        PhoneBill bill = getPhoneBill(customer);</span>
-<span class="nc bnc" id="L90" title="All 2 branches missed.">        if (bill == null) {</span>
-<span class="nc" id="L91">            response.setStatus(HttpServletResponse.SC_NOT_FOUND);</span>
+<span class="nc" id="L115">        PhoneBill bill = getPhoneBill(customer);</span>
+<span class="nc bnc" id="L116" title="All 2 branches missed.">        if (bill == null) {</span>
+<span class="nc" id="L117">            response.setStatus(HttpServletResponse.SC_NOT_FOUND);</span>
         } else {
-<span class="nc" id="L93">            PrintWriter writer = response.getWriter();</span>
-<span class="nc" id="L94">            writer.println(bill.getCustomer());</span>
-<span class="nc" id="L95">            bill.getPhoneCalls().forEach((call) -&gt; writer.println(call.toString()));</span>
-<span class="nc" id="L96">            response.setStatus(HttpServletResponse.SC_OK);</span>
+<span class="nc" id="L119">            PrintWriter writer = response.getWriter();</span>
+<span class="nc" id="L120">            writer.println(bill.getCustomer());</span>
+<span class="nc" id="L121">            bill.getPhoneCalls().forEach((call) -&gt; writer.println(call.toString()));</span>
+<span class="nc" id="L122">            response.setStatus(HttpServletResponse.SC_OK);</span>
         }
-<span class="nc" id="L98">    }</span>
+<span class="nc" id="L124">    }</span>
 
     /**
      * Handles an HTTP POST request by storing the dictionary entry for the
@@ -105,39 +131,36 @@ import java.util.stream.Collectors;
     @Override
     protected void doPost( HttpServletRequest request, HttpServletResponse response ) throws ServletException, IOException
     {
-<span class="nc" id="L108">        response.setContentType( &quot;text/plain&quot; );</span>
+<span class="nc" id="L134">        response.setContentType( &quot;text/plain&quot; );</span>
 
-<span class="nc" id="L110">        String customer = getParameter(CUSTOMER_PARAMETER, request );</span>
-<span class="nc bnc" id="L111" title="All 2 branches missed.">        if (customer == null) {</span>
-<span class="nc" id="L112">            missingRequiredParameter(response, CUSTOMER_PARAMETER);</span>
-<span class="nc" id="L113">            return;</span>
+<span class="nc" id="L136">        String customer = getParameter(CUSTOMER_PARAMETER, request );</span>
+<span class="nc bnc" id="L137" title="All 2 branches missed.">        if (customer == null) {</span>
+<span class="nc" id="L138">            missingRequiredParameter(response, CUSTOMER_PARAMETER);</span>
+<span class="nc" id="L139">            return;</span>
         }
 
-<span class="nc" id="L116">        PhoneBill bill = getPhoneBill(customer);</span>
-<span class="nc bnc" id="L117" title="All 2 branches missed.">        if (bill == null) {</span>
-<span class="nc" id="L118">            bill = new PhoneBill(customer);</span>
-<span class="nc" id="L119">            this.bills.put(customer, bill);</span>
+<span class="nc" id="L142">        PhoneBill bill = getPhoneBill(customer);</span>
+<span class="nc bnc" id="L143" title="All 2 branches missed.">        if (bill == null) {</span>
+<span class="nc" id="L144">            bill = new PhoneBill(customer);</span>
+<span class="nc" id="L145">            this.bills.put(customer, bill);</span>
         }
 
-<span class="nc" id="L122">        String caller = getParameter(CALLER_PARAMETER, request);</span>
-<span class="nc" id="L123">        String callee = getParameter(CALLEE_PARAMETER, request);</span>
-<span class="nc" id="L124">        String startTime = getParameter(START_TIME_PARAMETER, request);</span>
-<span class="nc" id="L125">        String endTime = getParameter(END_TIME_PARAMETER, request);</span>
+        /**
+         * Grab Parameters to persis PhoneCall
+         */
+<span class="nc" id="L151">        String caller = getParameter(CALLER_PARAMETER, request);</span>
+<span class="nc" id="L152">        String callee = getParameter(CALLEE_PARAMETER, request);</span>
+<span class="nc" id="L153">        String startTime = getParameter(START_TIME_PARAMETER, request);</span>
+<span class="nc" id="L154">        String endTime = getParameter(END_TIME_PARAMETER, request);</span>
 
-        //awful hack to deal with the different date formats coming in from the integration tests and the REST calls.
-        //will refactor if there is time
-//        var newStart = Long.toString(new Date(startTime).getTime());
-//
-//        var newEnd = Long.toString(new Date(endTime).getTime());
+<span class="nc" id="L156">        Date startDate = new Date(startTime);</span>
+<span class="nc" id="L157">        Date endDate = new Date(endTime);</span>
 
-<span class="nc" id="L133">        Date startDate = new Date(startTime);</span>
-<span class="nc" id="L134">        Date endDate = new Date(endTime);</span>
+<span class="nc" id="L159">        PhoneCall call = new PhoneCall(caller, callee, startDate, endDate);</span>
+<span class="nc" id="L160">        bill.addPhoneCall(call);</span>
 
-<span class="nc" id="L136">        PhoneCall call = new PhoneCall(caller, callee, startDate, endDate);</span>
-<span class="nc" id="L137">        bill.addPhoneCall(call);</span>
-
-<span class="nc" id="L139">        response.setStatus( HttpServletResponse.SC_OK);</span>
-<span class="nc" id="L140">    }</span>
+<span class="nc" id="L162">        response.setStatus( HttpServletResponse.SC_OK);</span>
+<span class="nc" id="L163">    }</span>
 
     /**
      * Handles an HTTP DELETE request by removing all dictionary entries.  This
@@ -146,17 +169,17 @@ import java.util.stream.Collectors;
      */
     @Override
     protected void doDelete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-<span class="nc" id="L149">        response.setContentType(&quot;text/plain&quot;);</span>
+<span class="nc" id="L172">        response.setContentType(&quot;text/plain&quot;);</span>
 
-<span class="nc" id="L151">        this.bills.clear();</span>
+<span class="nc" id="L174">        this.bills.clear();</span>
 
-<span class="nc" id="L153">        PrintWriter pw = response.getWriter();</span>
-<span class="nc" id="L154">        pw.println(PhoneBill.allPhoneBillsDeleted());</span>
-<span class="nc" id="L155">        pw.flush();</span>
+<span class="nc" id="L176">        PrintWriter pw = response.getWriter();</span>
+<span class="nc" id="L177">        pw.println(PhoneBill.allPhoneBillsDeleted());</span>
+<span class="nc" id="L178">        pw.flush();</span>
 
-<span class="nc" id="L157">        response.setStatus(HttpServletResponse.SC_OK);</span>
+<span class="nc" id="L180">        response.setStatus(HttpServletResponse.SC_OK);</span>
 
-<span class="nc" id="L159">    }</span>
+<span class="nc" id="L182">    }</span>
 
     /**
      * Writes an error message about a missing parameter to the HTTP response.
@@ -167,9 +190,9 @@ import java.util.stream.Collectors;
         throws IOException
     {
 
-<span class="nc" id="L170">        String message = PhoneBill.missingRequiredParameter(parameterName);</span>
-<span class="nc" id="L171">        response.sendError(HttpServletResponse.SC_PRECONDITION_FAILED, message);</span>
-<span class="nc" id="L172">    }</span>
+<span class="nc" id="L193">        String message = PhoneBill.missingRequiredParameter(parameterName);</span>
+<span class="nc" id="L194">        response.sendError(HttpServletResponse.SC_PRECONDITION_FAILED, message);</span>
+<span class="nc" id="L195">    }</span>
 
     /**
      * Writes the definition of the given word to the HTTP response.
@@ -179,14 +202,14 @@ import java.util.stream.Collectors;
      */
     private void writeDefinition(String word, HttpServletResponse response ) throws IOException
     {
-<span class="nc" id="L182">        String definition = this.dictionary.get(word);</span>
+<span class="nc" id="L205">        String definition = this.dictionary.get(word);</span>
 
-<span class="nc" id="L184">        PrintWriter pw = response.getWriter();</span>
+<span class="nc" id="L207">        PrintWriter pw = response.getWriter();</span>
         //replace what was deleted with bill print
-<span class="nc" id="L186">        pw.flush();</span>
+<span class="nc" id="L209">        pw.flush();</span>
 
-<span class="nc" id="L188">        response.setStatus( HttpServletResponse.SC_OK );</span>
-<span class="nc" id="L189">    }</span>
+<span class="nc" id="L211">        response.setStatus( HttpServletResponse.SC_OK );</span>
+<span class="nc" id="L212">    }</span>
 
     /**
      * Writes all of the dictionary entries to the HTTP response.
@@ -196,13 +219,13 @@ import java.util.stream.Collectors;
      */
     private void writeAllDictionaryEntries(HttpServletResponse response ) throws IOException
     {
-<span class="nc" id="L199">        PrintWriter pw = response.getWriter();</span>
+<span class="nc" id="L222">        PrintWriter pw = response.getWriter();</span>
         //write out all phone bills and replace what was deleted below
 
-<span class="nc" id="L202">        pw.flush();</span>
+<span class="nc" id="L225">        pw.flush();</span>
 
-<span class="nc" id="L204">        response.setStatus( HttpServletResponse.SC_OK );</span>
-<span class="nc" id="L205">    }</span>
+<span class="nc" id="L227">        response.setStatus( HttpServletResponse.SC_OK );</span>
+<span class="nc" id="L228">    }</span>
 
     /**
      * Returns the value of the HTTP request parameter with the given name.
@@ -211,22 +234,22 @@ import java.util.stream.Collectors;
      *         &lt;code&gt;null&lt;/code&gt; or is the empty string
      */
     private String getParameter(String name, HttpServletRequest request) {
-<span class="nc" id="L214">      String value = request.getParameter(name);</span>
-<span class="nc bnc" id="L215" title="All 4 branches missed.">      if (value == null || &quot;&quot;.equals(value)) {</span>
-<span class="nc" id="L216">        return null;</span>
+<span class="nc" id="L237">      String value = request.getParameter(name);</span>
+<span class="nc bnc" id="L238" title="All 4 branches missed.">      if (value == null || &quot;&quot;.equals(value)) {</span>
+<span class="nc" id="L239">        return null;</span>
 
       } else {
-<span class="nc" id="L219">        return value;</span>
+<span class="nc" id="L242">        return value;</span>
       }
     }
 
     @VisibleForTesting
     String getDefinition(String word) {
-<span class="nc" id="L225">        return this.dictionary.get(word);</span>
+<span class="nc" id="L248">        return this.dictionary.get(word);</span>
     }
 
     public PhoneBill getPhoneBill(String customerName) {
-<span class="nc" id="L229">        return this.bills.get(customerName);</span>
+<span class="nc" id="L252">        return this.bills.get(customerName);</span>
 //        PhoneCall phoneCall = new PhoneCall(
 //                &quot;503-484-4336&quot;,
 //                &quot;503-550-5040&quot;,
@@ -241,7 +264,7 @@ import java.util.stream.Collectors;
     }
 
     public void addPhoneBill(PhoneBill bill) {
-<span class="nc" id="L244">        this.bills.put(bill.getCustomer(), bill);</span>
-<span class="nc" id="L245">    }</span>
+<span class="nc" id="L267">        this.bills.put(bill.getCustomer(), bill);</span>
+<span class="nc" id="L268">    }</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.1.201803210924</span></div></body></html>

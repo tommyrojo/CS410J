@@ -11,7 +11,7 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.3247336">
+    <splitter split-orientation="horizontal" split-proportion="0.48154762">
       <split-first>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
           <file leaf-file-name="FrameworkMethod.class" pinned="false" current-in-tab="false">
@@ -35,17 +35,8 @@
           <file leaf-file-name="PhoneBillServletTest.java" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/test/java/edu/pdx/cs410J/tmassey/PhoneBillServletTest.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="525">
+                <state relative-caret-position="517">
                   <caret line="48" column="75" selection-start-line="48" selection-start-column="75" selection-end-line="48" selection-end-column="75" />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="InvokeMainTestCase.class" pinned="false" current-in-tab="false">
-            <entry file="jar://$MAVEN_REPOSITORY$/edu/pdx/cs410J/projects/Summer2018/projects-Summer2018-tests.jar!/edu/pdx/cs410J/InvokeMainTestCase.class">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="1515">
-                  <caret line="120" selection-start-line="120" selection-end-line="120" />
                 </state>
               </provider>
             </entry>
@@ -62,8 +53,8 @@
           <file leaf-file-name="PhoneBillServlet.java" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/main/java/edu/pdx/cs410J/tmassey/PhoneBillServlet.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="629">
-                  <caret line="69" selection-start-line="69" selection-end-line="69" />
+                <state relative-caret-position="572">
+                  <caret line="227" column="5" lean-forward="true" selection-start-line="227" selection-start-column="5" selection-end-line="227" selection-end-column="5" />
                 </state>
               </provider>
             </entry>
@@ -84,8 +75,8 @@
           <file leaf-file-name="HttpRequestHelper.class" pinned="false" current-in-tab="false">
             <entry file="jar://$MAVEN_REPOSITORY$/edu/pdx/cs410J/examples/Summer2018/examples-Summer2018.jar!/edu/pdx/cs410J/web/HttpRequestHelper.class">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="165">
-                  <caret line="23" selection-start-line="23" selection-end-line="23" />
+                <state relative-caret-position="191">
+                  <caret line="144" column="16" selection-start-line="144" selection-start-column="16" selection-end-line="144" selection-end-column="16" />
                 </state>
               </provider>
             </entry>
@@ -93,8 +84,8 @@
           <file leaf-file-name="Project4.java" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/main/java/edu/pdx/cs410J/tmassey/Project4.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="610">
-                  <caret line="60" column="113" selection-start-line="60" selection-start-column="113" selection-end-line="60" selection-end-column="113" />
+                <state relative-caret-position="-1199">
+                  <caret line="166" column="48" selection-start-line="166" selection-start-column="48" selection-end-line="166" selection-end-column="48" />
                   <folding>
                     <element signature="imports" expanded="true" />
                   </folding>
@@ -110,7 +101,7 @@
         </leaf>
       </split-first>
       <split-second>
-        <splitter split-orientation="horizontal" split-proportion="0.58512545">
+        <splitter split-orientation="horizontal" split-proportion="0.282434">
           <split-first>
             <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
               <file leaf-file-name="AbstractPhoneCall.class" pinned="false" current-in-tab="false">
@@ -118,15 +109,6 @@
                   <provider selected="true" editor-type-id="text-editor">
                     <state relative-caret-position="390">
                       <caret line="34" selection-start-line="34" selection-end-line="34" />
-                    </state>
-                  </provider>
-                </entry>
-              </file>
-              <file leaf-file-name="Messages.java" pinned="false" current-in-tab="false">
-                <entry file="file://$PROJECT_DIR$/src/main/java/edu/pdx/cs410J/tmassey/Messages.java">
-                  <provider selected="true" editor-type-id="text-editor">
-                    <state relative-caret-position="315">
-                      <caret line="25" column="4" selection-start-line="25" selection-start-column="4" selection-end-line="27" selection-end-column="5" />
                     </state>
                   </provider>
                 </entry>
@@ -153,11 +135,11 @@
                   </provider>
                 </entry>
               </file>
-              <file leaf-file-name="PhoneBillRestClient.java" pinned="false" current-in-tab="true">
+              <file leaf-file-name="PhoneBillRestClient.java" pinned="false" current-in-tab="false">
                 <entry file="file://$PROJECT_DIR$/src/main/java/edu/pdx/cs410J/tmassey/PhoneBillRestClient.java">
                   <provider selected="true" editor-type-id="text-editor">
-                    <state relative-caret-position="1155">
-                      <caret line="79" selection-start-line="79" selection-end-line="79" />
+                    <state relative-caret-position="200">
+                      <caret line="45" selection-start-line="45" selection-end-line="45" />
                       <folding>
                         <element signature="imports" expanded="true" />
                       </folding>
@@ -194,11 +176,25 @@
               <file leaf-file-name="ParentRunner.class" pinned="false" current-in-tab="false">
                 <entry file="jar://$MAVEN_REPOSITORY$/junit/junit/4.12/junit-4.12.jar!/org/junit/runners/ParentRunner.class">
                   <provider selected="true" editor-type-id="text-editor">
-                    <state relative-caret-position="1755">
-                      <caret line="158" selection-start-line="158" selection-end-line="158" />
+                    <state relative-caret-position="401">
+                      <caret line="240" selection-start-line="240" selection-end-line="240" />
                       <folding>
+                        <element signature="e#2111#2112#0" expanded="true" />
+                        <element signature="e#2155#2156#0" expanded="true" />
                         <element signature="e#6004#6005#0" expanded="true" />
+                        <element signature="e#6075#6076#0" expanded="true" />
+                        <element signature="e#6539#6540#0" expanded="true" />
+                        <element signature="e#6629#6630#0" expanded="true" />
                       </folding>
+                    </state>
+                  </provider>
+                </entry>
+              </file>
+              <file leaf-file-name="JUnitCore.class" pinned="false" current-in-tab="true">
+                <entry file="jar://$MAVEN_REPOSITORY$/junit/junit/4.12/junit-4.12.jar!/org/junit/runner/JUnitCore.class">
+                  <provider selected="true" editor-type-id="text-editor">
+                    <state relative-caret-position="399">
+                      <caret line="76" selection-start-line="76" selection-end-line="76" />
                     </state>
                   </provider>
                 </entry>
@@ -231,8 +227,17 @@
               <file leaf-file-name="Project4IT.java" pinned="false" current-in-tab="true">
                 <entry file="file://$PROJECT_DIR$/src/it/java/edu/pdx/cs410J/tmassey/Project4IT.java">
                   <provider selected="true" editor-type-id="text-editor">
-                    <state relative-caret-position="1146">
-                      <caret line="110" lean-forward="true" selection-start-line="110" selection-end-line="110" />
+                    <state relative-caret-position="174">
+                      <caret line="67" column="90" selection-start-line="67" selection-start-column="90" selection-end-line="67" selection-end-column="90" />
+                    </state>
+                  </provider>
+                </entry>
+              </file>
+              <file leaf-file-name="InvokeMainTestCase.class" pinned="false" current-in-tab="false">
+                <entry file="jar://$MAVEN_REPOSITORY$/edu/pdx/cs410J/projects/Summer2018/projects-Summer2018-tests.jar!/edu/pdx/cs410J/InvokeMainTestCase.class">
+                  <provider selected="true" editor-type-id="text-editor">
+                    <state relative-caret-position="206">
+                      <caret line="47" selection-start-line="47" selection-end-line="47" />
                     </state>
                   </provider>
                 </entry>
@@ -266,6 +271,11 @@
       <find>getPrettyPhoneBill</find>
       <find>get</find>
       <find>getTime()</find>
+      <find>all</find>
+      <find>newDate</find>
+      <find>new date</find>
+      <find>-print</find>
+      <find>print</find>
     </findStrings>
   </component>
   <component name="IdeDocumentHistory">
@@ -288,19 +298,17 @@
         <option value="$PROJECT_DIR$/src/main/java/edu/pdx/cs410J/tmassey/PhoneCall.java" />
         <option value="$PROJECT_DIR$/src/it/java/edu/pdx/cs410J/tmassey/PhoneBillRestClientIT.java" />
         <option value="$PROJECT_DIR$/src/main/java/edu/pdx/cs410J/tmassey/PhoneBill.java" />
-        <option value="$PROJECT_DIR$/src/main/java/edu/pdx/cs410J/tmassey/PhoneBillRestClient.java" />
         <option value="$PROJECT_DIR$/src/test/java/edu/pdx/cs410J/tmassey/PhoneBillServletTest.java" />
-        <option value="$PROJECT_DIR$/src/it/java/edu/pdx/cs410J/tmassey/Project4IT.java" />
+        <option value="$PROJECT_DIR$/src/main/java/edu/pdx/cs410J/tmassey/PhoneBillRestClient.java" />
         <option value="$PROJECT_DIR$/src/main/java/edu/pdx/cs410J/tmassey/PhoneBillServlet.java" />
         <option value="$PROJECT_DIR$/src/main/java/edu/pdx/cs410J/tmassey/Project4.java" />
+        <option value="$PROJECT_DIR$/src/it/java/edu/pdx/cs410J/tmassey/Project4IT.java" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds" fullScreen="true">
-    <option name="x" value="-3840" />
-    <option name="y" value="-1489" />
-    <option name="width" value="3840" />
-    <option name="height" value="2160" />
+    <option name="width" value="1680" />
+    <option name="height" value="1050" />
   </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
@@ -431,7 +439,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="JUnit.Project4IT.test4AddDefinition">
+  <component name="RunManager" selected="Remote.Jetty Server">
     <configuration default="true" type="Application" factoryName="Application">
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
     </configuration>
@@ -448,29 +456,6 @@
       <option name="PACKAGE_NAME" value="edu.pdx.cs410J.tmassey" />
       <option name="MAIN_CLASS_NAME" value="edu.pdx.cs410J.tmassey.Project4IT" />
       <option name="METHOD_NAME" value="test4AddDefinition" />
-      <option name="TEST_OBJECT" value="method" />
-      <option name="VM_PARAMETERS" value="-ea" />
-      <option name="PARAMETERS" />
-      <option name="WORKING_DIRECTORY" value="%MODULE_WORKING_DIR%" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <option name="TEST_SEARCH_SCOPE">
-        <value defaultName="singleModule" />
-      </option>
-      <patterns />
-    </configuration>
-    <configuration name="Project4IT.test5NoCallerCalleeImpliesSearch" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="phonebill" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="edu.pdx.cs410J.tmassey.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="PACKAGE_NAME" value="edu.pdx.cs410J.tmassey" />
-      <option name="MAIN_CLASS_NAME" value="edu.pdx.cs410J.tmassey.Project4IT" />
-      <option name="METHOD_NAME" value="test5NoCallerCalleeImpliesSearch" />
       <option name="TEST_OBJECT" value="method" />
       <option name="VM_PARAMETERS" value="-ea" />
       <option name="PARAMETERS" />
@@ -517,6 +502,29 @@
       <option name="PACKAGE_NAME" value="edu.pdx.cs410J.tmassey" />
       <option name="MAIN_CLASS_NAME" value="edu.pdx.cs410J.tmassey.Project4IT" />
       <option name="METHOD_NAME" value="test7CommandLineArgs" />
+      <option name="TEST_OBJECT" value="method" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="%MODULE_WORKING_DIR%" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="singleModule" />
+      </option>
+      <patterns />
+    </configuration>
+    <configuration name="Project4IT.test8AddOneCaller" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="phonebill" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="edu.pdx.cs410J.tmassey.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PACKAGE_NAME" value="edu.pdx.cs410J.tmassey" />
+      <option name="MAIN_CLASS_NAME" value="edu.pdx.cs410J.tmassey.Project4IT" />
+      <option name="METHOD_NAME" value="test8AddOneCaller" />
       <option name="TEST_OBJECT" value="method" />
       <option name="VM_PARAMETERS" value="-ea" />
       <option name="PARAMETERS" />
@@ -602,18 +610,18 @@
     <list>
       <item itemvalue="Remote.Jetty Server" />
       <item itemvalue="JUnit.Project4IT.test4AddDefinition" />
-      <item itemvalue="JUnit.Project4IT.test5NoCallerCalleeImpliesSearch" />
-      <item itemvalue="JUnit.Project4IT.test7CommandLineArgs" />
       <item itemvalue="JUnit.Project4IT.test6AddOneCaller" />
       <item itemvalue="JUnit.Project4IT.test8JustDave" />
+      <item itemvalue="JUnit.Project4IT.test8AddOneCaller" />
+      <item itemvalue="JUnit.Project4IT.test7CommandLineArgs" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.Project4IT.test4AddDefinition" />
-        <item itemvalue="JUnit.Project4IT.test8JustDave" />
-        <item itemvalue="JUnit.Project4IT.test6AddOneCaller" />
-        <item itemvalue="JUnit.Project4IT.test5NoCallerCalleeImpliesSearch" />
         <item itemvalue="JUnit.Project4IT.test7CommandLineArgs" />
+        <item itemvalue="JUnit.Project4IT.test4AddDefinition" />
+        <item itemvalue="JUnit.Project4IT.test8AddOneCaller" />
+        <item itemvalue="JUnit.Project4IT.test6AddOneCaller" />
+        <item itemvalue="JUnit.Project4IT.test8JustDave" />
       </list>
     </recent_temporary>
   </component>
@@ -631,61 +639,61 @@
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="Project4IT_test8JustDave - 2018.08.05 at 23h 21m 10s.xml">
-      <configuration name="Project4IT.test8JustDave" configurationId="JUnit" />
+    <history-entry file="Project4IT_test6AddOneCaller - 2018.08.06 at 15h 19m 56s.xml">
+      <configuration name="Project4IT.test6AddOneCaller" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="Project4IT_test8JustDave - 2018.08.05 at 23h 22m 21s.xml">
-      <configuration name="Project4IT.test8JustDave" configurationId="JUnit" />
+    <history-entry file="Project4IT_test6AddOneCaller - 2018.08.06 at 21h 11m 56s.xml">
+      <configuration name="Project4IT.test6AddOneCaller" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="Project4IT_test4AddDefinition - 2018.08.05 at 23h 22m 32s.xml">
+    <history-entry file="Project4IT_test6AddOneCaller - 2018.08.06 at 21h 40m 53s.xml">
+      <configuration name="Project4IT.test6AddOneCaller" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="Project4IT_test8AddOneCaller - 2018.08.06 at 21h 42m 29s.xml">
+      <configuration name="Project4IT.test8AddOneCaller" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="Project4IT_test8AddOneCaller - 2018.08.06 at 21h 49m 01s.xml">
+      <configuration name="Project4IT.test8AddOneCaller" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="Project4IT_test4AddDefinition - 2018.08.06 at 21h 55m 13s.xml">
       <configuration name="Project4IT.test4AddDefinition" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="Project4IT_test4AddDefinition - 2018.08.05 at 23h 22m 52s.xml">
+    <history-entry file="Project4IT_test4AddDefinition - 2018.08.06 at 22h 04m 48s.xml">
       <configuration name="Project4IT.test4AddDefinition" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="Project4IT_test8JustDave - 2018.08.05 at 23h 25m 02s.xml">
-      <configuration name="Project4IT.test8JustDave" configurationId="JUnit" />
+    <history-entry file="Project4IT_test7CommandLineArgs - 2018.08.07 at 20h 20m 59s.xml">
+      <configuration name="Project4IT.test7CommandLineArgs" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="Project4IT_test8JustDave - 2018.08.05 at 23h 28m 51s.xml">
-      <configuration name="Project4IT.test8JustDave" configurationId="JUnit" />
+    <history-entry file="Project4IT_test7CommandLineArgs - 2018.08.07 at 20h 27m 34s.xml">
+      <configuration name="Project4IT.test7CommandLineArgs" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="Project4IT_test4AddDefinition - 2018.08.05 at 23h 38m 39s.xml">
-      <configuration name="Project4IT.test4AddDefinition" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="Project4IT_test8JustDave - 2018.08.05 at 23h 40m 29s.xml">
-      <configuration name="Project4IT.test8JustDave" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="Project4IT_test4AddDefinition - 2018.08.05 at 23h 40m 52s.xml">
-      <configuration name="Project4IT.test4AddDefinition" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="Project4IT_test4AddDefinition - 2018.08.05 at 23h 43m 54s.xml">
-      <configuration name="Project4IT.test4AddDefinition" configurationId="JUnit" />
+    <history-entry file="Project4IT_test7CommandLineArgs - 2018.08.07 at 20h 28m 25s.xml">
+      <configuration name="Project4IT.test7CommandLineArgs" configurationId="JUnit" />
     </history-entry>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-3840" y="-1489" width="3840" height="2160" extended-state="0" />
+    <frame x="0" y="0" width="1680" height="1050" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info anchor="right" id="Palette" order="3" />
       <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="bottom" id="Messages" order="9" weight="0.32447818" />
+      <window_info anchor="bottom" id="Messages" order="9" weight="0.3236473" />
       <window_info anchor="right" id="Palette&#9;" order="6" />
       <window_info id="Image Layers" order="2" />
       <window_info anchor="right" id="Capture Analysis" order="4" />
       <window_info anchor="bottom" id="Event Log" order="8" side_tool="true" />
       <window_info anchor="right" id="Maven Projects" order="7" />
       <window_info anchor="bottom" id="Version Control" order="10" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.32827324" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.32765532" />
       <window_info anchor="bottom" id="Terminal" order="7" />
       <window_info id="Capture Tool" order="5" />
       <window_info id="Designer" order="3" />
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.071354166" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.0" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info id="UI Designer" order="4" />
       <window_info anchor="right" id="Theme Preview" order="5" />
       <window_info id="Favorites" order="6" side_tool="true" />
-      <window_info anchor="bottom" id="Debug" order="3" visible="true" weight="0.16555977" />
+      <window_info active="true" anchor="bottom" id="Debug" order="3" visible="true" weight="0.3496994" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -720,13 +728,13 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/edu/pdx/cs410J/tmassey/PhoneBillServlet.java</url>
-          <line>107</line>
+          <line>133</line>
           <properties />
           <option name="timeStamp" value="264" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/edu/pdx/cs410J/tmassey/PhoneBillServlet.java</url>
-          <line>88</line>
+          <line>114</line>
           <properties />
           <option name="timeStamp" value="279" />
         </line-breakpoint>
@@ -755,32 +763,20 @@
           <option name="timeStamp" value="290" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/edu/pdx/cs410J/tmassey/PhoneBillRestClient.java</url>
-          <line>79</line>
-          <properties />
-          <option name="timeStamp" value="306" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/edu/pdx/cs410J/tmassey/Project4.java</url>
-          <line>206</line>
-          <properties />
-          <option name="timeStamp" value="307" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/edu/pdx/cs410J/tmassey/PhoneBillServlet.java</url>
-          <line>124</line>
+          <line>153</line>
           <properties />
           <option name="timeStamp" value="312" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/edu/pdx/cs410J/tmassey/PhoneBillServlet.java</url>
-          <line>135</line>
+          <line>158</line>
           <properties />
           <option name="timeStamp" value="313" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/edu/pdx/cs410J/tmassey/PhoneBillRestClient.java</url>
-          <line>85</line>
+          <line>87</line>
           <properties />
           <option name="timeStamp" value="315" />
         </line-breakpoint>
@@ -792,21 +788,9 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/it/java/edu/pdx/cs410J/tmassey/Project4IT.java</url>
-          <line>156</line>
-          <properties />
-          <option name="timeStamp" value="321" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/it/java/edu/pdx/cs410J/tmassey/Project4IT.java</url>
-          <line>163</line>
+          <line>178</line>
           <properties />
           <option name="timeStamp" value="322" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/edu/pdx/cs410J/tmassey/Project4.java</url>
-          <line>147</line>
-          <properties />
-          <option name="timeStamp" value="323" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/it/java/edu/pdx/cs410J/tmassey/Project4IT.java</url>
@@ -815,19 +799,58 @@
           <option name="timeStamp" value="327" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/edu/pdx/cs410J/tmassey/Project4.java</url>
-          <line>208</line>
+          <url>file://$PROJECT_DIR$/src/main/java/edu/pdx/cs410J/tmassey/PhoneBillServlet.java</url>
+          <line>64</line>
           <properties />
-          <option name="timeStamp" value="330" />
+          <option name="timeStamp" value="364" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/edu/pdx/cs410J/tmassey/PhoneBillRestClient.java</url>
+          <line>99</line>
+          <properties />
+          <option name="timeStamp" value="366" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/edu/pdx/cs410J/tmassey/PhoneBillRestClient.java</url>
+          <line>95</line>
+          <properties />
+          <option name="timeStamp" value="367" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/edu/pdx/cs410J/tmassey/PhoneBillRestClient.java</url>
+          <line>101</line>
+          <properties />
+          <option name="timeStamp" value="368" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/edu/pdx/cs410J/tmassey/PhoneBillRestClient.java</url>
+          <line>79</line>
+          <properties />
+          <option name="timeStamp" value="371" />
         </line-breakpoint>
       </breakpoints>
-      <option name="time" value="331" />
+      <option name="time" value="375" />
     </breakpoint-manager>
   </component>
   <component name="debuggerHistoryManager">
     <expressions id="evaluateExpression">
       <expression>
-        <expression-string>bill.getPhoneCalls()</expression-string>
+        <expression-string>response.content = &quot;hello hello&quot;;</expression-string>
+        <language-id>JAVA</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>response.content</expression-string>
+        <language-id>JAVA</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>response</expression-string>
+        <language-id>JAVA</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>response.getContent().value</expression-string>
         <language-id>JAVA</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
@@ -837,50 +860,28 @@
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
       <expression>
-        <expression-string>argPos.get(&quot;endDate&quot;).toLowerCase()</expression-string>
+        <expression-string>temp.remove(0)</expression-string>
         <language-id>JAVA</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
       <expression>
-        <expression-string>argsOrder.indexOf(&quot;caller&quot;)</expression-string>
+        <expression-string>temp</expression-string>
         <language-id>JAVA</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
       <expression>
-        <expression-string>argsOrder</expression-string>
+        <expression-string>iter.</expression-string>
         <language-id>JAVA</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
       <expression>
-        <expression-string>argsOrder.get(i - startPos)</expression-string>
-        <language-id>JAVA</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>argsOrder.get(i - startPos-2)</expression-string>
-        <language-id>JAVA</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>callsToPrettyPrint.forEach</expression-string>
-        <language-id>JAVA</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>callsToPrettyPrint</expression-string>
+        <expression-string>iter</expression-string>
         <language-id>JAVA</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
     </expressions>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/dependency-reduced-pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="775">
-          <caret line="129" column="26" selection-start-line="129" selection-start-column="26" selection-end-line="129" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/phonebill (1).iml" />
     <entry file="file://$PROJECT_DIR$/src/main/java/edu/pdx/cs410J/tmassey/PhoneBill.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/edu/pdx/cs410J/tmassey/Project1.java" />
@@ -892,13 +893,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="775">
           <caret line="129" column="26" selection-start-line="129" selection-start-column="26" selection-end-line="129" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/junit/junit/4.12/junit-4.12.jar!/org/junit/runner/JUnitCore.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="247">
-          <caret line="71" selection-start-line="71" selection-end-line="71" />
         </state>
       </provider>
     </entry>
@@ -1027,30 +1021,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/junit/junit/4.12/junit-4.12.jar!/org/junit/internal/runners/model/ReflectiveCallable.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="17" selection-start-line="17" selection-end-line="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/junit/junit/4.12/junit-4.12.jar!/org/junit/runners/BlockJUnit4ClassRunner.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="315">
-          <caret line="49" selection-start-line="49" selection-end-line="49" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/junit/junit/4.12/junit-4.12.jar!/org/junit/runners/ParentRunner.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1755">
-          <caret line="158" selection-start-line="158" selection-end-line="158" />
-          <folding>
-            <element signature="e#6004#6005#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="jar:///Library/Java/JavaVirtualMachines/jdk-10.0.1.jdk/Contents/Home/lib/src.zip!/java.base/java/util/Date.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="12165">
@@ -1059,27 +1029,6 @@
             <element signature="e#37393#37394#0" expanded="true" />
             <element signature="e#37429#37430#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/edu/pdx/cs410J/tmassey/PhoneBillServletTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="525">
-          <caret line="48" column="75" selection-start-line="48" selection-start-column="75" selection-end-line="48" selection-end-column="75" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/edu/pdx/cs410J/projects/Summer2018/projects-Summer2018-tests.jar!/edu/pdx/cs410J/InvokeMainTestCase.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1515">
-          <caret line="120" selection-start-line="120" selection-end-line="120" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/edu/pdx/cs410J/examples/Summer2018/examples-Summer2018.jar!/edu/pdx/cs410J/web/HttpRequestHelper.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="165">
-          <caret line="23" selection-start-line="23" selection-end-line="23" />
         </state>
       </provider>
     </entry>
@@ -1098,37 +1047,101 @@
         </state>
       </provider>
     </entry>
+    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk-10.0.1.jdk/Contents/Home/lib/src.zip!/java.base/java/util/function/Predicate.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="208">
+          <caret line="48" column="12" selection-start-line="48" selection-start-column="12" selection-end-line="48" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/edu/pdx/cs410J/tmassey/PhoneBillServletTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="517">
+          <caret line="48" column="75" selection-start-line="48" selection-start-column="75" selection-end-line="48" selection-end-column="75" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/edu/pdx/cs410J/examples/Summer2018/examples-Summer2018.jar!/edu/pdx/cs410J/web/HttpRequestHelper.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="191">
+          <caret line="144" column="16" selection-start-line="144" selection-start-column="16" selection-end-line="144" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/edu/pdx/cs410J/tmassey/PhoneBillRestClient.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1155">
-          <caret line="79" selection-start-line="79" selection-end-line="79" />
+        <state relative-caret-position="200">
+          <caret line="45" selection-start-line="45" selection-end-line="45" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/junit/junit/4.12/junit-4.12.jar!/org/junit/internal/runners/model/ReflectiveCallable.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="17" selection-start-line="17" selection-end-line="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/junit/junit/4.12/junit-4.12.jar!/org/junit/runners/BlockJUnit4ClassRunner.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="315">
+          <caret line="49" selection-start-line="49" selection-end-line="49" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/junit/junit/4.12/junit-4.12.jar!/org/junit/runners/ParentRunner.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="401">
+          <caret line="240" selection-start-line="240" selection-end-line="240" />
+          <folding>
+            <element signature="e#2111#2112#0" expanded="true" />
+            <element signature="e#2155#2156#0" expanded="true" />
+            <element signature="e#6004#6005#0" expanded="true" />
+            <element signature="e#6075#6076#0" expanded="true" />
+            <element signature="e#6539#6540#0" expanded="true" />
+            <element signature="e#6629#6630#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/junit/junit/4.12/junit-4.12.jar!/org/junit/runner/JUnitCore.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="399">
+          <caret line="76" selection-start-line="76" selection-end-line="76" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/edu/pdx/cs410J/tmassey/PhoneBillServlet.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="629">
-          <caret line="69" selection-start-line="69" selection-end-line="69" />
+        <state relative-caret-position="572">
+          <caret line="227" column="5" lean-forward="true" selection-start-line="227" selection-start-column="5" selection-end-line="227" selection-end-column="5" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/it/java/edu/pdx/cs410J/tmassey/Project4IT.java">
+    <entry file="jar://$MAVEN_REPOSITORY$/edu/pdx/cs410J/projects/Summer2018/projects-Summer2018-tests.jar!/edu/pdx/cs410J/InvokeMainTestCase.class">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1146">
-          <caret line="110" lean-forward="true" selection-start-line="110" selection-end-line="110" />
+        <state relative-caret-position="206">
+          <caret line="47" selection-start-line="47" selection-end-line="47" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/edu/pdx/cs410J/tmassey/Project4.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="610">
-          <caret line="60" column="113" selection-start-line="60" selection-start-column="113" selection-end-line="60" selection-end-column="113" />
+        <state relative-caret-position="-1199">
+          <caret line="166" column="48" selection-start-line="166" selection-start-column="48" selection-end-line="166" selection-end-column="48" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/it/java/edu/pdx/cs410J/tmassey/Project4IT.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="174">
+          <caret line="67" column="90" selection-start-line="67" selection-start-column="90" selection-end-line="67" selection-end-column="90" />
         </state>
       </provider>
     </entry>

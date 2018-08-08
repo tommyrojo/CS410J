@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="edu.pdx.cs410J.tmassey.PhoneBillServletTest" time="1.665" tests="2" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="edu.pdx.cs410J.tmassey.PhoneBillServletTest" time="1.11" tests="2" errors="0" skipped="0" failures="0">
   <properties>
     <property name="gopherProxySet" value="false"/>
     <property name="awt.toolkit" value="sun.lwawt.macosx.LWCToolkit"/>
@@ -17,7 +17,7 @@
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="user.country" value="US"/>
     <property name="sun.boot.library.path" value="/Library/Java/JavaVirtualMachines/jdk-10.0.1.jdk/Contents/Home/lib"/>
-    <property name="sun.java.command" value="/Users/tommyrojo/Documents/school/cs/410J/phonebill/target/surefire/surefirebooter15506127913619583573.jar /Users/tommyrojo/Documents/school/cs/410J/phonebill/target/surefire 2018-08-05T23-47-25_144-jvmRun1 surefire8773720480448337911tmp surefire_01312765375485890941tmp"/>
+    <property name="sun.java.command" value="/Users/tommyrojo/Documents/school/cs/410J/phonebill/target/surefire/surefirebooter3197396034175736035.jar /Users/tommyrojo/Documents/school/cs/410J/phonebill/target/surefire 2018-08-07T21-38-01_714-jvmRun1 surefire4334254151617742655tmp surefire_015289591257893123346tmp"/>
     <property name="http.nonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
     <property name="jdk.debug" value="release"/>
     <property name="surefire.test.class.path" value="/Users/tommyrojo/Documents/school/cs/410J/phonebill/target/test-classes:/Users/tommyrojo/Documents/school/cs/410J/phonebill/target/classes:/Users/tommyrojo/.m2/repository/junit/junit/4.12/junit-4.12.jar:/Users/tommyrojo/.m2/repository/org/hamcrest/hamcrest-core/1.3/hamcrest-core-1.3.jar:/Users/tommyrojo/.m2/repository/org/hamcrest/hamcrest-library/1.3/hamcrest-library-1.3.jar:/Users/tommyrojo/.m2/repository/org/mockito/mockito-core/2.18.3/mockito-core-2.18.3.jar:/Users/tommyrojo/.m2/repository/net/bytebuddy/byte-buddy/1.8.5/byte-buddy-1.8.5.jar:/Users/tommyrojo/.m2/repository/net/bytebuddy/byte-buddy-agent/1.8.5/byte-buddy-agent-1.8.5.jar:/Users/tommyrojo/.m2/repository/org/objenesis/objenesis/2.6/objenesis-2.6.jar:/Users/tommyrojo/.m2/repository/edu/pdx/cs410J/projects/Summer2018/projects-Summer2018.jar:/Users/tommyrojo/.m2/repository/edu/pdx/cs410J/examples/Summer2018/examples-Summer2018.jar:/Users/tommyrojo/.m2/repository/edu/pdx/cs410J/family/Summer2018/family-Summer2018.jar:/Users/tommyrojo/.m2/repository/javax/mail/javax.mail-api/1.6.1/javax.mail-api-1.6.1.jar:/Users/tommyrojo/.m2/repository/javax/activation/activation/1.1/activation-1.1.jar:/Users/tommyrojo/.m2/repository/com/google/inject/guice/4.2.0/guice-4.2.0.jar:/Users/tommyrojo/.m2/repository/javax/inject/javax.inject/1/javax.inject-1.jar:/Users/tommyrojo/.m2/repository/aopalliance/aopalliance/1.0/aopalliance-1.0.jar:/Users/tommyrojo/.m2/repository/com/google/guava/guava/23.6-android/guava-23.6-android.jar:/Users/tommyrojo/.m2/repository/com/google/code/findbugs/jsr305/1.3.9/jsr305-1.3.9.jar:/Users/tommyrojo/.m2/repository/org/checkerframework/checker-compat-qual/2.0.0/checker-compat-qual-2.0.0.jar:/Users/tommyrojo/.m2/repository/com/google/errorprone/error_prone_annotations/2.1.3/error_prone_annotations-2.1.3.jar:/Users/tommyrojo/.m2/repository/com/google/j2objc/j2objc-annotations/1.1/j2objc-annotations-1.1.jar:/Users/tommyrojo/.m2/repository/org/codehaus/mojo/animal-sniffer-annotations/1.14/animal-sniffer-annotations-1.14.jar:/Users/tommyrojo/.m2/repository/org/codehaus/groovy/groovy-all/2.4.10/groovy-all-2.4.10.jar:/Users/tommyrojo/.m2/repository/edu/pdx/cs410J/projects/Summer2018/projects-Summer2018-tests.jar:/Users/tommyrojo/.m2/repository/javax/servlet/javax.servlet-api/4.0.1/javax.servlet-api-4.0.1.jar:"/>
@@ -34,7 +34,7 @@
     <property name="java.specification.name" value="Java Platform API Specification"/>
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
     <property name="java.awt.graphicsenv" value="sun.awt.CGraphicsEnvironment"/>
-    <property name="surefire.real.class.path" value="/Users/tommyrojo/Documents/school/cs/410J/phonebill/target/surefire/surefirebooter15506127913619583573.jar"/>
+    <property name="surefire.real.class.path" value="/Users/tommyrojo/Documents/school/cs/410J/phonebill/target/surefire/surefirebooter3197396034175736035.jar"/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
     <property name="ftp.nonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
     <property name="java.runtime.version" value="10.0.1+10"/>
@@ -62,6 +62,6 @@
     <property name="java.class.version" value="54.0"/>
     <property name="socksNonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
   </properties>
-  <testcase name="initiallyServletContainsNoPhoneBills" classname="edu.pdx.cs410J.tmassey.PhoneBillServletTest" time="1.42"/>
-  <testcase name="getReturnsPrettyPhoneBill" classname="edu.pdx.cs410J.tmassey.PhoneBillServletTest" time="0.121"/>
+  <testcase name="initiallyServletContainsNoPhoneBills" classname="edu.pdx.cs410J.tmassey.PhoneBillServletTest" time="0.929"/>
+  <testcase name="getReturnsPrettyPhoneBill" classname="edu.pdx.cs410J.tmassey.PhoneBillServletTest" time="0.103"/>
 </testsuite>

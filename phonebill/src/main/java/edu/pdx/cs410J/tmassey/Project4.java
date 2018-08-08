@@ -15,7 +15,7 @@ import java.util.*;
 public class Project4 {
 
     public static final String MISSING_ARGS = "Missing command line arguments";
-    public static final String dateTimeRegEx = "^((0|1)?\\d{1})/((0|1|2)?\\d{1})/((19|20)?\\d{2}) (((0?[1-9])|(1[0-2])):([0-5])\\d\\s(A|P|a|p)(M|m))";
+    public static final String dateTimeRegEx = "^((0|1)?\\d{1})/((0|1|2|3)?\\d{1})/((19|20)?\\d{2}) (((0?[1-9])|(1[0-2])):([0-5])\\d\\s(A|P|a|p)(M|m))";
     public static final String phoneRegEx = "^\\d{3}-\\d{3}-\\d{4}$";
     private static boolean searchFlag = false;
 
@@ -95,6 +95,17 @@ public class Project4 {
 
             if (args[i].equals("-search")) {
                 searchFlag = true;
+                List<String> temp = Arrays.asList(args);
+
+                List<String> newArgList = new ArrayList<>();
+                for(String a: temp){
+                    if(!a.matches(phoneRegEx)){
+                        newArgList.add(a);
+                    }
+                }
+
+                args = newArgList.stream().toArray(String[]::new);
+
                 startPos++;
                 skip = true;
                 argsOrder = Arrays.asList("customer", "startDate", "startTime", "endDate", "endTime");
@@ -142,9 +153,19 @@ public class Project4 {
          * if we encounter bad input, display to user
          */
         if (errorInput.size() > 0) {
-            usage(errorInput.toString());
+            boolean result = errorInput.stream().allMatch(obj -> obj.matches(phoneRegEx));
+
+            if(!result) {
+                usage(errorInput.toString());
+            }
+
         }
 
+        /**
+         * if we want to print all the calls for a single customer, we check to see
+         * if we only have 1 arg in the argPos list, if so, we can assume we have the customer
+         * field and we print that callers calls
+         */
         if (argPos.size() > 1) {
 
             /**
@@ -196,7 +217,7 @@ public class Project4 {
             }
         } else {
             startDate = new Date(0).toString();
-            endDate = new Date("01/01/2020 12:34 pm").toString();
+            endDate = new Date("01/01/2040 12:00 am").toString();
             customer = argPos.get("customer");
         }
 
@@ -205,15 +226,8 @@ public class Project4 {
         String customerName = customer;
 
         if (searchFlag || argPos.size() == 1) {
-            client.searchPhoneBill(customerName, startDate, endDate);
-            if (argPos.size() == 1) {
-                PhoneBill bill = new PhoneBill(customer);
-
-                for (PhoneCall c : bill.getPhoneCalls()) {
-                    System.out.println(c);
-                }
-
-            }
+            var searchResults = client.searchPhoneBill(customerName, startDate, endDate);
+            System.out.println(searchResults);
         } else {
             Date DateStart = new Date(startDate);
             Date DateEnd = new Date(endDate);
@@ -221,14 +235,12 @@ public class Project4 {
             PhoneCall phoneCall = new PhoneCall(caller, callee, DateStart, DateEnd);
             client.addPhoneCall(customer, phoneCall);
 
-            String message;
-
-            // Print all word/definition pairs
-
-            message = client.getPrettyPhoneBill(customerName);
-
-            System.out.println(message);
+            if (print) {
+                System.out.println(customer);
+                System.out.println(phoneCall);
+            }
         }
+
         System.exit(0);
     }
 
@@ -260,20 +272,23 @@ public class Project4 {
     private static void usage( String message )
     {
         PrintStream err = System.err;
+
         err.println("** " + message);
         err.println();
-        err.println("usage: java Project4 host port [word] [definition]");
-        err.println("  host         Host of web server");
-        err.println("  port         Port of web server");
-        err.println("  word         Word in dictionary");
-        err.println("  definition   Definition of word");
+        err.println("usage: java Project4 host port [customer] [caller] [callee] [startTime] [endTime]");
+        err.println("host\t(Host of web server");
+        err.println("port\t(Port of web server");
+        err.println("customer\t(alphanumeric)");
+        err.println("callerNumber\t(###-###-####)");
+        err.println("calleeNumber\t(###-###-####)");
+        err.println("startTime\t(MM/DD/YYYY HH:MM:SS)");
+        err.println("endTime\t(MM/DD/YYYY HH:MM:SS)");
+        err.println("optional fields include:");
+        err.println("-search");
+        err.println("-print");
+        err.println("-README");
         err.println();
-        err.println("This simple program posts words and their definitions");
-        err.println("to the server.");
-        err.println("If no definition is specified, then the word's definition");
-        err.println("is printed.");
-        err.println("If no word is specified, all dictionary entries are printed");
-        err.println();
+        System.exit(0);
 
         System.exit(1);
     }

@@ -77,35 +77,37 @@ public class PhoneBillRestClient extends HttpRequestHelper
           &quot;endTime&quot;, endTime
         };
 
-<span class="fc" id="L80">        var response = get(this.url, searchParameters);</span>
-<span class="fc" id="L81">        throwExceptionIfNotOkayHttpStatus(response);</span>
-<span class="fc" id="L82">        return response.getContent();</span>
+<span class="fc" id="L80">        Response response = get(this.url, searchParameters);</span>
+
+<span class="fc" id="L82">        throwExceptionIfNotOkayHttpStatus(response);</span>
+
+<span class="fc" id="L84">        return response.getContent();</span>
     }
 
     public void addPhoneCall(String customerName, PhoneCall call) throws IOException {
-<span class="fc" id="L86">        String[] postParamters = {</span>
+<span class="fc" id="L88">        String[] postParamters = {</span>
                 &quot;customer&quot;, customerName,
-<span class="fc" id="L88">                &quot;caller&quot;, call.getCaller(),</span>
-<span class="fc" id="L89">                &quot;callee&quot;, call.getCallee(),</span>
-<span class="fc" id="L90">                &quot;startTime&quot;, call.getStartTime().toString(),</span>
-<span class="fc" id="L91">                &quot;endTime&quot;, call.getEndTime().toString()</span>
+<span class="fc" id="L90">                &quot;caller&quot;, call.getCaller(),</span>
+<span class="fc" id="L91">                &quot;callee&quot;, call.getCallee(),</span>
+<span class="fc" id="L92">                &quot;startTime&quot;, call.getStartTime().toString(),</span>
+<span class="fc" id="L93">                &quot;endTime&quot;, call.getEndTime().toString()</span>
         };
-<span class="fc" id="L93">        Response response = postToMyURL(postParamters);</span>
-<span class="fc" id="L94">        throwExceptionIfNotOkayHttpStatus(response);</span>
-<span class="fc" id="L95">    }</span>
+<span class="fc" id="L95">        Response response = postToMyURL(postParamters);</span>
+<span class="fc" id="L96">        throwExceptionIfNotOkayHttpStatus(response);</span>
+<span class="fc" id="L97">    }</span>
 
     public String getPrettyPhoneBill(String customerName) throws IOException {
-<span class="fc" id="L98">        Response response = get(this.url, &quot;customer&quot;, customerName);</span>
+<span class="fc" id="L100">        Response response = get(this.url, &quot;customer&quot;, customerName);</span>
 
-<span class="fc" id="L100">        throwExceptionIfNotOkayHttpStatus(response);</span>
+<span class="fc" id="L102">        throwExceptionIfNotOkayHttpStatus(response);</span>
 
-<span class="fc" id="L102">        return response.getContent();</span>
+<span class="fc" id="L104">        return response.getContent();</span>
     }
 
     private class PhoneBillRestException extends RuntimeException {
-<span class="nc" id="L106">      public PhoneBillRestException(int httpStatusCode) {</span>
-<span class="nc" id="L107">        super(&quot;Got an HTTP Status Code of &quot; + httpStatusCode);</span>
-<span class="nc" id="L108">      }</span>
+<span class="nc" id="L108">      public PhoneBillRestException(int httpStatusCode) {</span>
+<span class="nc" id="L109">        super(&quot;Got an HTTP Status Code of &quot; + httpStatusCode);</span>
+<span class="nc" id="L110">      }</span>
     }
 
 }

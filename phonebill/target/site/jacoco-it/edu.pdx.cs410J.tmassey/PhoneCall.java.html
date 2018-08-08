@@ -62,7 +62,7 @@ public class PhoneCall extends AbstractPhoneCall implements Comparable&lt;PhoneC
    */
   @Override
   public String getStartTimeString() {
-<span class="nc" id="L65">    return formatDate(this.startTime);</span>
+<span class="fc" id="L65">    return formatDate(this.startTime);</span>
   }
 
   /**
@@ -78,7 +78,7 @@ public class PhoneCall extends AbstractPhoneCall implements Comparable&lt;PhoneC
    */
   @Override
   public String getEndTimeString() {
-<span class="nc" id="L81">    return formatDate(this.endTime);</span>
+<span class="fc" id="L81">    return formatDate(this.endTime);</span>
   };
 
   @Override
@@ -93,7 +93,7 @@ public class PhoneCall extends AbstractPhoneCall implements Comparable&lt;PhoneC
   }
 
   private String formatDate(Date date) {
-<span class="nc" id="L96">    return DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG).format(date);</span>
+<span class="fc" id="L96">    return DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG).format(date);</span>
   }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.1.201803210924</span></div></body></html>

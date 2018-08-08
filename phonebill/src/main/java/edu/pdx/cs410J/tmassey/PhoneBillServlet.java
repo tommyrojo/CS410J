@@ -44,15 +44,24 @@ public class PhoneBillServlet extends HttpServlet
     {
         response.setContentType( "text/plain" );
 
+        /**
+         * grab parameters passed into get method
+         */
         String customer = getParameter(CUSTOMER_PARAMETER, request );
         String caller = getParameter(CALLER_PARAMETER, request);
         String callee = getParameter(CALLEE_PARAMETER, request);
         String startTime = getParameter(START_TIME_PARAMETER, request);
         String endTime = getParameter(END_TIME_PARAMETER, request);
 
+        /**
+         * collections to store bills to print and customers phone bills
+         */
         List<PhoneCall> callsToPrettyPrint = null;
         PhoneBill bill = getPhoneBill(customer);
 
+        /**
+         * handle null bills and bills that exist, if bill exist, write pretty printed bill to response
+         */
         if (bill == null) {
             PrintWriter writer = response.getWriter();
             writer.println(customer + " was not found");
@@ -64,7 +73,6 @@ public class PhoneBillServlet extends HttpServlet
                     isSearch = true;
                     callsToPrettyPrint = searchPhoneBill(bill, startTime, endTime);
                     PrintWriter writer = response.getWriter();
-                    writer.println(callsToPrettyPrint.size() + " calls found between " + startTime + " and " + endTime);
                     writer.println(bill.getCustomer());
                     callsToPrettyPrint.forEach((call) -> writer.println(call.toString()));
                     response.setStatus(HttpServletResponse.SC_OK);
@@ -73,18 +81,36 @@ public class PhoneBillServlet extends HttpServlet
                 writePrettyPhoneBill(customer, response);
             }
 
+            /**
+             * if we're not in search, proceed to pretty print found bill
+             */
             if(!isSearch) {
                 writePrettyPhoneBill(customer, response);
             }
+
+            isSearch = false;
         }
     }
 
+    /**
+     * Search Method to find bill within a specified date and time
+     * @param bill
+     * @param startTime
+     * @param endTime
+     * @return
+     */
     private List<PhoneCall> searchPhoneBill(PhoneBill bill, String startTime, String endTime) {
         return bill.getPhoneCalls().stream()
                     .filter(b -> b.getEndTime().getTime() <= new Date(endTime).getTime() && b.getStartTime().getTime() >= new Date(startTime).getTime())
                     .collect(Collectors.toList());
     }
 
+    /**
+     * Print Pretty Phone Bill Method
+     * @param customer
+     * @param response
+     * @throws IOException
+     */
     private void writePrettyPhoneBill(String customer, HttpServletResponse response) throws IOException {
         PhoneBill bill = getPhoneBill(customer);
         if (bill == null) {
@@ -119,16 +145,13 @@ public class PhoneBillServlet extends HttpServlet
             this.bills.put(customer, bill);
         }
 
+        /**
+         * Grab Parameters to persis PhoneCall
+         */
         String caller = getParameter(CALLER_PARAMETER, request);
         String callee = getParameter(CALLEE_PARAMETER, request);
         String startTime = getParameter(START_TIME_PARAMETER, request);
         String endTime = getParameter(END_TIME_PARAMETER, request);
-
-        //awful hack to deal with the different date formats coming in from the integration tests and the REST calls.
-        //will refactor if there is time
-//        var newStart = Long.toString(new Date(startTime).getTime());
-//
-//        var newEnd = Long.toString(new Date(endTime).getTime());
 
         Date startDate = new Date(startTime);
         Date endDate = new Date(endTime);

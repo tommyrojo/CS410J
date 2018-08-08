@@ -77,8 +77,10 @@ public class PhoneBillRestClient extends HttpRequestHelper
           "endTime", endTime
         };
 
-        var response = get(this.url, searchParameters);
+        Response response = get(this.url, searchParameters);
+
         throwExceptionIfNotOkayHttpStatus(response);
+
         return response.getContent();
     }
 

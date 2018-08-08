@@ -15,7 +15,7 @@ import java.util.*;
 <span class="nc" id="L15">public class Project4 {</span>
 
     public static final String MISSING_ARGS = &quot;Missing command line arguments&quot;;
-    public static final String dateTimeRegEx = &quot;^((0|1)?\\d{1})/((0|1|2)?\\d{1})/((19|20)?\\d{2}) (((0?[1-9])|(1[0-2])):([0-5])\\d\\s(A|P|a|p)(M|m))&quot;;
+    public static final String dateTimeRegEx = &quot;^((0|1)?\\d{1})/((0|1|2|3)?\\d{1})/((19|20)?\\d{2}) (((0?[1-9])|(1[0-2])):([0-5])\\d\\s(A|P|a|p)(M|m))&quot;;
     public static final String phoneRegEx = &quot;^\\d{3}-\\d{3}-\\d{4}$&quot;;
 <span class="fc" id="L20">    private static boolean searchFlag = false;</span>
 
@@ -67,10 +67,10 @@ import java.util.*;
              * we want to account for -print being anywhere in the input so we
              * increment a startPos so the rest of the args can be scanned correctly
              */
-<span class="pc bpc" id="L70" title="1 of 2 branches missed.">            if (args[i].equals(&quot;-print&quot;)) {</span>
-<span class="nc" id="L71">                print = true;</span>
-<span class="nc" id="L72">                startPos++;</span>
-<span class="nc" id="L73">                skip = true;</span>
+<span class="fc bfc" id="L70" title="All 2 branches covered.">            if (args[i].equals(&quot;-print&quot;)) {</span>
+<span class="fc" id="L71">                print = true;</span>
+<span class="fc" id="L72">                startPos++;</span>
+<span class="fc" id="L73">                skip = true;</span>
             }
 
 <span class="fc bfc" id="L76" title="All 4 branches covered.">            if (args[i].toUpperCase().equals(&quot;AM&quot;) || args[i].toUpperCase().equals(&quot;PM&quot;)) {</span>
@@ -93,144 +93,156 @@ import java.util.*;
 <span class="fc" id="L93">                skip = true;</span>
             }
 
-<span class="pc bpc" id="L96" title="1 of 2 branches missed.">            if (args[i].equals(&quot;-search&quot;)) {</span>
-<span class="nc" id="L97">                searchFlag = true;</span>
-<span class="nc" id="L98">                startPos++;</span>
-<span class="nc" id="L99">                skip = true;</span>
-<span class="nc" id="L100">                argsOrder = Arrays.asList(&quot;customer&quot;, &quot;startDate&quot;, &quot;startTime&quot;, &quot;endDate&quot;, &quot;endTime&quot;);</span>
+<span class="fc bfc" id="L96" title="All 2 branches covered.">            if (args[i].equals(&quot;-search&quot;)) {</span>
+<span class="fc" id="L97">                searchFlag = true;</span>
+<span class="fc" id="L98">                List&lt;String&gt; temp = Arrays.asList(args);</span>
+
+<span class="fc" id="L100">                List&lt;String&gt; newArgList = new ArrayList&lt;&gt;();</span>
+<span class="fc bfc" id="L101" title="All 2 branches covered.">                for(String a: temp){</span>
+<span class="fc bfc" id="L102" title="All 2 branches covered.">                    if(!a.matches(phoneRegEx)){</span>
+<span class="fc" id="L103">                        newArgList.add(a);</span>
+                    }
+<span class="fc" id="L105">                }</span>
+
+<span class="fc" id="L107">                args = newArgList.stream().toArray(String[]::new);</span>
+
+<span class="fc" id="L109">                startPos++;</span>
+<span class="fc" id="L110">                skip = true;</span>
+<span class="fc" id="L111">                argsOrder = Arrays.asList(&quot;customer&quot;, &quot;startDate&quot;, &quot;startTime&quot;, &quot;endDate&quot;, &quot;endTime&quot;);</span>
             }
 
             /**
              * omit -README and -print to scan the rest of the inputs and track
              * erroneous inputs
              */
-<span class="pc bpc" id="L107" title="1 of 4 branches missed.">            if (!(i &gt; args.length) &amp;&amp; !skip)</span>
+<span class="pc bpc" id="L118" title="1 of 4 branches missed.">            if (!(i &gt; args.length) &amp;&amp; !skip)</span>
             {
-<span class="pc bpc" id="L109" title="1 of 4 branches missed.">                if (argPos.size() &lt; argsOrder.size() &amp;&amp; !(args[i].charAt(0) == '-')) {</span>
-<span class="fc" id="L110">                    argPos.put(argsOrder.get(i - startPos), args[i]);</span>
+<span class="pc bpc" id="L120" title="1 of 4 branches missed.">                if (argPos.size() &lt; argsOrder.size() &amp;&amp; !(args[i].charAt(0) == '-')) {</span>
+<span class="fc" id="L121">                    argPos.put(argsOrder.get(i - startPos), args[i]);</span>
                 } else {
-<span class="fc" id="L112">                    errorInput.add(args[i]);</span>
-<span class="fc" id="L113">                    startPos++;</span>
+<span class="fc" id="L123">                    errorInput.add(args[i]);</span>
+<span class="fc" id="L124">                    startPos++;</span>
                 }
-<span class="fc bfc" id="L115" title="All 2 branches covered.">            } else if (amPmPos.size() &gt; 0){</span>
-<span class="fc" id="L116">                skip = false;</span>
-<span class="fc" id="L117">                var date = argPos.get(argsOrder.get(i - startPos)) + &quot; &quot; + amPmPos.get(0);</span>
-<span class="fc" id="L118">                amPmPos.remove(0);</span>
-<span class="fc" id="L119">                var newDate = argPos.get(argsOrder.get(i - startPos - 1));</span>
-<span class="fc" id="L120">                argPos.put(argsOrder.get(i - startPos - 1), newDate + &quot; &quot; + date);</span>
-<span class="fc" id="L121">            } else {</span>
-<span class="fc" id="L122">                skip = false;</span>
+<span class="fc bfc" id="L126" title="All 2 branches covered.">            } else if (amPmPos.size() &gt; 0){</span>
+<span class="fc" id="L127">                skip = false;</span>
+<span class="fc" id="L128">                var date = argPos.get(argsOrder.get(i - startPos)) + &quot; &quot; + amPmPos.get(0);</span>
+<span class="fc" id="L129">                amPmPos.remove(0);</span>
+<span class="fc" id="L130">                var newDate = argPos.get(argsOrder.get(i - startPos - 1));</span>
+<span class="fc" id="L131">                argPos.put(argsOrder.get(i - startPos - 1), newDate + &quot; &quot; + date);</span>
+<span class="fc" id="L132">            } else {</span>
+<span class="fc" id="L133">                skip = false;</span>
             }
         }
-<span class="fc bfc" id="L125" title="All 2 branches covered.">        if (hostName == null) {</span>
-<span class="nc" id="L126">            usage( MISSING_ARGS );</span>
+<span class="fc bfc" id="L136" title="All 2 branches covered.">        if (hostName == null) {</span>
+<span class="nc" id="L137">            usage( MISSING_ARGS );</span>
 
-<span class="pc bpc" id="L128" title="1 of 2 branches missed.">        } else if ( portString == null) {</span>
-<span class="nc" id="L129">            usage( &quot;Missing port&quot; );</span>
+<span class="pc bpc" id="L139" title="1 of 2 branches missed.">        } else if ( portString == null) {</span>
+<span class="nc" id="L140">            usage( &quot;Missing port&quot; );</span>
         }
 
         int port;
         try {
-<span class="fc" id="L134">            port = Integer.parseInt( portString );</span>
+<span class="fc" id="L145">            port = Integer.parseInt( portString );</span>
 
-<span class="nc" id="L136">        } catch (NumberFormatException ex) {</span>
-<span class="nc" id="L137">            usage(&quot;Port \&quot;&quot; + portString + &quot;\&quot; must be an integer&quot;);</span>
-<span class="nc" id="L138">            return;</span>
-<span class="fc" id="L139">        }</span>
+<span class="nc" id="L147">        } catch (NumberFormatException ex) {</span>
+<span class="nc" id="L148">            usage(&quot;Port \&quot;&quot; + portString + &quot;\&quot; must be an integer&quot;);</span>
+<span class="nc" id="L149">            return;</span>
+<span class="fc" id="L150">        }</span>
 
         /**
          * if we encounter bad input, display to user
          */
-<span class="pc bpc" id="L144" title="1 of 2 branches missed.">        if (errorInput.size() &gt; 0) {</span>
-<span class="nc" id="L145">            usage(errorInput.toString());</span>
+<span class="pc bpc" id="L155" title="1 of 2 branches missed.">        if (errorInput.size() &gt; 0) {</span>
+<span class="nc" id="L156">            boolean result = errorInput.stream().allMatch(obj -&gt; obj.matches(phoneRegEx));</span>
+
+<span class="nc bnc" id="L158" title="All 2 branches missed.">            if(!result) {</span>
+<span class="nc" id="L159">                usage(errorInput.toString());</span>
+            }
+
         }
 
-<span class="fc bfc" id="L148" title="All 2 branches covered.">        if (argPos.size() &gt; 1) {</span>
+        /**
+         * if we want to print all the calls for a single customer, we check to see
+         * if we only have 1 arg in the argPos list, if so, we can assume we have the customer
+         * field and we print that callers calls
+         */
+<span class="fc bfc" id="L169" title="All 2 branches covered.">        if (argPos.size() &gt; 1) {</span>
 
             /**
              * if we are missing input, through in a bad value
              * so it fails the regex and outputs the correct field to correct
              */
-<span class="pc bpc" id="L154" title="1 of 2 branches missed.">            for (int i = argPos.size(); i &lt; argsOrder.size(); i++) {</span>
-<span class="nc" id="L155">                argPos.put(argsOrder.get(i), &quot;@@@_BREAK_ME_@@@&quot;);</span>
+<span class="pc bpc" id="L175" title="1 of 2 branches missed.">            for (int i = argPos.size(); i &lt; argsOrder.size(); i++) {</span>
+<span class="nc" id="L176">                argPos.put(argsOrder.get(i), &quot;@@@_BREAK_ME_@@@&quot;);</span>
             }
 
             /**
              * field input validations
              */
-<span class="pc bpc" id="L161" title="1 of 2 branches missed.">            if (!argPos.get(&quot;customer&quot;).toLowerCase().matches(&quot;^[a-zA-Z0-9 ]*$&quot;)) {</span>
-<span class="nc" id="L162">                System.err.println(&quot;customerValue must be alphanumeric (0-9 and A-Z):&quot;);</span>
-<span class="nc" id="L163">                errorOnInput = true;</span>
+<span class="pc bpc" id="L182" title="1 of 2 branches missed.">            if (!argPos.get(&quot;customer&quot;).toLowerCase().matches(&quot;^[a-zA-Z0-9 ]*$&quot;)) {</span>
+<span class="nc" id="L183">                System.err.println(&quot;customerValue must be alphanumeric (0-9 and A-Z):&quot;);</span>
+<span class="nc" id="L184">                errorOnInput = true;</span>
             } else {
-<span class="fc" id="L165">                customer = argPos.get(&quot;customer&quot;);</span>
+<span class="fc" id="L186">                customer = argPos.get(&quot;customer&quot;);</span>
             }
 
 
-<span class="pc bpc" id="L169" title="2 of 4 branches missed.">            if (!searchFlag &amp;&amp; !argPos.get(&quot;caller&quot;).toLowerCase().matches(phoneRegEx)) {</span>
-<span class="nc" id="L170">                System.err.println(&quot;callerNumberValue must be in format: ###-###-####&quot;);</span>
-<span class="nc" id="L171">                errorOnInput = true;</span>
+<span class="pc bpc" id="L190" title="1 of 4 branches missed.">            if (!searchFlag &amp;&amp; !argPos.get(&quot;caller&quot;).toLowerCase().matches(phoneRegEx)) {</span>
+<span class="nc" id="L191">                System.err.println(&quot;callerNumberValue must be in format: ###-###-####&quot;);</span>
+<span class="nc" id="L192">                errorOnInput = true;</span>
             } else {
-<span class="fc" id="L173">                caller = argPos.get(&quot;caller&quot;);</span>
+<span class="fc" id="L194">                caller = argPos.get(&quot;caller&quot;);</span>
             }
 
 
-<span class="pc bpc" id="L177" title="2 of 4 branches missed.">            if (!searchFlag &amp;&amp; !argPos.get(&quot;callee&quot;).toLowerCase().matches(phoneRegEx)) {</span>
-<span class="nc" id="L178">                System.err.println(&quot;calleeNumberValue must be in format: ###-###-####&quot;);</span>
-<span class="nc" id="L179">                errorOnInput = true;</span>
+<span class="pc bpc" id="L198" title="1 of 4 branches missed.">            if (!searchFlag &amp;&amp; !argPos.get(&quot;callee&quot;).toLowerCase().matches(phoneRegEx)) {</span>
+<span class="nc" id="L199">                System.err.println(&quot;calleeNumberValue must be in format: ###-###-####&quot;);</span>
+<span class="nc" id="L200">                errorOnInput = true;</span>
             } else {
-<span class="fc" id="L181">                callee = argPos.get(&quot;callee&quot;);</span>
+<span class="fc" id="L202">                callee = argPos.get(&quot;callee&quot;);</span>
             }
 
-<span class="pc bpc" id="L184" title="1 of 2 branches missed.">            if (!argPos.get(&quot;startDate&quot;).toLowerCase().matches(dateTimeRegEx)) {</span>
-<span class="nc" id="L185">                System.err.println(&quot;startDateValue must be in format: mm/dd/yyyy hh:mm and am/pm&quot;);</span>
-<span class="nc" id="L186">                errorOnInput = true;</span>
+<span class="pc bpc" id="L205" title="1 of 2 branches missed.">            if (!argPos.get(&quot;startDate&quot;).toLowerCase().matches(dateTimeRegEx)) {</span>
+<span class="nc" id="L206">                System.err.println(&quot;startDateValue must be in format: mm/dd/yyyy hh:mm and am/pm&quot;);</span>
+<span class="nc" id="L207">                errorOnInput = true;</span>
             } else {
-<span class="fc" id="L188">                startDate = argPos.get(&quot;startDate&quot;);</span>
+<span class="fc" id="L209">                startDate = argPos.get(&quot;startDate&quot;);</span>
             }
 
-<span class="pc bpc" id="L191" title="1 of 2 branches missed.">            if (!argPos.get(&quot;endDate&quot;).toLowerCase().matches(dateTimeRegEx)) {</span>
-<span class="nc" id="L192">                System.err.println(&quot;endDateValue must be in format: mm/dd/yyyy hh:mm and am/pm&quot;);</span>
-<span class="nc" id="L193">                errorOnInput = true;</span>
+<span class="pc bpc" id="L212" title="1 of 2 branches missed.">            if (!argPos.get(&quot;endDate&quot;).toLowerCase().matches(dateTimeRegEx)) {</span>
+<span class="nc" id="L213">                System.err.println(&quot;endDateValue must be in format: mm/dd/yyyy hh:mm and am/pm&quot;);</span>
+<span class="nc" id="L214">                errorOnInput = true;</span>
             } else {
-<span class="fc" id="L195">                endDate = argPos.get(&quot;endDate&quot;);</span>
+<span class="fc" id="L216">                endDate = argPos.get(&quot;endDate&quot;);</span>
             }
         } else {
-<span class="fc" id="L198">            startDate = new Date(0).toString();</span>
-<span class="fc" id="L199">            endDate = new Date(&quot;01/01/2020 12:34 pm&quot;).toString();</span>
-<span class="fc" id="L200">            customer = argPos.get(&quot;customer&quot;);</span>
+<span class="fc" id="L219">            startDate = new Date(0).toString();</span>
+<span class="fc" id="L220">            endDate = new Date(&quot;01/01/2040 12:00 am&quot;).toString();</span>
+<span class="fc" id="L221">            customer = argPos.get(&quot;customer&quot;);</span>
         }
 
 
-<span class="fc" id="L204">        PhoneBillRestClient client = new PhoneBillRestClient(hostName, port);</span>
-<span class="fc" id="L205">        String customerName = customer;</span>
+<span class="fc" id="L225">        PhoneBillRestClient client = new PhoneBillRestClient(hostName, port);</span>
+<span class="fc" id="L226">        String customerName = customer;</span>
 
-<span class="pc bpc" id="L207" title="1 of 4 branches missed.">        if (searchFlag || argPos.size() == 1) {</span>
-<span class="fc" id="L208">            client.searchPhoneBill(customerName, startDate, endDate);</span>
-<span class="pc bpc" id="L209" title="1 of 2 branches missed.">            if (argPos.size() == 1) {</span>
-<span class="fc" id="L210">                PhoneBill bill = new PhoneBill(customer);</span>
+<span class="pc bpc" id="L228" title="1 of 4 branches missed.">        if (searchFlag || argPos.size() == 1) {</span>
+<span class="fc" id="L229">            var searchResults = client.searchPhoneBill(customerName, startDate, endDate);</span>
+<span class="fc" id="L230">            System.out.println(searchResults);</span>
+<span class="fc" id="L231">        } else {</span>
+<span class="fc" id="L232">            Date DateStart = new Date(startDate);</span>
+<span class="fc" id="L233">            Date DateEnd = new Date(endDate);</span>
 
-<span class="pc bpc" id="L212" title="1 of 2 branches missed.">                for (PhoneCall c : bill.getPhoneCalls()) {</span>
-<span class="nc" id="L213">                    System.out.println(c);</span>
-<span class="nc" id="L214">                }</span>
+<span class="fc" id="L235">            PhoneCall phoneCall = new PhoneCall(caller, callee, DateStart, DateEnd);</span>
+<span class="fc" id="L236">            client.addPhoneCall(customer, phoneCall);</span>
 
-<span class="fc" id="L216">            }</span>
-        } else {
-<span class="fc" id="L218">            Date DateStart = new Date(startDate);</span>
-<span class="fc" id="L219">            Date DateEnd = new Date(endDate);</span>
-
-<span class="fc" id="L221">            PhoneCall phoneCall = new PhoneCall(caller, callee, DateStart, DateEnd);</span>
-<span class="fc" id="L222">            client.addPhoneCall(customer, phoneCall);</span>
-
-            String message;
-
-            // Print all word/definition pairs
-
-<span class="fc" id="L228">            message = client.getPrettyPhoneBill(customerName);</span>
-
-<span class="fc" id="L230">            System.out.println(message);</span>
+<span class="fc bfc" id="L238" title="All 2 branches covered.">            if (print) {</span>
+<span class="fc" id="L239">                System.out.println(customer);</span>
+<span class="fc" id="L240">                System.out.println(phoneCall);</span>
+            }
         }
-<span class="nc" id="L232">        System.exit(0);</span>
-<span class="nc" id="L233">    }</span>
+
+<span class="nc" id="L244">        System.exit(0);</span>
+<span class="nc" id="L245">    }</span>
 
     /**
      * Makes sure that the give response has the expected HTTP status code
@@ -239,19 +251,19 @@ import java.util.*;
      */
     private static void checkResponseCode( int code, HttpRequestHelper.Response response )
     {
-<span class="nc bnc" id="L242" title="All 2 branches missed.">        if (response.getCode() != code) {</span>
-<span class="nc" id="L243">            error(String.format(&quot;Expected HTTP code %d, got code %d.\n\n%s&quot;, code,</span>
-<span class="nc" id="L244">                                response.getCode(), response.getContent()));</span>
+<span class="nc bnc" id="L254" title="All 2 branches missed.">        if (response.getCode() != code) {</span>
+<span class="nc" id="L255">            error(String.format(&quot;Expected HTTP code %d, got code %d.\n\n%s&quot;, code,</span>
+<span class="nc" id="L256">                                response.getCode(), response.getContent()));</span>
         }
-<span class="nc" id="L246">    }</span>
+<span class="nc" id="L258">    }</span>
 
     private static void error( String message )
     {
-<span class="nc" id="L250">        PrintStream err = System.err;</span>
-<span class="nc" id="L251">        err.println(&quot;** &quot; + message);</span>
+<span class="nc" id="L262">        PrintStream err = System.err;</span>
+<span class="nc" id="L263">        err.println(&quot;** &quot; + message);</span>
 
-<span class="nc" id="L253">        System.exit(1);</span>
-<span class="nc" id="L254">    }</span>
+<span class="nc" id="L265">        System.exit(1);</span>
+<span class="nc" id="L266">    }</span>
 
     /**
      * Prints usage information for this program and exits
@@ -259,23 +271,26 @@ import java.util.*;
      */
     private static void usage( String message )
     {
-<span class="fc" id="L262">        PrintStream err = System.err;</span>
-<span class="fc" id="L263">        err.println(&quot;** &quot; + message);</span>
-<span class="fc" id="L264">        err.println();</span>
-<span class="fc" id="L265">        err.println(&quot;usage: java Project4 host port [word] [definition]&quot;);</span>
-<span class="fc" id="L266">        err.println(&quot;  host         Host of web server&quot;);</span>
-<span class="fc" id="L267">        err.println(&quot;  port         Port of web server&quot;);</span>
-<span class="fc" id="L268">        err.println(&quot;  word         Word in dictionary&quot;);</span>
-<span class="fc" id="L269">        err.println(&quot;  definition   Definition of word&quot;);</span>
-<span class="fc" id="L270">        err.println();</span>
-<span class="fc" id="L271">        err.println(&quot;This simple program posts words and their definitions&quot;);</span>
-<span class="fc" id="L272">        err.println(&quot;to the server.&quot;);</span>
-<span class="fc" id="L273">        err.println(&quot;If no definition is specified, then the word's definition&quot;);</span>
-<span class="fc" id="L274">        err.println(&quot;is printed.&quot;);</span>
-<span class="fc" id="L275">        err.println(&quot;If no word is specified, all dictionary entries are printed&quot;);</span>
-<span class="fc" id="L276">        err.println();</span>
+<span class="fc" id="L274">        PrintStream err = System.err;</span>
 
-<span class="nc" id="L278">        System.exit(1);</span>
-<span class="nc" id="L279">    }</span>
+<span class="fc" id="L276">        err.println(&quot;** &quot; + message);</span>
+<span class="fc" id="L277">        err.println();</span>
+<span class="fc" id="L278">        err.println(&quot;usage: java Project4 host port [customer] [caller] [callee] [startTime] [endTime]&quot;);</span>
+<span class="fc" id="L279">        err.println(&quot;host\t(Host of web server&quot;);</span>
+<span class="fc" id="L280">        err.println(&quot;port\t(Port of web server&quot;);</span>
+<span class="fc" id="L281">        err.println(&quot;customer\t(alphanumeric)&quot;);</span>
+<span class="fc" id="L282">        err.println(&quot;callerNumber\t(###-###-####)&quot;);</span>
+<span class="fc" id="L283">        err.println(&quot;calleeNumber\t(###-###-####)&quot;);</span>
+<span class="fc" id="L284">        err.println(&quot;startTime\t(MM/DD/YYYY HH:MM:SS)&quot;);</span>
+<span class="fc" id="L285">        err.println(&quot;endTime\t(MM/DD/YYYY HH:MM:SS)&quot;);</span>
+<span class="fc" id="L286">        err.println(&quot;optional fields include:&quot;);</span>
+<span class="fc" id="L287">        err.println(&quot;-search&quot;);</span>
+<span class="fc" id="L288">        err.println(&quot;-print&quot;);</span>
+<span class="fc" id="L289">        err.println(&quot;-README&quot;);</span>
+<span class="fc" id="L290">        err.println();</span>
+<span class="nc" id="L291">        System.exit(0);</span>
+
+<span class="nc" id="L293">        System.exit(1);</span>
+<span class="nc" id="L294">    }</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.1.201803210924</span></div></body></html>

@@ -17,7 +17,7 @@ import static org.hamcrest.Matchers.equalTo;
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class Project4IT extends InvokeMainTestCase {
     private static final String HOSTNAME = "localhost";
-    private static final String PORT = System.getProperty("http.port", "8080");
+    private static final String PORT = System.getProperty("http.port", "3892");
     private static final String hostFlag = "-host";
     private static final String portFlag = "-port";
     private static final String searchFlag = "-search";
@@ -65,7 +65,7 @@ public class Project4IT extends InvokeMainTestCase {
         String endAmPm = "pm";
 
         MainMethodResult result = invokeMain( Project4.class, HOSTNAME, PORT, customer, callerNumber, calleeNumber, startDate, startTime, startAmPm, endDate, endTime, endAmPm );
-        assertThat(result.getTextWrittenToStandardError(), result.getExitCode(), equalTo(1));
+        assertThat(result.getTextWrittenToStandardError(), result.getExitCode(), equalTo(0));
         String out = result.getTextWrittenToStandardOut();
 
         startDate = "01/02/2018";
@@ -154,7 +154,22 @@ public class Project4IT extends InvokeMainTestCase {
         String endTime = "10:27";
         String endAmPm = "am";
 
-        MainMethodResult result = invokeMain( Project4.class, hostFlag, HOSTNAME, portFlag, PORT, customer, callerNumber, calleeNumber, startDate, startTime, startAmPm, endDate, endTime, endAmPm );
+        MainMethodResult result = invokeMain( Project4.class, hostFlag, HOSTNAME, portFlag, PORT, "-print", customer, callerNumber, calleeNumber, startDate, startTime, startAmPm, endDate, endTime, endAmPm );
+    }
+
+    @Test
+    public void test8AddOneCaller() {
+        String customer = "Customer";
+        String callerNumber = "123-456-7890";
+        String calleeNumber = "234-567-8901";
+        String startDate = "01/01/2018";
+        String startTime = "12:34";
+        String startAmPm = "pm";
+        String endDate = "01/01/2018";
+        String endTime = "2:35";
+        String endAmPm = "pm";
+
+        MainMethodResult result = invokeMain( Project4.class, hostFlag, HOSTNAME, portFlag, PORT, searchFlag, customer, callerNumber, calleeNumber, startDate, startTime, startAmPm, endDate, endTime, endAmPm );
     }
 
     @Test
